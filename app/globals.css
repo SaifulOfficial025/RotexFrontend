@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #41b5db;
+  /* Defining black and white explicitly isn't necessary in Tailwind, 
+     as they are included by default, but we can do it if we want custom shades. 
+     Tailwind already has 'black' and 'white'. */
+}
