@@ -29,7 +29,7 @@ export default function ProductCard({
           </div>
           {/* Ghost button space for mobile to maintain grid height */}
           <div className="w-full flex justify-center items-center px-4 pb-6 mt-2 lg:hidden">
-            <button className="px-5 py-2.5 text-[13px]">GHOST</button>
+            <button className="px-3 sm:px-5 py-2 sm:py-2.5 text-[11px] sm:text-[13px]">GHOST</button>
           </div>
         </div>
       </div>
@@ -88,7 +88,7 @@ export default function ProductCard({
 
           {/* Button: Visible by default on mobile, visible on hover on desktop */}
           <div className="w-full flex justify-center items-center px-4 pb-6 mt-2 overflow-hidden transition-all duration-500 ease-in-out max-h-[100px] opacity-100 lg:max-h-0 lg:opacity-0 lg:group-hover:max-h-[100px] lg:group-hover:opacity-100">
-            <button className="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 text-[13px] font-bold tracking-wider transition-colors w-full sm:w-auto">
+            <button className="bg-primary hover:bg-primary/90 text-white px-3 sm:px-5 py-2 sm:py-2.5 text-[11px] sm:text-[13px] font-bold tracking-wider transition-colors w-full sm:w-auto whitespace-nowrap">
               VIEW PRODUCT
             </button>
           </div>

@@ -19,20 +19,23 @@ const products = Array.from({ length: 12 }).map((_, i) => ({
   id: i + 1,
   name: `Premium Product ${i + 1}`,
   category: i % 2 === 0 ? "Furniture" : "Accessories",
-  price: `$${(Math.random() * 100 + 20).toFixed(2)} - $${(Math.random() * 150 + 120).toFixed(2)}`,
+  price: `$${(Math.random() * 100 + 20).toFixed(2)}`,
   image: images[i],
   hoverImage: images[(i + 1) % images.length],
   isSale: Math.random() > 0.5,
-  description: "Upgrade your home office or entryway with the clean, organic lines of this minimalist wooden desk. Crafted from high-quality materials.",
+  description:
+    "Upgrade your home office or entryway with the clean, organic lines of this minimalist wooden desk. Crafted from high-quality materials.",
 }));
 
 export default function FeaturedProducts() {
   return (
     <section className="py-12 border-t border-gray-100">
-      <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center uppercase tracking-wide">Featured Products</h2>
+      <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center uppercase tracking-wide">
+        Featured Products
+      </h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
         {products.map((product) => (
-          <ProductCard 
+          <ProductCard
             key={product.id}
             title={product.name}
             category={product.category}
