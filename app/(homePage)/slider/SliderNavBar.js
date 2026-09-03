@@ -78,6 +78,7 @@ export default function SliderNavBar() {
 
           {/* ── Menu Button ── */}
           <button
+            id="mobile-menu-toggle-btn"
             onClick={handleMenuToggle}
             aria-label="Toggle Menu"
             className={`flex-1 flex items-center justify-center gap-2 h-full transition-all duration-200 ${
@@ -98,6 +99,9 @@ export default function SliderNavBar() {
           </Link>
           <Link href="/aboutUs" className="text-[13px] font-bold text-gray-800 px-4 py-4 whitespace-nowrap transition-colors uppercase tracking-wide hover:bg-primary hover:text-white">
             About Us
+          </Link>
+          <Link href="#" className="text-[13px] font-bold text-gray-800 px-4 py-4 whitespace-nowrap transition-colors uppercase tracking-wide hover:bg-primary hover:text-white">
+            Products
           </Link>
           <Link href="/contactUs" className="text-[13px] font-bold text-gray-800 px-4 py-4 whitespace-nowrap transition-colors uppercase tracking-wide hover:bg-primary hover:text-white">
             Contact Us
@@ -167,6 +171,7 @@ export default function SliderNavBar() {
           {[
             { href: "/", label: "Home", active: true },
             { href: "/aboutUs", label: "About Us" },
+            { href: "#", label: "Products" },
             { href: "/contactUs", label: "Contact Us" },
             { href: "#", label: "Our Clients" },
           ].map((item, i) => (

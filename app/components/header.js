@@ -99,6 +99,7 @@ export default function Header() {
           <div className="w-full lg:flex-1 lg:max-w-[600px] lg:mx-8 order-3 lg:order-2">
             <div className="flex items-center border border-gray-200 focus-within:border-primary transition-colors  bg-white overflow-hidden h-[42px] lg:h-[46px] group">
               <input
+                id="main-search-input"
                 type="text"
                 placeholder="Search for products"
                 className="flex-1 h-full px-4 outline-none text-[13px] text-gray-700 placeholder-gray-400"

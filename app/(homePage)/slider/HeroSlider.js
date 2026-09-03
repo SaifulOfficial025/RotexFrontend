@@ -64,14 +64,14 @@ export default function HeroSlider() {
         {/* Left / Right Navigation Arrows at screen edges */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 hover:bg-white text-white hover:text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-40"
+          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 hover:bg-white text-white hover:text-primary flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 z-40"
           aria-label="Previous Slide"
         >
           <FaChevronLeft size={20} />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 hover:bg-white text-white hover:text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-40"
+          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 hover:bg-white text-white hover:text-primary flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 z-40"
           aria-label="Next Slide"
         >
           <FaChevronRight size={20} />

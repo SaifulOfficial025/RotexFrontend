@@ -1,4 +1,5 @@
 import Header from "../components/header";
+import DynamicHeader from "../components/dymanicHeader";
 import Slider from "./slider/HeroSlider";
 import Categories from "./Categories";
 import FeaturedProducts from "./FeaturedProducts";
@@ -9,6 +10,9 @@ export default function HomePage() {
     <div className="flex flex-col min-h-screen bg-white">
       {/* Global Header */}
       <Header />
+      
+      {/* Sticky/Dynamic Header */}
+      <DynamicHeader />
 
       {/* Hero Slider */}
       <Slider />
