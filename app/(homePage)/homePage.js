@@ -4,6 +4,7 @@ import Slider from "./slider/HeroSlider";
 import Categories from "./Categories";
 import FeaturedProducts from "./FeaturedProducts";
 import PromoBanner from "./PromoBanner";
+import OurbusinessFields from "./OurBusinessFields";
 
 export default function HomePage() {
   return (
@@ -22,7 +23,7 @@ export default function HomePage() {
         <div className="flex flex-col gap-6 mt-8">
           {/* <Categories /> */}
           <FeaturedProducts />
-          {/* <PromoBanner /> */}
+          <OurbusinessFields />
         </div>
       </main>
     </div>
