@@ -29,23 +29,25 @@ const products = Array.from({ length: 12 }).map((_, i) => ({
 
 export default function FeaturedProducts() {
   return (
-    <section className="py-12 border-t border-gray-100">
-      <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center uppercase tracking-wide">
-        Featured Products
-      </h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            title={product.name}
-            category={product.category}
-            price={product.price}
-            image={product.image}
-            hoverImage={product.hoverImage}
-            sale={product.isSale}
-            description={product.description}
-          />
-        ))}
+    <section className="py-16 md:py-24 border-t border-gray-100 bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-10 text-center uppercase tracking-wide">
+          Featured Products
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              title={product.name}
+              category={product.category}
+              price={product.price}
+              image={product.image}
+              hoverImage={product.hoverImage}
+              sale={product.isSale}
+              description={product.description}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Button from "../../components/button";
 
 // ─── Slide Content Panel ──────────────────────────────────────────────────────
 // Renders the animated text (left) and image (right) for the active slide.
@@ -31,17 +31,21 @@ export default function SlideContent({ slide, animKey, currentSlide }) {
         {/* Price — only shown when defined */}
         {slide.price && (
           <div className="mb-4 md:mb-6">
-            <span className="text-xl md:text-2xl font-bold text-white">{slide.price}</span>
+            <span className="text-xl md:text-2xl font-bold text-white">
+              {slide.price}
+            </span>
           </div>
         )}
 
         {/* CTA */}
-        <Link
+        <Button
           href="#"
-          className="inline-block self-center md:self-start px-6 md:px-7 py-2.5 md:py-3 bg-white text-gray-900 text-sm font-bold uppercase tracking-wide hover:bg-primary hover:text-white transition-all duration-300 rounded-sm shadow-lg"
+          variant="white"
+          showArrow={false}
+          className="self-center md:self-start !px-6 md:!px-7 !py-2.5 md:!py-3 !text-gray-900 hover:!bg-primary hover:!text-white shadow-lg"
         >
           Shop Now
-        </Link>
+        </Button>
       </div>
 
       {/* Right: Image — animates from right */}

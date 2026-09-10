@@ -76,7 +76,7 @@ const fields = [
 export default function OurBusinessFields() {
   return (
     <section className="py-20 bg-gray-50 overflow-hidden relative">
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
         {/* Animated Header coming from bottom */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -120,7 +120,7 @@ export default function OurBusinessFields() {
                   src={field.image}
                   alt={field.name}
                   fill
-                  className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+                  className="object-cover transition-transform duration-700 ease-in-out"
                 />
 
                 {/* Gradient Overlay for Text Readability */}
