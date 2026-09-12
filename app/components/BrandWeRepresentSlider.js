@@ -111,7 +111,7 @@ export default function BrandWeRepresentSlider() {
                 className="flex-[0_0_50%] sm:flex-[0_0_33.333%] md:flex-[0_0_25%] lg:flex-[0_0_16.666%] min-w-0 pl-4 md:pl-6"
               >
                 {/* Brand Card */}
-                <div className="bg-white border border-gray-100 p-6 h-32 md:h-40 flex items-center justify-center shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-500 group relative overflow-hidden">
+                <div className="bg-white  p-6 h-32 md:h-40 flex items-center justify-center hover:shadow-xl hover:border-primary/20 transition-all duration-500 group relative overflow-hidden">
                   {/* Subtle background glow on hover */}
                   <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
 

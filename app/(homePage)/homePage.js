@@ -10,6 +10,8 @@ import Review from "./Review";
 import BusinessDeals from "../components/BusinessDeals";
 import EquireAndMap from "../components/EquireAndMap";
 import BrandWeRepresentSlider from "../components/BrandWeRepresentSlider";
+import HonorableClientSlider from "../components/HonorableClientSlider";
+import Footer from "../components/footer";
 
 export default function HomePage() {
   return (
@@ -33,9 +35,13 @@ export default function HomePage() {
           <Review />
           <BusinessDeals />
           <EquireAndMap />
+          <HonorableClientSlider />
           <BrandWeRepresentSlider />
         </div>
       </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

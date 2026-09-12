@@ -44,19 +44,22 @@ const fields = [
   { name: "Digital Truck Scales", icon: FaTruck, image: digitalTruckScales },
   { name: "Textile and Garments", icon: FaShirt, image: textileGarments },
   { name: "Food Industry", icon: FaUtensils, image: foodIndustry },
+  // {
+  //   name: "Laboratory Glassware",
+  //   icon: FaWineGlass,
+  //   image: laboratoryGlassware,
+  // },
   {
-    name: "Laboratory Glassware",
-    icon: FaWineGlass,
-    image: laboratoryGlassware,
-  },
-  {
-    name: "Laboratory Reagent Chemical and Raw Materials",
+    name: "Laboratory Glassware, Reagent Chemical and Raw Materials",
     icon: FaFlask,
     image: laboratoryReagentChemicalAndRawMaterials,
   },
   { name: "Power Plant", icon: FaBolt, image: powerPlant },
-  { name: "Environment", icon: FaLeaf, image: environment },
-  { name: "Agricultural", icon: FaTractor, image: agricultural },
+  {
+    name: "Environment, Agricultural & Feed Mill",
+    icon: FaTractor,
+    image: agricultural,
+  },
   { name: "Pharmaceutical", icon: FaPills, image: pharmaceutical },
   {
     name: "Steel Rolling Industry",
@@ -64,8 +67,6 @@ const fields = [
     image: steelRollingIndustry,
   },
   { name: "Medical and Hospital", icon: FaHospital, image: medicalHospital },
-  { name: "Lab equipment", icon: FaMicroscope, image: labEquipment },
-  { name: "Feed mill", icon: FaSeedling, image: feedMill },
   {
     name: "Collage, University and Research",
     icon: FaGraduationCap,
