@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { companyInfo } from "./CompanyInfo";
 import { useState } from "react";
 import Logo from "@/public/images/Rotex-Logo-1.png";
 import {
@@ -127,33 +128,31 @@ export default function Footer() {
 
             {/* Tagline */}
             <p className="text-white/90 text-[13.5px] leading-relaxed">
-              Rotex International is a trusted supplier of premium laboratory,
-              medical, and industrial equipment — delivering quality solutions
-              across Bangladesh since inception.
+              {companyInfo.shortDescription}
             </p>
 
             {/* Contact Info */}
             <ul className="flex flex-col gap-3">
               <li>
                 <a
-                  href="tel:+8801700000000"
+                  href={`tel:${companyInfo.phone.replace(/[^0-9+]/g, "")}`}
                   className="flex items-start gap-3 text-white/90 text-[13.5px] hover:text-white transition-colors group"
                 >
                   <span className="mt-[2px] flex-shrink-0 w-7 h-7 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
                     <IoCallOutline size={15} className="text-white" />
                   </span>
-                  <span>+880 1700-000000</span>
+                  <span>{companyInfo.phone}</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:info@rotexbd.com"
+                  href={`mailto:${companyInfo.email}`}
                   className="flex items-start gap-3 text-white/90 text-[13.5px] hover:text-white transition-colors group"
                 >
                   <span className="mt-[2px] flex-shrink-0 w-7 h-7 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
                     <IoMailOutline size={15} className="text-white" />
                   </span>
-                  <span>info@rotexbd.com</span>
+                  <span>{companyInfo.email}</span>
                 </a>
               </li>
               <li>
@@ -161,13 +160,7 @@ export default function Footer() {
                   <span className="mt-[2px] flex-shrink-0 w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
                     <IoLocationOutline size={15} className="text-white" />
                   </span>
-                  <span>
-                    House #12, Road #4, Block B,
-                    <br />
-                    Niketan, Gulshan-1, Dhaka-1212,
-                    <br />
-                    Bangladesh
-                  </span>
+                  <span>{companyInfo.address}</span>
                 </div>
               </li>
               <li>
@@ -175,11 +168,7 @@ export default function Footer() {
                   <span className="mt-[2px] flex-shrink-0 w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
                     <IoTimeOutline size={15} className="text-white" />
                   </span>
-                  <span>
-                    Sun – Thu: 9:00 AM – 6:00 PM
-                    <br />
-                    Fri – Sat: Closed
-                  </span>
+                  <span>{companyInfo.officeTime}</span>
                 </div>
               </li>
             </ul>
@@ -281,7 +270,7 @@ export default function Footer() {
                 Connect with us on social media for updates and more.
               </p>
               <div className="flex flex-wrap gap-3">
-                {socialLinks.map(({ Icon, href, label, color }) => (
+                {companyInfo.socialLinks.map(({ Icon, href, label, color }) => (
                   <a
                     key={label}
                     href={href}
@@ -323,7 +312,7 @@ export default function Footer() {
           <p className="text-white/80 text-[12.5px] text-center sm:text-left">
             © {new Date().getFullYear()}{" "}
             <span className="font-semibold text-white">
-              Rotex International
+              {companyInfo.name}
             </span>
             . All rights reserved.
           </p>

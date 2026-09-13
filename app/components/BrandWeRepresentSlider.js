@@ -63,7 +63,7 @@ export default function BrandWeRepresentSlider() {
   }, [emblaApi]);
 
   return (
-    <section className="py-16 md:py-24 bg-white border-y border-gray-100 overflow-hidden flex flex-col">
+    <section className="py-16 md:py-24 bg-white  overflow-hidden flex flex-col">
       {/* Header Section - Contained */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl mb-10 md:mb-14">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">

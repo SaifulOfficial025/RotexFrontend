@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { FaChevronDown, FaChevronRight } from "react-icons/fa";
-import { categories } from "./sliderData";
+import { categories, menus } from "@/app/components/CategoriesAndMenus";
 
 // ─── Hamburger Lines ──────────────────────────────────────────────────────────
 function HamburgerLines({ open }) {
@@ -94,21 +94,11 @@ export default function SliderNavBar() {
 
         {/* Desktop: Nav Links */}
         <div className="hidden lg:flex flex-1 items-center px-4 space-x-2">
-          <Link href="/" className="text-[13px] font-bold text-primary px-4 py-4 whitespace-nowrap transition-colors uppercase tracking-wide hover:bg-primary hover:text-white">
-            Home
-          </Link>
-          <Link href="/aboutUs" className="text-[13px] font-bold text-gray-800 px-4 py-4 whitespace-nowrap transition-colors uppercase tracking-wide hover:bg-primary hover:text-white">
-            About Us
-          </Link>
-          <Link href="#" className="text-[13px] font-bold text-gray-800 px-4 py-4 whitespace-nowrap transition-colors uppercase tracking-wide hover:bg-primary hover:text-white">
-            Products
-          </Link>
-          <Link href="/contactUs" className="text-[13px] font-bold text-gray-800 px-4 py-4 whitespace-nowrap transition-colors uppercase tracking-wide hover:bg-primary hover:text-white">
-            Contact Us
-          </Link>
-          <Link href="#" className="text-[13px] font-bold text-gray-800 px-4 py-4 whitespace-nowrap transition-colors uppercase tracking-wide hover:bg-primary hover:text-white">
-            Our Clients
-          </Link>
+          {menus.map((item, i) => (
+            <Link key={i} href={item.href} className={`text-[13px] font-bold px-4 py-4 whitespace-nowrap transition-colors uppercase tracking-wide hover:bg-primary hover:text-white ${item.active ? "text-primary" : "text-gray-800"}`}>
+              {item.label}
+            </Link>
+          ))}
         </div>
       </div>
 
@@ -168,13 +158,7 @@ export default function SliderNavBar() {
       {/* ─── Mobile: Menu Dropdown ─────────────────────────────────────────── */}
       {menuOpen && (
         <div className="lg:hidden absolute top-full left-0 w-full z-50 bg-white shadow-2xl border-t-[3px] border-primary">
-          {[
-            { href: "/", label: "Home", active: true },
-            { href: "/aboutUs", label: "About Us" },
-            { href: "#", label: "Products" },
-            { href: "/contactUs", label: "Contact Us" },
-            { href: "#", label: "Our Clients" },
-          ].map((item, i) => (
+          {menus.map((item, i) => (
             <Link
               key={i}
               href={item.href}

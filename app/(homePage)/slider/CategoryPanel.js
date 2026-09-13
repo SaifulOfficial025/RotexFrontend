@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa";
-import { categories } from "./sliderData";
+import { categories } from "@/app/components/CategoriesAndMenus";
 
 // Glass style shared by panel + flyout
 const glassStyle = {

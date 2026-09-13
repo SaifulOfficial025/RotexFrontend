@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import Cart from "./Cart";
 import Logo from "@/public/images/Rotex-Logo-1.png";
 import {
   IoSearchOutline,
@@ -19,6 +21,7 @@ import {
 import { FaSquareXTwitter, FaShuffle } from "react-icons/fa6";
 
 export default function Header() {
+  const [isCartOpen, setIsCartOpen] = useState(false);
   return (
     <header className="w-full font-sans">
       {/* Top Bar */}
@@ -149,8 +152,8 @@ export default function Header() {
               </Link> */}
 
               {/* Cart */}
-              <Link
-                href="#"
+              <button
+                onClick={(e) => { e.preventDefault(); setIsCartOpen(true); }}
                 className="flex items-center space-x-2 lg:space-x-3 group"
               >
                 <div className="relative">
@@ -163,11 +166,12 @@ export default function Header() {
                   </span>
                 </div>
                 <span className="text-sm font-bold text-gray-800">৳0.00</span>
-              </Link>
+              </button>
             </div>
           </div>
         </div>
       </div>
+      <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </header>
   );
 }
