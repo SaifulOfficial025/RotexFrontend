@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import Header from "../components/header";
 import DynamicHeader from "../components/dymanicHeader";
 import Slider from "./slider/HeroSlider";
@@ -6,12 +7,12 @@ import FeaturedProducts from "./FeaturedProducts";
 import PromoBanner from "./PromoBanner";
 import OurbusinessFields from "./OurBusinessFields";
 import WhyUs from "./WhyUs";
-import Review from "./Review";
-import BusinessDeals from "../components/BusinessDeals";
-import EnquireAndMap from "../components/EnquireAndMap";
-import BrandWeRepresentSlider from "../components/BrandWeRepresentSlider";
-import HonorableClientSlider from "../components/HonorableClientSlider";
-import Footer from "../components/footer";
+const Review = dynamic(() => import("./Review"));
+const BusinessDeals = dynamic(() => import("../components/BusinessDeals"));
+const EnquireAndMap = dynamic(() => import("../components/EnquireAndMap"));
+const BrandWeRepresentSlider = dynamic(() => import("../components/BrandWeRepresentSlider"));
+const HonorableClientSlider = dynamic(() => import("../components/HonorableClientSlider"));
+const Footer = dynamic(() => import("../components/footer"));
 
 export default function HomePage() {
   return (
@@ -27,6 +28,7 @@ export default function HomePage() {
 
       {/* Main Content */}
       <main className="flex-grow">
+        <h1 className="sr-only">Rotex Lab - Premium Laboratory, Medical, and Scientific Equipment in Bangladesh</h1>
         <div className="flex flex-col">
           {/* <Categories /> */}
           <FeaturedProducts />
