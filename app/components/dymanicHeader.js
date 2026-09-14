@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import MobileSidebar from "./MobileSidebar";
+import { menus } from "./CategoriesAndMenus";
 import Cart from "./Cart";
 import Logo from "@/public/images/Rotex-Logo-1.png";
 import {
@@ -80,36 +81,15 @@ export default function DynamicHeader() {
 
           {/* Navigation Menus (From SliderNavBar - Desktop Only) */}
           <div className="hidden lg:flex items-center space-x-2 ml-4">
-            <Link
-              href="/"
-              className="text-[13px] font-bold text-gray-800 px-4 py-4 uppercase tracking-wide hover:text-primary transition-colors"
-            >
-              Home
-            </Link>
-            <Link
-              href="/aboutUs"
-              className="text-[13px] font-bold text-gray-800 px-4 py-4 uppercase tracking-wide hover:text-primary transition-colors"
-            >
-              About Us
-            </Link>
-            <Link
-              href="#"
-              className="text-[13px] font-bold text-gray-800 px-4 py-4 uppercase tracking-wide hover:text-primary transition-colors"
-            >
-              Products
-            </Link>
-            <Link
-              href="/contactUs"
-              className="text-[13px] font-bold text-gray-800 px-4 py-4 uppercase tracking-wide hover:text-primary transition-colors"
-            >
-              Contact Us
-            </Link>
-            <Link
-              href="#"
-              className="text-[13px] font-bold text-gray-800 px-4 py-4 uppercase tracking-wide hover:text-primary transition-colors"
-            >
-              Our Clients
-            </Link>
+            {menus.map((item, i) => (
+              <Link
+                key={i}
+                href={item.href}
+                className={`text-[13px] font-bold px-4 py-4 uppercase tracking-wide transition-colors ${item.active ? "text-primary hover:text-gray-800" : "text-gray-800 hover:text-primary"}`}
+              >
+                {item.label}
+              </Link>
+            ))}
           </div>
 
           {/* Right Options */}

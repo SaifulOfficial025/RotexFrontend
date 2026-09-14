@@ -8,7 +8,7 @@ import OurbusinessFields from "./OurBusinessFields";
 import WhyUs from "./WhyUs";
 import Review from "./Review";
 import BusinessDeals from "../components/BusinessDeals";
-import EquireAndMap from "../components/EquireAndMap";
+import EnquireAndMap from "../components/EnquireAndMap";
 import BrandWeRepresentSlider from "../components/BrandWeRepresentSlider";
 import HonorableClientSlider from "../components/HonorableClientSlider";
 import Footer from "../components/footer";
@@ -34,7 +34,7 @@ export default function HomePage() {
           <WhyUs />
           <Review />
           <BusinessDeals />
-          <EquireAndMap />
+          <EnquireAndMap />
           <HonorableClientSlider />
           <BrandWeRepresentSlider />
         </div>

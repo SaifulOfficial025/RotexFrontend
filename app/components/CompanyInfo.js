@@ -12,9 +12,8 @@ export const companyInfo = {
     "Rotex Lab is a trusted supplier of premium laboratory, medical, and industrial equipment — delivering quality solutions across Bangladesh since inception.",
   phone: "+880 1700-000000",
   email: "info@rotexbd.com",
-  address:
-    "House #12, Road #4, Block B, Niketan, Gulshan-1, Dhaka-1212, Bangladesh",
-  officeTime: "Sun – Thu: 9:00 AM – 6:00 PM | Fri – Sat: Closed",
+  address: "26, Delwar Complex, Hatkhola Road, Dhaka-1203",
+  officeTime: "Saturday - Thursday: 9:00 AM - 6:00 PM | Friday: Closed",
   socialLinks: [
     {
       Icon: FaFacebook,

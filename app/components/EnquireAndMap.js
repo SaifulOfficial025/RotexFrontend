@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Button from "./button";
 
-export default function EquireAndMap() {
+export default function EnquireAndMap() {
   const [formData, setFormData] = useState({
     fullName: "",
     address: "",
@@ -33,7 +33,7 @@ export default function EquireAndMap() {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-8 md:py-8 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 bg-white p-6 md:p-10 shadow-lg border border-gray-100 ">
           {/* Left: Form Section */}

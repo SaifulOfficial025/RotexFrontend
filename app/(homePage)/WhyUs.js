@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const features = [
@@ -49,6 +49,17 @@ const features = [
 ];
 
 export default function WhyUs() {
+  const [expandedCards, setExpandedCards] = useState(new Set());
+
+  const toggleCard = (index) => {
+    setExpandedCards((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) next.delete(index);
+      else next.add(index);
+      return next;
+    });
+  };
+
   return (
     <section className="py-16 md:py-24 bg-white overflow-hidden relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
@@ -114,9 +125,19 @@ export default function WhyUs() {
                 <h4 className="text-xs sm:text-sm font-bold text-gray-400 mb-4 uppercase tracking-widest">
                   {feature.subtitle}
                 </h4>
-                <p className="text-gray-600 leading-relaxed text-sm sm:text-base flex-grow">
-                  {feature.description}
-                </p>
+                <div className="flex-grow flex flex-col">
+                  <p
+                    className={`text-gray-600 leading-relaxed text-xs sm:text-sm md:text-base transition-all duration-300 ${expandedCards.has(index) ? "" : "line-clamp-2 md:line-clamp-none"}`}
+                  >
+                    {feature.description}
+                  </p>
+                  <button
+                    onClick={() => toggleCard(index)}
+                    className="text-primary text-[11px] font-bold text-left mt-1.5 md:hidden hover:underline tracking-wide uppercase"
+                  >
+                    {expandedCards.has(index) ? "See less" : "See more"}
+                  </button>
+                </div>
               </div>
             </motion.div>
           ))}

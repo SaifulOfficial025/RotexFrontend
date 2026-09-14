@@ -63,13 +63,22 @@ export default function Header() {
               </Link>
             </div>
             <div className="flex items-center justify-center w-full md:w-auto h-auto md:h-full">
-              <Link
-                href="#"
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  const input = document.getElementById('footer-newsletter-email');
+                  if (input) {
+                    input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    setTimeout(() => {
+                      input.focus({ preventScroll: true });
+                    }, 500);
+                  }
+                }}
                 className="flex items-center space-x-1 md:space-x-2 px-3 md:px-5 border-r border-white/20 h-auto md:h-full hover:text-gray-200 transition-colors uppercase"
               >
                 <IoMailOutline size={20} />
                 <span>Newsletter</span>
-              </Link>
+              </button>
               <Link
                 href="#"
                 className="flex items-center space-x-1 md:space-x-2 px-3 md:px-5 h-auto md:h-full hover:text-gray-200 transition-colors uppercase"

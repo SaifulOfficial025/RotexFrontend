@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import ProductCard from "../components/productCard";
 
 const images = [
@@ -15,27 +18,61 @@ const images = [
   "https://images.unsplash.com/photo-1564466809058-bf4114d55352?q=80&w=400&auto=format&fit=crop", // Film Camera
 ];
 
+const featureCategories = ["Featured", "Best Sellers", "Sales"];
+
 const products = Array.from({ length: 12 }).map((_, i) => ({
   id: i + 1,
   name: `Premium Product ${i + 1}`,
   category: i % 2 === 0 ? "Furniture" : "Accessories",
-  price: `$${(Math.random() * 100 + 20).toFixed(2)}`,
+  // Assign a feature category logically for dummy data
+  featureCategory: i < 4 ? "Featured" : i < 8 ? "Best Sellers" : "Sales",
+  price: `$${((i * 15.5) % 100 + 20).toFixed(2)}`,
   image: images[i],
   hoverImage: images[(i + 1) % images.length],
-  isSale: Math.random() > 0.5,
+  isSale: i % 3 === 0,
   description:
     "Upgrade your home office or entryway with the clean, organic lines of this minimalist wooden desk. Crafted from high-quality materials.",
 }));
 
 export default function FeaturedProducts() {
+  const [activeTab, setActiveTab] = useState("Featured");
+
+  const filteredProducts = products.filter(
+    (product) => product.featureCategory === activeTab,
+  );
+
   return (
-    <section className="py-16 md:py-24 border-t border-gray-100 bg-white">
+    <section className="py-16 md:py-8 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-10 text-center uppercase tracking-wide">
-          Featured Products
-        </h2>
+        <div className="flex flex-col items-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-6 text-center uppercase tracking-wide">
+            Featured Products
+          </h2>
+
+          {/* Tabs */}
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-6 border-b border-gray-200">
+            {featureCategories.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`relative px-4 py-2 text-sm md:text-[15px] font-bold uppercase tracking-wide transition-colors ${
+                  activeTab === tab
+                    ? "text-primary"
+                    : "text-gray-500 hover:text-gray-800"
+                }`}
+              >
+                {tab}
+                {activeTab === tab && (
+                  <span className="absolute left-0 bottom-[-1px] w-full h-[3px] bg-primary" />
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Product Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <ProductCard
               key={product.id}
               title={product.name}

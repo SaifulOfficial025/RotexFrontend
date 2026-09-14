@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { companyInfo } from "./CompanyInfo";
+import { categories, menus } from "./CategoriesAndMenus";
 import { useState } from "react";
 import Logo from "@/public/images/Rotex-Logo-1.png";
 import {
@@ -180,7 +181,7 @@ export default function Footer() {
               Quick Links
             </h3>
             <ul className="flex flex-col gap-2">
-              {quickLinks.map(({ label, href }) => (
+              {menus.map(({ label, href }) => (
                 <li key={label}>
                   <Link
                     href={href}
@@ -200,17 +201,17 @@ export default function Footer() {
               Our Products
             </h3>
             <ul className="flex flex-col gap-2">
-              {productCategories.map(({ label, href }) => (
-                <li key={label}>
+              {categories.slice(0, 6).map((cat) => (
+                <li key={cat.name}>
                   <Link
-                    href={href}
+                    href="#"
                     className="flex items-center gap-2 text-white/85 text-[13.5px] hover:text-white hover:gap-3 transition-all duration-200 group"
                   >
                     <IoChevronForward
                       size={13}
                       className="text-white/60 group-hover:text-white transition-colors flex-shrink-0"
                     />
-                    {label}
+                    {cat.name}
                   </Link>
                 </li>
               ))}
@@ -289,7 +290,7 @@ export default function Footer() {
             <div className="w-full overflow-hidden border-2 border-white/30 shadow-lg mt-1">
               <iframe
                 title="Rotex International Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.7673830870413!2d90.41449317486843!3d23.784099486716567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c79e76b2f0b5%3A0x2e3c21cbc1082a1c!2sGulshan%201%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1680000000000!5m2!1sen!2sbd"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7305.33889271038!2d90.41102319264722!3d23.723495564754717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b90c31b4a9d1%3A0xde8534ec449aeb3d!2sRotex%20International!5e0!3m2!1sen!2sbd!4v1789029588369!5m2!1sen!2sbd"
                 width="100%"
                 height="170"
                 style={{ border: 0 }}
@@ -308,15 +309,14 @@ export default function Footer() {
         className="border-t border-white/25"
         style={{ backgroundColor: "rgba(0,0,0,0.12)" }}
       >
-        <div className="container mx-auto px-4 max-w-7xl py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="container mx-auto px-4 max-w-7xl py-4 flex flex-col sm:flex-col items-center justify-between gap-3">
           <p className="text-white/80 text-[12.5px] text-center sm:text-left">
             © {new Date().getFullYear()}{" "}
-            <span className="font-semibold text-white">
-              {companyInfo.name}
-            </span>
+            <span className="font-semibold text-white">{companyInfo.name}</span>
             . All rights reserved.
           </p>
-          <div className="flex items-center gap-4 text-[12.5px] text-white/75">
+
+          {/* <div className="flex items-center gap-4 text-[12.5px] text-white/75">
             <Link href="#" className="hover:text-white transition-colors">
               Privacy Policy
             </Link>
@@ -328,7 +328,7 @@ export default function Footer() {
             <Link href="#" className="hover:text-white transition-colors">
               Sitemap
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>
