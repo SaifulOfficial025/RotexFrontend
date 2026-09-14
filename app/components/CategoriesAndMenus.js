@@ -15,7 +15,7 @@ import {
 
 export const menus = [
   { href: "/", label: "Home", active: true },
-  { href: "#", label: "Products" },
+  { href: "/products", label: "Products" },
   { href: "/aboutUs", label: "About Us" },
   { href: "/contactUs", label: "Contact Us" },
   { href: "#", label: "Our Clients" },
