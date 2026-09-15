@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import MobileSidebar from "./MobileSidebar";
 import { menus } from "./CategoriesAndMenus";
 import Cart from "./Cart";
@@ -14,6 +15,11 @@ import {
 } from "react-icons/io5";
 
 export default function DynamicHeader() {
+  const pathname = usePathname();
+  const dynamicMenus = menus.map(m => ({ 
+    ...m, 
+    active: pathname === m.href || (m.href !== '/' && pathname.startsWith(m.href)) 
+  }));
   const [isVisible, setIsVisible] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -81,7 +87,7 @@ export default function DynamicHeader() {
 
           {/* Navigation Menus (From SliderNavBar - Desktop Only) */}
           <div className="hidden lg:flex items-center space-x-2 ml-4">
-            {menus.map((item, i) => (
+            {dynamicMenus.map((item, i) => (
               <Link
                 key={i}
                 href={item.href}

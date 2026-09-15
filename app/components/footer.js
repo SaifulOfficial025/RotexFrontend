@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { companyInfo } from "./CompanyInfo";
 import { categories, menus } from "./CategoriesAndMenus";
 import { useState } from "react";
@@ -74,6 +75,12 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  const dynamicMenus = menus.map((m) => ({
+    ...m,
+    active:
+      pathname === m.href || (m.href !== "/" && pathname.startsWith(m.href)),
+  }));
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
@@ -107,7 +114,7 @@ export default function Footer() {
       </div>
 
       {/* ─── Main Footer Body ─── */}
-      <div className="container mx-auto px-4 max-w-7xl pt-10 pb-14">
+      <div className="container mx-auto px-4 max-w-7xl pt-6 pb-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* ── Column 1: Brand / About ── */}
           <div className="flex flex-col gap-5">
@@ -181,15 +188,15 @@ export default function Footer() {
               Quick Links
             </h3>
             <ul className="flex flex-col gap-2">
-              {menus.map(({ label, href }) => (
+              {dynamicMenus.map(({ label, href, active }) => (
                 <li key={label}>
                   <Link
                     href={href}
-                    className="flex items-center gap-2 text-white/85 text-[13.5px] hover:text-white hover:gap-3 transition-all duration-200 group"
+                    className={`flex items-center text-[13.5px] transition-all duration-200 group ${active ? "text-white font-bold gap-3" : "text-white/85 gap-2 hover:text-white hover:gap-3"}`}
                   >
                     <IoChevronForward
                       size={13}
-                      className="text-white/60 group-hover:text-white transition-colors flex-shrink-0"
+                      className={`transition-colors flex-shrink-0 ${active ? "text-white" : "text-white/60 group-hover:text-white"}`}
                     />
                     {label}
                   </Link>
@@ -197,25 +204,7 @@ export default function Footer() {
               ))}
             </ul>
 
-            <h3 className="text-white text-[15px] font-bold uppercase tracking-widest mt-4 after:block after:mt-2 after:w-10 after:h-[3px] after:bg-white/50 after:rounded-full">
-              Our Products
-            </h3>
-            <ul className="flex flex-col gap-2">
-              {categories.slice(0, 6).map((cat) => (
-                <li key={cat.name}>
-                  <Link
-                    href="#"
-                    className="flex items-center gap-2 text-white/85 text-[13.5px] hover:text-white hover:gap-3 transition-all duration-200 group"
-                  >
-                    <IoChevronForward
-                      size={13}
-                      className="text-white/60 group-hover:text-white transition-colors flex-shrink-0"
-                    />
-                    {cat.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+
           </div>
 
           {/* ── Column 3 & 4: Newsletter & Social ── */}
@@ -286,20 +275,7 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* ── Google Map Embed ── */}
-            <div className="w-full overflow-hidden border-2 border-white/30 shadow-lg mt-1">
-              <iframe
-                title="Rotex International Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7305.33889271038!2d90.41102319264722!3d23.723495564754717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b90c31b4a9d1%3A0xde8534ec449aeb3d!2sRotex%20International!5e0!3m2!1sen!2sbd!4v1789029588369!5m2!1sen!2sbd"
-                width="100%"
-                height="170"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="grayscale-[20%] hover:grayscale-0 transition-all duration-500"
-              />
-            </div>
+
           </div>
         </div>
       </div>

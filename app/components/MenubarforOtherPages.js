@@ -30,12 +30,12 @@ function HamburgerLines({ open }) {
 }
 
 // ─── Top Navigation Bar ───────────────────────────────────────────────────────
-export default function SliderNavBar() {
-
+export default function Menubarforotherpages() {
   const pathname = usePathname();
-  const dynamicMenus = menus.map(m => ({ 
-    ...m, 
-    active: pathname === m.href || (m.href !== '/' && pathname.startsWith(m.href)) 
+  const dynamicMenus = menus.map((m) => ({
+    ...m,
+    active:
+      pathname === m.href || (m.href !== "/" && pathname.startsWith(m.href)),
   }));
   const [catOpen, setCatOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -55,20 +55,57 @@ export default function SliderNavBar() {
   };
 
   return (
-    <div className="w-full relative">
+    <div className="w-full relative z-40 bg-white border-b border-gray-200">
       {/* ─── Navbar Row ─────────────────────────────────────────────────────── */}
-      <div className="w-full flex h-[50px]">
+      <div className="w-full max-w-7xl mx-auto flex h-[50px]">
+        {/* Desktop: "Categories" header with Hover Dropdown */}
+        <div className="hidden lg:flex w-[240px] bg-primary items-center px-4 flex-shrink-0 relative group cursor-pointer">
+          <div className="flex items-center gap-3 w-full text-white">
+            <HamburgerLines open={false} />
+            <h3 className="font-bold uppercase tracking-wide text-sm flex-1">
+              Categories
+            </h3>
+            <FaChevronDown className="text-[10px] opacity-70 group-hover:rotate-180 transition-transform duration-300" />
+          </div>
 
-        {/* Desktop: "Categories" header */}
-        <div className="hidden lg:flex w-[240px] bg-primary items-center px-4 flex-shrink-0">
-          <h3 className="font-bold text-white uppercase tracking-wide text-sm">
-            Categories
-          </h3>
+          {/* Hover Dropdown Menu */}
+          <div className="absolute top-full left-0 w-full bg-white shadow-2xl border-t-[3px] border-primary opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+            {categories.map((cat) => (
+              <div key={cat.id} className="relative group/sub">
+                <div className="w-full flex items-center justify-between px-5 py-3.5 bg-white hover:bg-primary/5 transition-colors duration-150 border-b border-gray-100 last:border-0">
+                  <div className="flex items-center gap-3">
+                    <span className="text-gray-400 group-hover/sub:text-primary transition-colors">
+                      {cat.icon}
+                    </span>
+                    <span className="text-[12.5px] font-bold uppercase tracking-wide text-gray-700 group-hover/sub:text-primary transition-colors">
+                      {cat.name}
+                    </span>
+                  </div>
+                  <FaChevronRight className="text-[9px] text-gray-300 group-hover/sub:text-primary transition-colors" />
+                </div>
+
+                {/* Submenu Flyout (to the right) */}
+                <div className="absolute top-0 left-full w-[260px] bg-white shadow-xl opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 border-l border-gray-100 min-h-full">
+                  <div className="py-2">
+                    {cat.subcategories.map((sub, i) => (
+                      <Link
+                        key={i}
+                        href="#"
+                        className="flex items-center gap-2 px-5 py-2.5 text-[11.5px] text-gray-500 font-semibold hover:text-primary hover:bg-gray-50 transition-colors"
+                      >
+                        <FaChevronRight className="text-[7px] text-primary/30 flex-shrink-0" />
+                        <span className="leading-tight">{sub}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Mobile: Two toggle buttons side by side, edge to edge */}
         <div className="flex lg:hidden w-full">
-
           {/* ── Categories Button ── */}
           <button
             onClick={handleCatToggle}
@@ -77,7 +114,9 @@ export default function SliderNavBar() {
               catOpen ? "bg-primary" : "bg-primary/90 hover:bg-primary"
             }`}
           >
-            <HamburgerLines open={catOpen} />
+            <div className="text-white">
+              <HamburgerLines open={catOpen} />
+            </div>
             <span className="text-[11px] font-bold uppercase tracking-widest text-white">
               Categories
             </span>
@@ -89,7 +128,9 @@ export default function SliderNavBar() {
             onClick={handleMenuToggle}
             aria-label="Toggle Menu"
             className={`flex-1 flex items-center justify-center gap-2 h-full transition-all duration-200 ${
-              menuOpen ? "bg-gray-100 text-gray-900" : "bg-gray-50 text-gray-700 hover:bg-gray-100"
+              menuOpen
+                ? "bg-gray-100 text-gray-900"
+                : "bg-gray-50 text-gray-700 hover:bg-gray-100"
             }`}
           >
             <HamburgerLines open={menuOpen} />
@@ -102,7 +143,11 @@ export default function SliderNavBar() {
         {/* Desktop: Nav Links */}
         <div className="hidden lg:flex flex-1 items-center px-4 space-x-2">
           {dynamicMenus.map((item, i) => (
-            <Link key={i} href={item.href} className={`text-[13px] font-bold px-4 py-4 whitespace-nowrap transition-colors uppercase tracking-wide hover:bg-primary hover:text-white ${item.active ? "text-primary" : "text-gray-800"}`}>
+            <Link
+              key={i}
+              href={item.href}
+              className={`text-[13px] font-bold px-4 py-4 whitespace-nowrap transition-colors uppercase tracking-wide hover:bg-primary hover:text-white ${item.active ? "text-primary" : "text-gray-800"}`}
+            >
               {item.label}
             </Link>
           ))}
@@ -113,28 +158,39 @@ export default function SliderNavBar() {
       {catOpen && (
         <div className="lg:hidden absolute top-full left-0 w-full z-50 bg-white shadow-2xl max-h-[72vh] overflow-y-auto border-t-[3px] border-primary">
           {categories.map((cat) => (
-            <div key={cat.id} className="border-b border-gray-100 last:border-0">
-
+            <div
+              key={cat.id}
+              className="border-b border-gray-100 last:border-0"
+            >
               {/* Category Row */}
               <button
                 className={`w-full flex items-center justify-between px-5 py-3.5 transition-colors duration-150 ${
-                  openCatId === cat.id ? "bg-primary/5" : "bg-white hover:bg-gray-50"
+                  openCatId === cat.id
+                    ? "bg-primary/5"
+                    : "bg-white hover:bg-gray-50"
                 }`}
                 onClick={() => toggleCat(cat.id)}
               >
                 <div className="flex items-center gap-3">
-                  {/* Left accent bar */}
-                  <div className={`w-0.5 h-5 rounded-full transition-colors duration-200 ${openCatId === cat.id ? "bg-primary" : "bg-gray-200"}`} />
-                  <span className={`transition-colors duration-200 ${openCatId === cat.id ? "text-primary" : "text-gray-400"}`}>
+                  <div
+                    className={`w-0.5 h-5 rounded-full transition-colors duration-200 ${openCatId === cat.id ? "bg-primary" : "bg-gray-200"}`}
+                  />
+                  <span
+                    className={`transition-colors duration-200 ${openCatId === cat.id ? "text-primary" : "text-gray-400"}`}
+                  >
                     {cat.icon}
                   </span>
-                  <span className={`text-[12.5px] font-bold uppercase tracking-wide transition-colors duration-200 ${openCatId === cat.id ? "text-primary" : "text-gray-700"}`}>
+                  <span
+                    className={`text-[12.5px] font-bold uppercase tracking-wide transition-colors duration-200 ${openCatId === cat.id ? "text-primary" : "text-gray-700"}`}
+                  >
                     {cat.name}
                   </span>
                 </div>
                 <FaChevronDown
                   className={`text-[9px] transition-all duration-300 ${
-                    openCatId === cat.id ? "rotate-180 text-primary" : "text-gray-300"
+                    openCatId === cat.id
+                      ? "rotate-180 text-primary"
+                      : "text-gray-300"
                   }`}
                 />
               </button>
@@ -175,12 +231,16 @@ export default function SliderNavBar() {
               onClick={() => setMenuOpen(false)}
             >
               <div className="flex items-center gap-3">
-                <div className={`w-1 h-4 rounded-full ${item.active ? "bg-primary" : "bg-gray-200 group-hover:bg-primary/40"} transition-colors`} />
+                <div
+                  className={`w-1 h-4 rounded-full ${item.active ? "bg-primary" : "bg-gray-200 group-hover:bg-primary/40"} transition-colors`}
+                />
                 <span className="text-[12px] font-bold uppercase tracking-widest">
                   {item.label}
                 </span>
               </div>
-              <FaChevronRight className={`text-[9px] transition-colors ${item.active ? "text-primary" : "text-gray-300 group-hover:text-primary/50"}`} />
+              <FaChevronRight
+                className={`text-[9px] transition-colors ${item.active ? "text-primary" : "text-gray-300 group-hover:text-primary/50"}`}
+              />
             </Link>
           ))}
         </div>

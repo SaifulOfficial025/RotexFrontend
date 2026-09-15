@@ -40,9 +40,17 @@ import {
 
 const fields = [
   { name: "Cement Industry", icon: FaIndustry, image: cement },
-  { name: "Water Treatment plant", icon: FaWater, image: waterTreatment },
+  {
+    name: "Collage, University and Research",
+    icon: FaGraduationCap,
+    image: collageUniversityResearch,
+  },
   { name: "Digital Truck Scales", icon: FaTruck, image: digitalTruckScales },
-  { name: "Textile and Garments", icon: FaShirt, image: textileGarments },
+  {
+    name: "Environment, Agricultural & Feed Mill",
+    icon: FaTractor,
+    image: agricultural,
+  },
   { name: "Food Industry", icon: FaUtensils, image: foodIndustry },
   // {
   //   name: "Laboratory Glassware",
@@ -54,24 +62,16 @@ const fields = [
     icon: FaFlask,
     image: laboratoryReagentChemicalAndRawMaterials,
   },
-  { name: "Power Plant", icon: FaBolt, image: powerPlant },
-  {
-    name: "Environment, Agricultural & Feed Mill",
-    icon: FaTractor,
-    image: agricultural,
-  },
+  { name: "Medical and Hospital", icon: FaHospital, image: medicalHospital },
   { name: "Pharmaceutical", icon: FaPills, image: pharmaceutical },
+  { name: "Power Plant", icon: FaBolt, image: powerPlant },
   {
     name: "Steel Rolling Industry",
     icon: FaCubes,
     image: steelRollingIndustry,
   },
-  { name: "Medical and Hospital", icon: FaHospital, image: medicalHospital },
-  {
-    name: "Collage, University and Research",
-    icon: FaGraduationCap,
-    image: collageUniversityResearch,
-  },
+  { name: "Textile and Garments", icon: FaShirt, image: textileGarments },
+  { name: "Water Treatment plant", icon: FaWater, image: waterTreatment },
 ];
 
 export default function OurBusinessFields() {

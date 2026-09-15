@@ -1,13 +1,8 @@
 "use client";
 
-import {
-  IoOptionsOutline,
-  IoGridOutline,
-  IoListOutline,
-  IoClose,
-} from "react-icons/io5";
-
-const featureCategories = ["All", "Featured", "Best Sellers", "Sales"];
+import { IoClose, IoChevronDown } from "react-icons/io5";
+import { BsList, BsGrid, BsGrid3X3GapFill } from "react-icons/bs";
+import { TbGridDots } from "react-icons/tb";
 
 export default function ProductTopbar({
   onToggleSidebar,
@@ -15,9 +10,14 @@ export default function ProductTopbar({
     categories: [],
     brands: [],
     price: { min: "", max: "" },
-    featureCategory: "All",
   },
   setFilters,
+  showCount,
+  setShowCount,
+  viewMode,
+  setViewMode,
+  sorting,
+  setSorting,
 }) {
   const removeFilter = (type, value) => {
     setFilters((prev) => ({
@@ -34,26 +34,64 @@ export default function ProductTopbar({
 
   return (
     <div className="flex flex-col mb-6 gap-4">
-      {/* Feature Categories Tabs */}
-      <div className="flex flex-wrap items-center gap-2 sm:gap-6 border-b border-gray-200 mb-2">
-        {featureCategories.map((tab) => (
+      {/* Top Controls Bar matching image */}
+      <div className="flex flex-col sm:flex-row items-center justify-between py-2 border-b border-gray-100 gap-4">
+        {/* Left side: Show Count */}
+        <div className="flex items-center gap-2 text-[13px] text-gray-400 font-medium w-full sm:w-auto justify-center sm:justify-start">
+          {/* Mobile Filter Toggle (only visible on mobile) */}
           <button
-            key={tab}
-            onClick={() =>
-              setFilters((prev) => ({ ...prev, featureCategory: tab }))
-            }
-            className={`relative px-4 py-2 text-sm md:text-[15px] font-bold uppercase tracking-wide transition-colors ${
-              filters.featureCategory === tab
-                ? "text-primary"
-                : "text-gray-500 hover:text-gray-800"
-            }`}
+            onClick={onToggleSidebar}
+            className="lg:hidden bg-gray-50 border border-gray-200 px-3 py-1 mr-2 rounded text-gray-700 font-bold uppercase tracking-wider text-xs"
           >
-            {tab}
-            {filters.featureCategory === tab && (
-              <span className="absolute left-0 bottom-[-1px] w-full h-[3px] bg-primary" />
-            )}
+            Filters
           </button>
-        ))}
+          
+          <span className="font-extrabold text-gray-800 tracking-wide uppercase text-[12px]">Show :</span>
+          {[9, 12, 18, 24].map((count, index) => (
+            <span key={count} className="flex items-center gap-2">
+              <button 
+                onClick={() => setShowCount(count)}
+                className={`transition-colors hover:text-black ${showCount === count ? "font-bold text-black" : ""}`}
+              >
+                {count}
+              </button>
+              {index < 3 && <span className="text-gray-300">/</span>}
+            </span>
+          ))}
+        </div>
+
+        {/* Center: Grid View Icons */}
+        <div className="flex items-center gap-3">
+          <button onClick={() => setViewMode("list")} aria-label="List View">
+            <BsList size={26} className={`transition-colors hover:text-black ${viewMode === "list" ? "text-gray-800" : "text-gray-300"}`} />
+          </button>
+          <button onClick={() => setViewMode("2x2")} aria-label="2 Columns">
+            <BsGrid size={20} className={`transition-colors hover:text-black ${viewMode === "2x2" ? "text-gray-800" : "text-gray-300"}`} />
+          </button>
+          <button onClick={() => setViewMode("3x3")} aria-label="3 Columns">
+            <BsGrid3X3GapFill size={21} className={`transition-colors hover:text-black ${viewMode === "3x3" ? "text-gray-800" : "text-gray-300"}`} />
+          </button>
+          <button onClick={() => setViewMode("4x4")} aria-label="4 Columns">
+            <TbGridDots size={24} className={`transition-colors hover:text-black ${viewMode === "4x4" ? "text-gray-800" : "text-gray-300"}`} />
+          </button>
+        </div>
+
+        {/* Right side: Sorting */}
+        <div className="relative flex items-center justify-center sm:justify-end w-full sm:w-auto">
+          <select 
+            value={sorting}
+            onChange={(e) => setSorting(e.target.value)}
+            className="appearance-none outline-none border-b-[3px] border-[#81b039] text-[13px] font-bold text-gray-800 pr-8 py-1 cursor-pointer bg-transparent w-full sm:w-auto transition-colors focus:border-primary"
+          >
+            <option>Default sorting</option>
+            <option>Sort by popularity</option>
+            <option>Sort by average rating</option>
+            <option>Sort by latest</option>
+            <option>Sort by price: low to high</option>
+            <option>Sort by price: high to low</option>
+          </select>
+          <IoChevronDown className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={12} />
+        </div>
       </div>
 
       {/* Active Filters Display */}
