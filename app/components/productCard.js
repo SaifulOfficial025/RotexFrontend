@@ -11,7 +11,7 @@ export default function ProductCard({
   sale = true,
 }) {
   return (
-    <div className="relative w-full group">
+    <div className="relative w-full group hover:z-[60]">
       {/* Invisible ghost element to maintain grid cell height for the unexpanded state */}
       <div
         className="flex flex-col w-full opacity-0 pointer-events-none"
@@ -90,6 +90,7 @@ export default function ProductCard({
           {/* Button: Visible by default on mobile, visible on hover on desktop */}
           <div className="w-full flex justify-center items-center px-4 pb-6 mt-2 overflow-hidden transition-all duration-500 ease-in-out max-h-[100px] opacity-100 lg:max-h-0 lg:opacity-0 lg:group-hover:max-h-[100px] lg:group-hover:opacity-100">
             <Button 
+              href={`/products/${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
               showArrow={false}
               className="!px-3 sm:!px-5 !py-2 sm:!py-2.5 !text-[11px] sm:!text-[13px] w-full sm:w-auto whitespace-nowrap"
             >

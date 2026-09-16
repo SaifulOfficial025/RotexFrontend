@@ -66,9 +66,14 @@ export default function Header() {
               <button
                 onClick={(e) => {
                   e.preventDefault();
-                  const input = document.getElementById('footer-newsletter-email');
+                  const input = document.getElementById(
+                    "footer-newsletter-email",
+                  );
                   if (input) {
-                    input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    input.scrollIntoView({
+                      behavior: "smooth",
+                      block: "center",
+                    });
                     setTimeout(() => {
                       input.focus({ preventScroll: true });
                     }, 500);
@@ -99,9 +104,9 @@ export default function Header() {
             <Image
               src={Logo}
               alt="Rotex Logo"
-              width={220}
+              width={300}
               height={50}
-              className="h-8 md:h-10 w-auto object-contain"
+              className="h-10 md:h-16 w-auto object-contain"
               priority
               quality={75}
             />
@@ -162,7 +167,10 @@ export default function Header() {
 
               {/* Cart */}
               <button
-                onClick={(e) => { e.preventDefault(); setIsCartOpen(true); }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsCartOpen(true);
+                }}
                 className="flex items-center space-x-2 lg:space-x-3 group"
               >
                 <div className="relative">

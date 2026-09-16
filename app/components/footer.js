@@ -203,8 +203,6 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-
-
           </div>
 
           {/* ── Column 3 & 4: Newsletter & Social ── */}
@@ -274,8 +272,6 @@ export default function Footer() {
                 ))}
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
