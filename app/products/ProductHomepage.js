@@ -8,6 +8,7 @@ import ProductSidebar from "./ProductSidebar";
 import ProductTopbar from "./ProductTopbar";
 import ProductCard from "../components/productCard";
 import Menubarforotherpages from "../components/MenubarforOtherPages";
+import Brandwerepresent from "../components/BrandWeRepresentSlider";
 import { IoClose, IoChevronBack, IoChevronForward } from "react-icons/io5";
 
 // Generating dummy data for the grid
@@ -29,13 +30,16 @@ const allDummyProducts = Array.from({ length: 24 }).map((_, i) => ({
   name: `Laboratory Product ${i + 1}`,
   category: i % 2 === 0 ? "Electronics" : "Health",
   priceRaw: ((i * 15.5) % 100) + 20,
-  get price() { return `$${this.priceRaw.toFixed(2)}`; },
+  get price() {
+    return `$${this.priceRaw.toFixed(2)}`;
+  },
   image: images[i % images.length],
   hoverImage: images[(i + 1) % images.length],
   sale: i % 4 === 0,
   popularity: (i * 7) % 100,
-  rating: ((i % 5) + 1),
-  description: "High quality professional equipment designed for accurate and reliable results.",
+  rating: (i % 5) + 1,
+  description:
+    "High quality professional equipment designed for accurate and reliable results.",
 }));
 
 export default function ProductHomepage() {
@@ -84,7 +88,8 @@ export default function ProductHomepage() {
   let gridClass = "grid-cols-2 md:grid-cols-3"; // default 3x3
   if (viewMode === "list") gridClass = "grid-cols-1";
   else if (viewMode === "2x2") gridClass = "grid-cols-2 lg:grid-cols-2";
-  else if (viewMode === "4x4") gridClass = "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4";
+  else if (viewMode === "4x4")
+    gridClass = "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4";
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50/50">
@@ -198,7 +203,7 @@ export default function ProductHomepage() {
           </div>
         </div>
       </main>
-
+      <Brandwerepresent />
       <Footer />
     </div>
   );
