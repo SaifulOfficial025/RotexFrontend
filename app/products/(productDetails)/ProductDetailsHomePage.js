@@ -32,10 +32,10 @@ export default function ProductDetailsHomePage() {
         </div>
 
         {/* ─── Split Layout: Sticky Image & Scrolling Details ─── */}
-        <div className="flex flex-col lg:flex-row gap-10 items-start relative pb-10 border-b border-gray-100">
+        <div className="flex flex-col lg:flex-row gap-10 items-start relative pb-4">
           {/* Left Side: Sticky Product Image */}
           {/* top-32 accounts for fixed headers */}
-          <div className="w-full lg:w-1/2 lg:sticky lg:top-32 z-10">
+          <div className="w-full lg:w-1/2 z-10">
             <ProductImage />
           </div>
 
@@ -46,7 +46,7 @@ export default function ProductDetailsHomePage() {
         </div>
 
         {/* ─── Related Products ─── */}
-        <div className="mt-10">
+        <div className="">
           <ProductDetails />
           <RelatedProduct />
         </div>

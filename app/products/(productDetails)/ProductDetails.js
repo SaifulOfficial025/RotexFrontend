@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import Button from "../../components/button";
 import {
   IoDocumentTextOutline,
@@ -8,6 +9,7 @@ import {
   IoChevronForward,
 } from "react-icons/io5";
 import ReviewCard from "../../components/reviewCard";
+import Logo from "@/public/images/Rotex-Logo-1.png"; // For "About Brand" fallback or dummy data
 
 const dummyReviews = [
   {
@@ -54,7 +56,10 @@ const dummyReviews = [
   },
 ];
 
+const tabs = ["Product description", "Review", "About Brand", "Download"];
+
 export default function ProductDetails() {
+  const [activeTab, setActiveTab] = useState("Product description");
   const reviewScrollRef = useRef(null);
 
   const scrollReviews = (direction) => {
@@ -67,139 +72,207 @@ export default function ProductDetails() {
     }
   };
 
-  // Auto-sliding functionality
+  // Auto-sliding functionality for reviews
   useEffect(() => {
+    if (activeTab !== "Review") return;
+
     const interval = setInterval(() => {
       if (reviewScrollRef.current) {
-        const { scrollLeft, scrollWidth, clientWidth } =
-          reviewScrollRef.current;
-        // If we've reached the end, smoothly scroll back to the beginning
+        const { scrollLeft, scrollWidth, clientWidth } = reviewScrollRef.current;
         if (scrollLeft + clientWidth >= scrollWidth - 10) {
           reviewScrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
         } else {
           scrollReviews("right");
         }
       }
-    }, 5000); // Auto-slide every 5 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [activeTab]);
 
   return (
-    <div className="mt-12 flex flex-col gap-10 md:pl-8">
-      <div>
-        <h3 className="text-lg font-bold text-gray-900 uppercase tracking-widest mb-3">
-          Product Description
-        </h3>
-        <p className="text-gray-600 leading-relaxed text-sm">
-          The Pro-X series brings cutting edge technology to your laboratory.
-          Designed for accuracy, reliability, and ease of use, it features an
-          advanced electromagnetic force restoration weighing cell that delivers
-          lightning-fast stabilization times and unparalleled precision. The
-          durable stainless steel weighing pan and chemical-resistant housing
-          ensure a long lifespan even in the harshest environments.
-        </p>
-        <p className="text-gray-600 leading-relaxed text-sm mt-4">
-          With built-in GLP/GMP compliance features, you can easily trace every
-          measurement. Seamlessly integrate the scale into your workflow using
-          the integrated RS232 and USB interfaces to connect directly to
-          printers, PCs, or LIMS systems.
-        </p>
-      </div>
-
-      <div>
-        <h3 className="text-lg font-bold text-gray-900 uppercase tracking-widest mb-3">
-          Technical Specifications
-        </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600">
-          <div className="flex flex-col border-b border-gray-100 pb-2">
-            <span className="font-bold text-gray-900">Capacity</span>
-            <span>300g</span>
-          </div>
-          <div className="flex flex-col border-b border-gray-100 pb-2">
-            <span className="font-bold text-gray-900">Readability</span>
-            <span>0.01mg</span>
-          </div>
-          <div className="flex flex-col border-b border-gray-100 pb-2">
-            <span className="font-bold text-gray-900">Pan Size</span>
-            <span>90mm diameter</span>
-          </div>
-          <div className="flex flex-col border-b border-gray-100 pb-2">
-            <span className="font-bold text-gray-900">Power Supply</span>
-            <span>100-240V AC</span>
-          </div>
-        </div>
-      </div>
-
-      {/* ─── Download Catalog Button ─── */}
-      <div className="mt-2">
-        <Button
-          variant="outline"
-          showArrow={false}
-          className="w-auto !py-3 border-2 border-gray-200 hover:border-gray-300 text-gray-700 hover:text-gray-900 shadow-none hover:shadow-sm"
-        >
-          <span className="flex items-center gap-3 font-bold uppercase tracking-wider text-[13px]">
-            <IoDocumentTextOutline size={20} />
-            Download Product Catalog
-          </span>
-        </Button>
-      </div>
-
-      {/* ─── Product Reviews Section (Auto-Sliding) ─── */}
-      <div className="mt-8 pt-8 border-t border-gray-100 overflow-hidden">
-        <div className="flex items-center justify-between mb-6 pr-2">
-          <h3 className="text-lg font-bold text-gray-900 uppercase tracking-widest relative">
-            Product Reviews
-            <span className="absolute -bottom-2 left-0 w-12 h-1 bg-primary"></span>
-          </h3>
-          <div className="flex gap-2">
-            <button
-              onClick={() => scrollReviews("left")}
-              className="w-8 h-8 border border-gray-200 rounded-full flex items-center justify-center text-gray-500 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-sm"
-              aria-label="Previous Review"
-            >
-              <IoChevronBack size={14} />
-            </button>
-            <button
-              onClick={() => scrollReviews("right")}
-              className="w-8 h-8 border border-gray-200 rounded-full flex items-center justify-center text-gray-500 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-sm"
-              aria-label="Next Review"
-            >
-              <IoChevronForward size={14} />
-            </button>
-          </div>
-        </div>
-
-        {/* Reviews Slider */}
-        <div className="relative -mx-4 px-4 pb-4">
-          <div
-            ref={reviewScrollRef}
-            className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 pt-2"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+    <div className="mt-4">
+      {/* ─── Tabs Header ─── */}
+      <div className="flex flex-wrap justify-center border-b border-gray-200 mb-8 gap-2 sm:gap-8">
+        {tabs.map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            className={`relative pb-3 px-2 text-[14px] font-bold uppercase tracking-widest transition-colors ${
+              activeTab === tab
+                ? "text-primary"
+                : "text-gray-500 hover:text-gray-800"
+            }`}
           >
-            <style jsx>{`
-              div::-webkit-scrollbar {
-                display: none;
-              }
-            `}</style>
+            {tab}
+            {activeTab === tab && (
+              <span className="absolute left-0 bottom-[-1px] w-full h-[3px] bg-primary"></span>
+            )}
+          </button>
+        ))}
+      </div>
 
-            {dummyReviews.map((review) => (
+      {/* ─── Tabs Content ─── */}
+      <div className="min-h-[400px]">
+        {/* Tab: Product description */}
+        {activeTab === "Product description" && (
+          <div className="flex flex-col gap-10 animate-in fade-in duration-300">
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 uppercase tracking-widest mb-3">
+                Product Description
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-sm">
+                The Pro-X series brings cutting edge technology to your laboratory.
+                Designed for accuracy, reliability, and ease of use, it features an
+                advanced electromagnetic force restoration weighing cell that delivers
+                lightning-fast stabilization times and unparalleled precision. The
+                durable stainless steel weighing pan and chemical-resistant housing
+                ensure a long lifespan even in the harshest environments.
+              </p>
+              <p className="text-gray-600 leading-relaxed text-sm mt-4">
+                With built-in GLP/GMP compliance features, you can easily trace every
+                measurement. Seamlessly integrate the scale into your workflow using
+                the integrated RS232 and USB interfaces to connect directly to
+                printers, PCs, or LIMS systems.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 uppercase tracking-widest mb-3">
+                Technical Specifications
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600">
+                <div className="flex flex-col border-b border-gray-100 pb-2">
+                  <span className="font-bold text-gray-900">Capacity</span>
+                  <span>300g</span>
+                </div>
+                <div className="flex flex-col border-b border-gray-100 pb-2">
+                  <span className="font-bold text-gray-900">Readability</span>
+                  <span>0.01mg</span>
+                </div>
+                <div className="flex flex-col border-b border-gray-100 pb-2">
+                  <span className="font-bold text-gray-900">Pan Size</span>
+                  <span>90mm diameter</span>
+                </div>
+                <div className="flex flex-col border-b border-gray-100 pb-2">
+                  <span className="font-bold text-gray-900">Power Supply</span>
+                  <span>100-240V AC</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab: Review */}
+        {activeTab === "Review" && (
+          <div className="animate-in fade-in duration-300">
+            <div className="flex items-center justify-between mb-6 pr-2">
+              <h3 className="text-lg font-bold text-gray-900 uppercase tracking-widest relative">
+                Product Reviews
+              </h3>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => scrollReviews("left")}
+                  className="w-8 h-8 border border-gray-200 rounded-full flex items-center justify-center text-gray-500 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-sm"
+                  aria-label="Previous Review"
+                >
+                  <IoChevronBack size={14} />
+                </button>
+                <button
+                  onClick={() => scrollReviews("right")}
+                  className="w-8 h-8 border border-gray-200 rounded-full flex items-center justify-center text-gray-500 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-sm"
+                  aria-label="Next Review"
+                >
+                  <IoChevronForward size={14} />
+                </button>
+              </div>
+            </div>
+
+            {/* Reviews Slider */}
+            <div className="relative -mx-4 px-4 pb-4">
               <div
-                key={review.id}
-                className="w-[300px] sm:w-[350px] flex-shrink-0 snap-start"
+                ref={reviewScrollRef}
+                className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 pt-2"
+                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
               >
-                <ReviewCard
-                  name={review.name}
-                  company={review.company}
-                  avatar={review.avatar}
-                  date={review.date}
-                  message={review.message}
-                  photo={review.photo}
+                <style jsx>{`
+                  div::-webkit-scrollbar {
+                    display: none;
+                  }
+                `}</style>
+
+                {dummyReviews.map((review) => (
+                  <div
+                    key={review.id}
+                    className="w-[300px] sm:w-[350px] flex-shrink-0 snap-start"
+                  >
+                    <ReviewCard
+                      name={review.name}
+                      company={review.company}
+                      avatar={review.avatar}
+                      date={review.date}
+                      message={review.message}
+                      photo={review.photo}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab: About Brand */}
+        {activeTab === "About Brand" && (
+          <div className="animate-in fade-in duration-300 flex flex-col gap-6">
+            <h3 className="text-lg font-bold text-gray-900 uppercase tracking-widest">
+              About the Brand
+            </h3>
+            
+            <div className="flex flex-col sm:flex-row gap-6 items-start">
+              <div className="bg-gray-50 p-6 rounded-lg border border-gray-100 flex items-center justify-center min-w-[200px]">
+                {/* Dummy brand logo */}
+                <img 
+                  src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" 
+                  alt="Brand Logo" 
+                  className="h-12 w-auto object-contain mix-blend-multiply" 
                 />
               </div>
-            ))}
+              <div className="flex-1">
+                <h4 className="text-xl font-black text-gray-900 mb-3">Google Instruments</h4>
+                <p className="text-gray-600 leading-relaxed text-sm">
+                  Founded in 1998, Google Instruments has been at the forefront of laboratory precision technology for over two decades. Renowned for their commitment to accuracy and durable design, their equipment is trusted by leading research facilities, universities, and industrial laboratories worldwide. 
+                </p>
+                <p className="text-gray-600 leading-relaxed text-sm mt-4">
+                  Every product is rigorously tested to meet strict international standards, ensuring consistent and reliable results. Partnering with Rotex International, we bring these world-class solutions directly to you.
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* Tab: Download */}
+        {activeTab === "Download" && (
+          <div className="animate-in fade-in duration-300 flex flex-col gap-4">
+            <h3 className="text-lg font-bold text-gray-900 uppercase tracking-widest mb-2">
+              Downloads
+            </h3>
+            <p className="text-gray-600 text-sm mb-2">
+              Get detailed product manuals, technical data sheets, and compliance certificates in PDF format.
+            </p>
+            <div className="mt-2">
+              <Button
+                variant="outline"
+                showArrow={false}
+                className="w-auto !py-3 border-2 border-primary hover:bg-primary text-primary hover:text-white shadow-none hover:shadow-sm transition-all"
+              >
+                <span className="flex items-center gap-3 font-bold uppercase tracking-wider text-[13px]">
+                  <IoDocumentTextOutline size={20} />
+                  Download Product Catalog (PDF)
+                </span>
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
