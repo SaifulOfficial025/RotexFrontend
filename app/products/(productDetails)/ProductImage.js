@@ -26,9 +26,21 @@ export default function ProductImage({ images = dummyImages }) {
   const [startIndex, setStartIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [lensPos, setLensPos] = useState({ x: 0, y: 0 });
+  const [containerSize, setContainerSize] = useState({ w: 0, h: 0 });
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setLensPos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+    setContainerSize({ w: rect.width, h: rect.height });
+  };
 
   const visibleCount = 3;
 
@@ -128,17 +140,96 @@ export default function ProductImage({ images = dummyImages }) {
       </div>
 
       {/* ─── Main Image Viewer ─── */}
-      <div className="flex-1 relative bg-[#fafafa] flex items-center justify-center overflow-hidden group min-h-[300px]">
-        {/* Main Image */}
-        <div className="relative w-full h-full p-4 sm:p-10 transition-transform duration-700 ease-in-out group-hover:scale-105">
+      {/* LENS constants */}
+      {/* lensSize=160, zoom=2.5 */}
+      <div
+        className="flex-1 relative bg-[#fafafa] flex items-center justify-center overflow-hidden min-h-[300px] cursor-none"
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsZoomed(true)}
+        onMouseLeave={() => setIsZoomed(false)}
+      >
+        {/* Base Image */}
+        <div className="relative w-full h-full p-4 sm:p-10">
           <Image
             src={images[currentIndex]}
             alt="Product image"
             fill
-            className="object-contain mix-blend-multiply"
+            className="object-contain mix-blend-multiply pointer-events-none"
             priority
           />
         </div>
+
+        {/* ── Magnifying Lens ── */}
+        {isZoomed && (
+          <div
+            className="absolute pointer-events-none"
+            style={{
+              width: 160,
+              height: 160,
+              borderRadius: "50%",
+              border: "3px solid rgba(255,255,255,0.9)",
+              boxShadow: "0 8px 32px rgba(0,0,0,0.22), 0 0 0 2px rgba(0,0,0,0.10), inset 0 0 8px rgba(0,0,0,0.08)",
+              overflow: "hidden",
+              left: lensPos.x - 80,
+              top: lensPos.y - 80,
+              zIndex: 20,
+              background: "#fafafa",
+            }}
+          >
+            {/* Zoomed image inside lens */}
+            <div
+              style={{
+                position: "absolute",
+                width: containerSize.w * 2.5,
+                height: containerSize.h * 2.5,
+                left: -(lensPos.x * 2.5 - 80),
+                top: -(lensPos.y * 2.5 - 80),
+              }}
+            >
+              <img
+                src={typeof images[currentIndex] === "string" ? images[currentIndex] : images[currentIndex].src}
+                alt="Zoomed"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  mixBlendMode: "multiply",
+                  padding: "16px",
+                  pointerEvents: "none",
+                }}
+              />
+            </div>
+            {/* Glass shine overlay */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                borderRadius: "50%",
+                background: "linear-gradient(135deg, rgba(255,255,255,0.18) 0%, transparent 60%)",
+                pointerEvents: "none",
+              }}
+            />
+          </div>
+        )}
+
+        {/* Custom crosshair cursor */}
+        {isZoomed && (
+          <div
+            className="absolute pointer-events-none"
+            style={{
+              left: lensPos.x,
+              top: lensPos.y,
+              zIndex: 21,
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <circle cx="10" cy="10" r="8" stroke="white" strokeWidth="1.5" />
+              <line x1="10" y1="2" x2="10" y2="18" stroke="white" strokeWidth="1.5" />
+              <line x1="2" y1="10" x2="18" y2="10" stroke="white" strokeWidth="1.5" />
+            </svg>
+          </div>
+        )}
 
         {/* Fullscreen Expand Button */}
         <button

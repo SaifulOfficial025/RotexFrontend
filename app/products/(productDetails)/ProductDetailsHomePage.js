@@ -8,6 +8,7 @@ import ProductImage from "./ProductImage";
 import ProductDetailsRightSide from "./ProductDetailsRightSide";
 import ProductDetails from "./ProductDetails";
 import RelatedProduct from "../../components/RelatedProduct";
+import BrandWeRepresent from "../../components/BrandWeRepresentSlider";
 
 export default function ProductDetailsHomePage() {
   return (
@@ -48,7 +49,7 @@ export default function ProductDetailsHomePage() {
           <RelatedProduct />
         </div>
       </main>
-
+      <BrandWeRepresent />
       <Footer />
     </div>
   );

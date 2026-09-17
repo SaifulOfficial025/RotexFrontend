@@ -20,6 +20,7 @@ import {
   FaInstagramSquare,
   FaYoutube,
   FaLinkedin,
+  FaWhatsapp,
 } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 
@@ -135,9 +136,9 @@ export default function Footer() {
             </Link>
 
             {/* Tagline */}
-            <p className="text-white/90 text-[13.5px] leading-relaxed">
+            {/* <p className="text-white/90 text-[13.5px] leading-relaxed">
               {companyInfo.shortDescription}
-            </p>
+            </p> */}
 
             {/* Contact Info */}
             <ul className="flex flex-col gap-3">
@@ -163,21 +164,32 @@ export default function Footer() {
                   <span>{companyInfo.email}</span>
                 </a>
               </li>
+              <li className="pt-2">
+                <a
+                  href={`https://wa.me/${companyInfo.phone.replace(/[^0-9+]/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-white hover:bg-white/70 text-primary text-[13px] font-bold py-2.5 px-4  transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 w-fit"
+                >
+                  <FaWhatsapp size={20} className="text-primary" />
+                  <span>Connect on WhatsApp</span>
+                </a>
+              </li>
               <li>
-                <div className="flex items-start gap-3 text-white/90 text-[13.5px]">
+                {/* <div className="flex items-start gap-3 text-white/90 text-[13.5px]">
                   <span className="mt-[2px] flex-shrink-0 w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
                     <IoLocationOutline size={15} className="text-white" />
                   </span>
                   <span>{companyInfo.address}</span>
-                </div>
+                </div> */}
               </li>
               <li>
-                <div className="flex items-start gap-3 text-white/90 text-[13.5px]">
+                {/* <div className="flex items-start gap-3 text-white/90 text-[13.5px]">
                   <span className="mt-[2px] flex-shrink-0 w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
                     <IoTimeOutline size={15} className="text-white" />
                   </span>
                   <span>{companyInfo.officeTime}</span>
-                </div>
+                </div> */}
               </li>
             </ul>
           </div>
@@ -246,18 +258,12 @@ export default function Footer() {
               )}
             </div>
 
-            {/* Divider */}
-            <div className="w-full h-px bg-white/20" />
-
-            {/* Social Media */}
-            <div>
-              <h3 className="text-white text-[15px] font-bold uppercase tracking-widest after:block after:mt-2 after:w-10 after:h-[3px] after:bg-white/50 after:rounded-full">
-                Follow Us
-              </h3>
-              <p className="text-white/85 text-[13.5px] mt-4 mb-4">
-                Connect with us on social media for updates and more.
-              </p>
-              <div className="flex flex-wrap gap-3">
+            {/* Social Media (Inline) */}
+            <div className="flex flex-wrap items-center gap-4 mt-2">
+              <span className="text-white text-[14px] font-bold uppercase tracking-widest">
+                Follow Us:
+              </span>
+              <div className="flex gap-2">
                 {companyInfo.socialLinks.map(({ Icon, href, label, color }) => (
                   <a
                     key={label}
@@ -265,9 +271,9 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className={`w-10 h-10 rounded-full bg-white/20 border border-white/30 flex items-center justify-center text-white ${color} hover:border-transparent hover:-translate-y-1 hover:shadow-lg transition-all duration-300`}
+                    className={`w-8 h-8 rounded-full bg-white/20 border border-white/30 flex items-center justify-center text-white ${color} hover:border-transparent hover:-translate-y-1 hover:shadow-lg transition-all duration-300`}
                   >
-                    <Icon size={18} />
+                    <Icon size={14} />
                   </a>
                 ))}
               </div>

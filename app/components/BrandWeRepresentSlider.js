@@ -63,11 +63,11 @@ export default function BrandWeRepresentSlider() {
   }, [emblaApi]);
 
   return (
-    <section className="py-16 md:py-24 bg-white  overflow-hidden flex flex-col">
+    <section className="py-16 md:py-2 bg-white  overflow-hidden flex flex-col">
       {/* Header Section - Contained */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl mb-10 md:mb-14">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div>
+          {/* <div>
             <h2 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">
               Brands we represent
             </h2>
@@ -76,7 +76,7 @@ export default function BrandWeRepresentSlider() {
               We partner with industry-leading manufacturers globally to bring
               you the highest quality products and solutions.
             </p>
-          </div>
+          </div> */}
 
           {/* Manual Controllers (Commented out by user) */}
           {/* <div className="flex items-center gap-3">

@@ -57,7 +57,7 @@ export default function ProductDetailsRightSide() {
             <button
               key={variant}
               onClick={() => setSelectedVariant(variant)}
-              className={`px-4 py-2.5 border-2 rounded-md text-[13.5px] font-bold transition-all duration-200 ${
+              className={`px-4 py-2.5 border-2 text-[13.5px] font-bold transition-all duration-200 ${
                 selectedVariant === variant
                   ? "border-primary bg-primary/5 text-primary shadow-sm"
                   : "border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50"
