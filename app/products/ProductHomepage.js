@@ -10,6 +10,7 @@ import ProductCard from "../components/productCard";
 import Menubarforotherpages from "../components/MenubarforOtherPages";
 import Brandwerepresent from "../components/BrandWeRepresentSlider";
 import { IoClose, IoChevronBack, IoChevronForward } from "react-icons/io5";
+import MobileHeader from "../components/MobileHeader";
 
 // Generating dummy data for the grid
 const images = [
@@ -94,6 +95,7 @@ export default function ProductHomepage() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50/50">
       <Header />
+      <MobileHeader />
       <Menubarforotherpages />
       <DynamicHeader />
 

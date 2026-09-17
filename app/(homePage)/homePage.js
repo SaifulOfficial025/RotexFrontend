@@ -7,6 +7,7 @@ import FeaturedProducts from "./FeaturedProducts";
 import PromoBanner from "./PromoBanner";
 import OurbusinessFields from "./OurBusinessFields";
 import WhyUs from "./WhyUs";
+import MobileHeader from "../components/MobileHeader";
 const Review = dynamic(() => import("./Review"));
 const BusinessDeals = dynamic(() => import("../components/BusinessDeals"));
 const EnquireAndMap = dynamic(() => import("../components/EnquireAndMap"));
@@ -19,6 +20,7 @@ export default function HomePage() {
     <div className="flex flex-col min-h-screen bg-white">
       {/* Global Header */}
       <Header />
+      <MobileHeader />
 
       {/* Sticky/Dynamic Header */}
       <DynamicHeader />

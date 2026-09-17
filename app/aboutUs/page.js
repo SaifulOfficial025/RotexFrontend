@@ -8,6 +8,7 @@ import MissionVision from "./MissionVision";
 import QualityControl from "./QualityControl";
 import BusinessDeals from "../components/BusinessDeals";
 import BrandWeRepresent from "../components/BrandWeRepresentSlider";
+import MobileHeader from "../components/MobileHeader";
 
 export const metadata = {
   title: "About Us | Rotex",
@@ -20,6 +21,7 @@ export default function AboutUsPage() {
     <div className="flex flex-col min-h-screen bg-white">
       {/* Navigation Headers */}
       <Header />
+      <MobileHeader />
       <Menubarforotherpages />
       <DynamicHeader />
 

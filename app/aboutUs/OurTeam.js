@@ -67,7 +67,7 @@ export default function OurTeam() {
         </div>
 
         {/* Cards Grid — Portrait full-bleed image cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {teamMembers.map((member, index) => (
             <div
               key={index}
@@ -92,21 +92,21 @@ export default function OurTeam() {
               <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-white/40 group-hover:border-white transition-colors duration-300"></div>
 
               {/* Bottom text - slides up on hover */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-400">
-                {/* Designation - hidden by default, shows on hover */}
-                <p className="text-primary text-[12px] font-bold uppercase tracking-widest mb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
-                  {member.designation}
-                </p>
+              <div className="absolute bottom-0 left-0 right-0 p-3 md:p-6 transition-transform duration-400">
                 {/* Name always visible */}
-                <h3 className="text-white text-xl font-black tracking-tight leading-tight">
+                <h3 className="text-white text-sm md:text-xl font-black tracking-tight leading-tight">
                   {member.name}
                 </h3>
+                {/* Designation - hidden by default, shows on hover */}
+                <p className="text-primary text-[10px] md:text-[12px] font-bold uppercase tracking-widest mb-1 opacity-100">
+                  {member.designation}
+                </p>
                 {/* Animated underline */}
                 <div className="mt-3 w-0 h-[2px] bg-primary group-hover:w-12 transition-all duration-400 delay-100"></div>
               </div>
 
               {/* Index number watermark */}
-              <div className="absolute top-5 right-5 text-[11px] font-black text-white/30 group-hover:text-white/60 transition-colors duration-300 tracking-widest">
+              <div className="absolute top-3 right-3 md:top-5 md:right-5 text-[10px] md:text-[11px] font-black text-white/30 group-hover:text-white/60 transition-colors duration-300 tracking-widest">
                 0{index + 1}
               </div>
             </div>

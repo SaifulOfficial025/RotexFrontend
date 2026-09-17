@@ -25,17 +25,17 @@ export default function Header() {
   return (
     <header className="w-full font-sans">
       {/* Top Bar */}
-      <div className="bg-primary text-white text-[11px] font-semibold tracking-wider">
+      <div className="hidden md:block bg-primary text-white text-[11px] font-semibold tracking-wider sticky top-0 z-[101]">
         <div className="container mx-auto px-4 max-w-7xl flex flex-col md:flex-row justify-between items-center md:h-[42px] py-2 md:py-0 gap-2 md:gap-0">
           {/* Left Top Bar */}
-          <div className="flex items-center justify-center md:justify-start w-full md:w-auto h-auto md:h-full pt-2 md:pt-0">
+          <div className="hidden md:flex items-center justify-center md:justify-start w-full md:w-auto h-auto md:h-full pt-2 md:pt-0">
             <div className="px-4 flex items-center h-full uppercase text-center md:text-left">
               Free shipping for all orders of $150
             </div>
           </div>
 
           {/* Right Top Bar */}
-          <div className="flex flex-col md:flex-row justify-center md:justify-end items-center w-full md:w-auto mt-2 md:mt-0 pb-2 md:pb-0 gap-y-2 md:gap-y-0 h-auto md:h-full">
+          <div className="flex flex-col md:flex-row justify-center md:justify-end items-center w-full md:w-auto mt-1 md:mt-0 pb-1 md:pb-0 gap-y-2 md:gap-y-0 h-auto md:h-full">
             <div className="flex items-center justify-center space-x-3 md:space-x-4 px-2 md:px-0 md:pr-5 border-r-0 md:border-r border-white/20 h-auto md:h-full w-full md:w-auto">
               <Link
                 href="#"
@@ -62,7 +62,7 @@ export default function Header() {
                 <FaYoutube size={20} />
               </Link>
             </div>
-            <div className="flex items-center justify-center w-full md:w-auto h-auto md:h-full">
+            <div className="hidden md:flex items-center justify-center w-full md:w-auto h-auto md:h-full">
               <button
                 onClick={(e) => {
                   e.preventDefault();
@@ -97,7 +97,7 @@ export default function Header() {
       </div>
 
       {/* Main Header */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="hidden md:block bg-white border-b border-gray-200">
         <div className="container mx-auto px-4 max-w-7xl py-4 lg:py-0 lg:h-[100px] flex flex-wrap lg:flex-nowrap items-center justify-between gap-y-4 lg:gap-y-0">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 order-1">

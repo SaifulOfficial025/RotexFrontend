@@ -2,7 +2,7 @@ import { IoRocketOutline, IoEyeOutline } from "react-icons/io5";
 
 export default function MissionVision() {
   return (
-    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+    <section id="mission" className="py-16 md:py-24 bg-white relative overflow-hidden scroll-mt-24">
       {/* Background accents */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3"></div>

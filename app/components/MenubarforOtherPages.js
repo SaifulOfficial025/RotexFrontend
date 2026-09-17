@@ -55,7 +55,7 @@ export default function Menubarforotherpages() {
   };
 
   return (
-    <div className="w-full relative z-40 bg-white border-b border-gray-200">
+    <div className="hidden lg:block w-full relative z-40 bg-white border-b border-gray-200">
       {/* ─── Navbar Row ─────────────────────────────────────────────────────── */}
       <div className="w-full max-w-7xl mx-auto flex h-[50px]">
         {/* Desktop: "Categories" header with Hover Dropdown */}

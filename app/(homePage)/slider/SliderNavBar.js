@@ -55,7 +55,7 @@ export default function SliderNavBar() {
   };
 
   return (
-    <div className="w-full relative">
+    <div className="hidden lg:block w-full relative">
       {/* ─── Navbar Row ─────────────────────────────────────────────────────── */}
       <div className="w-full flex h-[50px]">
 

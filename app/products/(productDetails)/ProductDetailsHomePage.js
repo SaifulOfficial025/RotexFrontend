@@ -9,12 +9,14 @@ import ProductDetailsRightSide from "./ProductDetailsRightSide";
 import ProductDetails from "./ProductDetails";
 import RelatedProduct from "../../components/RelatedProduct";
 import BrandWeRepresent from "../../components/BrandWeRepresentSlider";
+import MobileHeader from "../../components/MobileHeader";
 
 export default function ProductDetailsHomePage() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* Navigation Headers */}
       <Header />
+      <MobileHeader />
       <Menubarforotherpages />
       <DynamicHeader />
 

@@ -76,7 +76,7 @@ export default function ProductDetailsRightSide() {
             <span className="text-lg md:text-xl text-gray-400 font-bold line-through">
               ৳50,000
             </span>
-            <span className="bg-[#fff1f2] text-[#f43f5e] font-bold text-[11px] uppercase tracking-wider px-2 py-1 rounded-sm">
+            <span className="bg-[#fff1f2] text-[#f43f5e] font-bold text-[11px] uppercase tracking-wider px-2 py-1 ">
               Save 10%
             </span>
           </div>
