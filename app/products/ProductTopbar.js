@@ -35,7 +35,7 @@ export default function ProductTopbar({
   return (
     <div className="flex flex-col mb-6 gap-4">
       {/* Top Controls Bar matching image */}
-      <div className="flex flex-col sm:flex-row items-center justify-between py-2 border-b border-gray-100 gap-4">
+      <div className="flex flex-col sm:flex-row items-center sm:justify-between lg:justify-end py-2 border-b border-gray-100 gap-4 lg:gap-8">
         {/* Left side: Show Count */}
         <div className="flex items-center gap-2 text-[13px] text-gray-400 font-medium w-full sm:w-auto justify-center sm:justify-start">
           {/* Mobile Filter Toggle (only visible on mobile) */}
@@ -45,11 +45,13 @@ export default function ProductTopbar({
           >
             Filters
           </button>
-          
-          <span className="font-extrabold text-gray-800 tracking-wide uppercase text-[12px]">Show :</span>
+
+          <span className="font-extrabold text-gray-800 tracking-wide uppercase text-[12px]">
+            Show :
+          </span>
           {[9, 12, 18, 24].map((count, index) => (
             <span key={count} className="flex items-center gap-2">
-              <button 
+              <button
                 onClick={() => setShowCount(count)}
                 className={`transition-colors hover:text-black ${showCount === count ? "font-bold text-black" : ""}`}
               >
@@ -63,22 +65,34 @@ export default function ProductTopbar({
         {/* Center: Grid View Icons */}
         <div className="flex items-center gap-3">
           <button onClick={() => setViewMode("list")} aria-label="List View">
-            <BsList size={26} className={`transition-colors hover:text-black ${viewMode === "list" ? "text-gray-800" : "text-gray-300"}`} />
+            <BsList
+              size={26}
+              className={`transition-colors hover:text-black ${viewMode === "list" ? "text-gray-800" : "text-gray-300"}`}
+            />
           </button>
           <button onClick={() => setViewMode("2x2")} aria-label="2 Columns">
-            <BsGrid size={20} className={`transition-colors hover:text-black ${viewMode === "2x2" ? "text-gray-800" : "text-gray-300"}`} />
+            <BsGrid
+              size={20}
+              className={`transition-colors hover:text-black ${viewMode === "2x2" ? "text-gray-800" : "text-gray-300"}`}
+            />
           </button>
           <button onClick={() => setViewMode("3x3")} aria-label="3 Columns">
-            <BsGrid3X3GapFill size={21} className={`transition-colors hover:text-black ${viewMode === "3x3" ? "text-gray-800" : "text-gray-300"}`} />
+            <BsGrid3X3GapFill
+              size={21}
+              className={`transition-colors hover:text-black ${viewMode === "3x3" ? "text-gray-800" : "text-gray-300"}`}
+            />
           </button>
           <button onClick={() => setViewMode("4x4")} aria-label="4 Columns">
-            <TbGridDots size={24} className={`transition-colors hover:text-black ${viewMode === "4x4" ? "text-gray-800" : "text-gray-300"}`} />
+            <TbGridDots
+              size={24}
+              className={`transition-colors hover:text-black ${viewMode === "4x4" ? "text-gray-800" : "text-gray-300"}`}
+            />
           </button>
         </div>
 
         {/* Right side: Sorting */}
         <div className="relative flex items-center justify-center sm:justify-end w-full sm:w-auto">
-          <select 
+          <select
             value={sorting}
             onChange={(e) => setSorting(e.target.value)}
             className="appearance-none outline-none border-b-[3px] border-[#81b039] text-[13px] font-bold text-gray-800 pr-8 py-1 cursor-pointer bg-transparent w-full sm:w-auto transition-colors focus:border-primary"
@@ -90,7 +104,10 @@ export default function ProductTopbar({
             <option>Sort by price: low to high</option>
             <option>Sort by price: high to low</option>
           </select>
-          <IoChevronDown className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={12} />
+          <IoChevronDown
+            className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+            size={12}
+          />
         </div>
       </div>
 

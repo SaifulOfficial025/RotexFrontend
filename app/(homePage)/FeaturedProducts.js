@@ -39,7 +39,7 @@ export default function FeaturedProducts() {
 
   const filteredProducts = products.filter(
     (product) => product.featureCategory === activeTab,
-  );
+  ).slice(0, 8);
 
   return (
     <section className="py-16 md:py-8 bg-white">

@@ -116,7 +116,7 @@ export default function Footer() {
 
       {/* ─── Main Footer Body ─── */}
       <div className="container mx-auto px-4 max-w-7xl pt-6 pb-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1.2fr_2.2fr] gap-10 lg:gap-12">
           {/* ── Column 1: Brand / About ── */}
           <div className="flex flex-col gap-5">
             {/* Logo */}
@@ -136,9 +136,9 @@ export default function Footer() {
             </Link>
 
             {/* Tagline */}
-            {/* <p className="text-white/90 text-[13.5px] leading-relaxed">
+            <p className="text-white/90 text-[13.5px] leading-relaxed">
               {companyInfo.shortDescription}
-            </p> */}
+            </p>
 
             {/* Contact Info */}
             <ul className="flex flex-col gap-3">
@@ -164,6 +164,12 @@ export default function Footer() {
                   <span>{companyInfo.email}</span>
                 </a>
               </li>
+              <div className="flex items-start gap-3 text-white/90 text-[13.5px]">
+                <span className="mt-[2px] flex-shrink-0 w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
+                  <IoLocationOutline size={15} className="text-white" />
+                </span>
+                <span>{companyInfo.address}</span>
+              </div>
               <li className="pt-2">
                 <a
                   href={`https://wa.me/${companyInfo.phone.replace(/[^0-9+]/g, "")}`}
@@ -175,14 +181,7 @@ export default function Footer() {
                   <span>Connect on WhatsApp</span>
                 </a>
               </li>
-              <li>
-                {/* <div className="flex items-start gap-3 text-white/90 text-[13.5px]">
-                  <span className="mt-[2px] flex-shrink-0 w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
-                    <IoLocationOutline size={15} className="text-white" />
-                  </span>
-                  <span>{companyInfo.address}</span>
-                </div> */}
-              </li>
+              <li></li>
               <li>
                 {/* <div className="flex items-start gap-3 text-white/90 text-[13.5px]">
                   <span className="mt-[2px] flex-shrink-0 w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
@@ -217,8 +216,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* ── Column 3 & 4: Newsletter & Social ── */}
-          <div className="flex flex-col gap-5 sm:col-span-2">
+          {/* ── Column 3: Newsletter & Social ── */}
+          <div className="flex flex-col gap-5">
             {/* Newsletter */}
             <div>
               <h3 className="text-white text-[15px] font-bold uppercase tracking-widest after:block after:mt-2 after:w-10 after:h-[3px] after:bg-white/50 after:rounded-full">
@@ -231,7 +230,7 @@ export default function Footer() {
 
               <form
                 onSubmit={handleSubscribe}
-                className="mt-4 flex flex-col sm:flex-row gap-3"
+                className="mt-4 flex flex-col gap-3"
               >
                 <input
                   id="footer-newsletter-email"

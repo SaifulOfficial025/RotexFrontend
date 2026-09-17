@@ -39,6 +39,38 @@ const dummyBrands = [
     name: "LinkedIn",
     logo: "https://upload.wikimedia.org/wikipedia/commons/0/01/LinkedIn_Logo.svg",
   },
+  {
+    name: "Amazon",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+  },
+  {
+    name: "Google",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+  },
+  {
+    name: "Microsoft",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+  },
+  {
+    name: "IBM",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
+  },
+  {
+    name: "Cisco",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg",
+  },
+  {
+    name: "Intel",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/3/30/Intel_logo_%282020%2C_light_blue%29.svg",
+  },
+  {
+    name: "TCS",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/b/b1/Tata_Consultancy_Services_Logo.svg",
+  },
+  {
+    name: "LinkedIn",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/0/01/LinkedIn_Logo.svg",
+  },
 ];
 
 export default function BrandWeRepresentSlider() {
@@ -104,14 +136,14 @@ export default function BrandWeRepresentSlider() {
           className="overflow-hidden cursor-grab active:cursor-grabbing px-4"
           ref={emblaRef}
         >
-          <div className="flex -ml-4 md:-ml-6 py-2">
+          <div className="flex -ml-2 md:-ml-4 py-2">
             {dummyBrands.map((brand, index) => (
               <div
                 key={index}
-                className="flex-[0_0_50%] sm:flex-[0_0_33.333%] md:flex-[0_0_25%] lg:flex-[0_0_16.666%] min-w-0 pl-4 md:pl-6"
+                className="flex-[0_0_25%] sm:flex-[0_0_20%] md:flex-[0_0_12.5%] lg:flex-[0_0_10%] xl:flex-[0_0_8.333%] min-w-0 pl-2 md:pl-3"
               >
                 {/* Brand Card */}
-                <div className="bg-white  p-6 h-32 md:h-40 flex items-center justify-center hover:shadow-xl hover:border-primary/20 transition-all duration-500 group relative overflow-hidden">
+                <div className="bg-white p-2 md:p-4 h-20 md:h-24 flex items-center justify-center hover:shadow-xl hover:border-primary/20 transition-all duration-500 group relative overflow-hidden">
                   {/* Subtle background glow on hover */}
                   <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
 

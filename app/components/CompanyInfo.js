@@ -7,9 +7,9 @@ import {
 import { FaSquareXTwitter } from "react-icons/fa6";
 
 export const companyInfo = {
-  name: "Rotex Lab",
+  name: "Rotex International",
   shortDescription:
-    "Rotex Lab is a trusted supplier of premium laboratory, medical, and industrial equipment — delivering quality solutions across Bangladesh since inception.",
+    "Rotex International is a trusted supplier of premium laboratory, medical, and industrial equipment — delivering quality solutions across Bangladesh since inception.",
   phone: "+880 1700-000000",
   email: "info@rotexbd.com",
   address: "26, Delwar Complex, Hatkhola Road, Dhaka-1203",
