@@ -4,7 +4,20 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Button from "../../components/button";
-import { IoDocumentTextOutline } from "react-icons/io5";
+import {
+  IoDocumentTextOutline,
+  IoChevronBack,
+  IoChevronForward,
+  IoGridOutline,
+} from "react-icons/io5";
+import {
+  FaFacebookF,
+  FaXTwitter,
+  FaPinterestP,
+  FaLinkedinIn,
+  FaTelegram,
+} from "react-icons/fa6";
+
 import Logo from "@/public/images/Rotex-Logo-1.png";
 
 export default function ProductDetailsRightSide() {
@@ -20,6 +33,32 @@ export default function ProductDetailsRightSide() {
 
   return (
     <div className="flex flex-col gap-6 md:gap-8 w-full h-full bg-white md:pl-8">
+      {/* ─── Product Navigation (Top Right) ─── */}
+      <div className="flex justify-end -mb-4">
+        <div className="flex items-center gap-4 text-gray-500">
+          <button
+            aria-label="Previous Product"
+            title="Previous Product"
+            className="hover:text-primary transition-colors"
+          >
+            <IoChevronBack size={20} />
+          </button>
+          <button
+            aria-label="All Products"
+            title="All Products"
+            className="hover:text-primary transition-colors"
+          >
+            <IoGridOutline size={20} />
+          </button>
+          <button
+            aria-label="Next Product"
+            title="Next Product"
+            className="hover:text-primary transition-colors"
+          >
+            <IoChevronForward size={20} />
+          </button>
+        </div>
+      </div>
       {/* ─── Title & Brand Logo (2 Columns) ─── */}
       <div className="flex items-start justify-between gap-4">
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 leading-tight flex-1">
@@ -66,6 +105,45 @@ export default function ProductDetailsRightSide() {
               {variant}
             </button>
           ))}
+        </div>
+      </div>
+
+      {/* ─── SKU, Categories, Share ─── */}
+      <div className="flex flex-col gap-3 text-[15px] text-gray-600">
+        <p>
+          <span className="font-bold text-gray-900">SKU:</span> MNK-0147
+        </p>
+        <p>
+          <span className="font-bold text-gray-900">Categories:</span>{" "}
+          Accessories, Clocks
+        </p>
+        <div className="flex items-center gap-3">
+          <span className="font-bold text-gray-900">Share:</span>
+          <div className="flex items-center gap-3 text-gray-500 text-lg">
+            <a
+              href="#"
+              aria-label="Facebook"
+              className="hover:text-primary transition-colors"
+            >
+              <FaFacebookF size={16} />
+            </a>
+            <a
+              href="#"
+              aria-label="X (Twitter)"
+              className="hover:text-primary transition-colors"
+            >
+              <FaXTwitter size={16} />
+            </a>
+            {/* <a href="#" aria-label="Pinterest" className="hover:text-primary transition-colors"><FaPinterestP size={16} /></a> */}
+            <a
+              href="#"
+              aria-label="LinkedIn"
+              className="hover:text-primary transition-colors"
+            >
+              <FaLinkedinIn size={16} />
+            </a>
+            {/* <a href="#" aria-label="Telegram" className="hover:text-primary transition-colors"><FaTelegram size={16} /></a> */}
+          </div>
         </div>
       </div>
 

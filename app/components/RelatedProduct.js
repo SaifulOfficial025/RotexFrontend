@@ -30,7 +30,7 @@ const dummyProducts = Array.from({ length: 8 }).map((_, i) => ({
 
 const CARD_WIDTH = 300;
 const GAP = 24;
-const STEP = CARD_WIDTH + GAP;
+const STEP = (CARD_WIDTH + GAP) * 4;
 
 export default function RelatedProduct() {
   const [offset, setOffset] = useState(0);
@@ -46,7 +46,7 @@ export default function RelatedProduct() {
   return (
     <div className="w-full py-10 md:py-16">
       <div className="flex items-center justify-between mb-8 px-2 md:px-0 border-b border-gray-100 pb-4">
-        <h2 className="text-2xl md:text-3xl font-extrabold uppercase text-gray-900 tracking-widest relative">
+        <h2 className="text-[20px] md:text-xl font-bold uppercase text-gray-900 tracking-wide relative">
           Related Products
           <span className="absolute -bottom-4 left-0 w-20 h-1 bg-primary"></span>
         </h2>

@@ -9,6 +9,7 @@ import QualityControl from "./QualityControl";
 import BusinessDeals from "../components/BusinessDeals";
 import BrandWeRepresent from "../components/BrandWeRepresentSlider";
 import MobileHeader from "../components/MobileHeader";
+import CEO from "./CEO";
 
 export const metadata = {
   title: "About Us | Rotex",
@@ -29,6 +30,7 @@ export default function AboutUsPage() {
       <main className="flex-grow">
         {/* Modular Sections */}
         <OurStory />
+        <CEO />
         <MissionVision />
         <OurTeam />
         <QualityControl />

@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./button";
+import Link from "next/link";
 
 export default function ProductCard({
   image = "/images/default-product.png",
@@ -10,6 +11,8 @@ export default function ProductCard({
   description = "Upgrade your home office or entryway with the clean, organic lines of this minimalist wooden desk. Crafted from",
   sale = true,
 }) {
+  const productUrl = `/products/${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+
   return (
     <div className="relative w-full group hover:z-[60]">
       {/* Invisible ghost element to maintain grid cell height for the unexpanded state */}
@@ -34,9 +37,9 @@ export default function ProductCard({
           </div>
         </div>
       </div>
-
       {/* Actual visible card, absolutely positioned to overlay on hover without shifting grid */}
       <div className="absolute top-0 left-0 w-full flex flex-col bg-white border border-transparent group-hover:border-gray-200 group-hover:shadow-2xl group-hover:scale-[1.08] group-hover: border-[8px] border-black transition-all duration-300 z-10 group-hover:z-50 mx-auto">
+        <Link href={productUrl} className="absolute inset-0 z-40" aria-label={`View ${title}`}></Link>
         {/* Image Container */}
         <div className="relative w-full aspect-square bg-[#F8F9FA] flex items-center justify-center overflow-hidden">
           {sale && (
@@ -88,9 +91,9 @@ export default function ProductCard({
           </div>
 
           {/* Button: Visible by default on mobile, visible on hover on desktop */}
-          <div className="w-full flex justify-center items-center px-4 pb-6 mt-2 overflow-hidden transition-all duration-500 ease-in-out max-h-[100px] opacity-100 lg:max-h-0 lg:opacity-0 lg:group-hover:max-h-[100px] lg:group-hover:opacity-100">
+          <div className="w-full flex justify-center items-center px-4 pb-6 mt-2 overflow-hidden transition-all duration-500 ease-in-out max-h-[100px] opacity-100 lg:max-h-0 lg:opacity-0 lg:group-hover:max-h-[100px] lg:group-hover:opacity-100 relative z-50">
             <Button 
-              href={`/products/${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+              href={productUrl}
               showArrow={false}
               className="!px-3 sm:!px-5 !py-2 sm:!py-2.5 !text-[11px] sm:!text-[13px] w-full sm:w-auto whitespace-nowrap"
             >

@@ -57,10 +57,10 @@ export default function Menubarforotherpages() {
   return (
     <div className="hidden lg:block w-full relative z-40 bg-white border-b border-gray-200">
       {/* ─── Navbar Row ─────────────────────────────────────────────────────── */}
-      <div className="w-full max-w-7xl mx-auto flex h-[50px]">
+      <div className="w-full max-w-7xl mx-auto px-4 flex h-[50px]">
         {/* Desktop: "Categories" header with Hover Dropdown */}
         <div className="hidden lg:flex w-[240px] bg-primary items-center px-4 flex-shrink-0 relative group cursor-pointer">
-          <div className="flex items-center gap-3 w-full text-white">
+          <div className="flex items-center gap-3 w-full text-white pr-4">
             <HamburgerLines open={false} />
             <h3 className="font-bold uppercase tracking-wide text-sm flex-1">
               Categories

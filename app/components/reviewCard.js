@@ -11,6 +11,7 @@ export default function ReviewCard({
   date = "October 12, 2023",
   message = "This is an outstanding product. The quality and attention to detail are unmatched. It has significantly improved our workflow and I highly recommend it to anyone in the industry.",
   photo, // Optional photo attached to the review
+  hideAvatar = false,
 }) {
   return (
     <div className="bg-white border border-gray-200 p-6 md:p-8 shadow-sm hover:shadow-xl transition-shadow duration-300 flex flex-col h-full relative group rounded-none">
@@ -21,14 +22,16 @@ export default function ReviewCard({
 
       {/* Header: Avatar, Name, Company, Date */}
       <div className="flex items-center gap-4 mb-5 z-10 relative">
-        {avatar ? (
-          <div className="relative w-14 h-14 rounded-full overflow-hidden border border-gray-200 shadow-sm">
-            <Image src={avatar} alt={name} fill className="object-cover" />
-          </div>
-        ) : (
-          <div className="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 font-bold border border-gray-200 text-xl shadow-sm">
-            {name.charAt(0)}
-          </div>
+        {!hideAvatar && (
+          avatar ? (
+            <div className="relative w-14 h-14 rounded-full overflow-hidden border border-gray-200 shadow-sm">
+              <Image src={avatar} alt={name} fill className="object-cover" />
+            </div>
+          ) : (
+            <div className="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 font-bold border border-gray-200 text-xl shadow-sm">
+              {name.charAt(0)}
+            </div>
+          )
         )}
 
         <div className="flex flex-col">

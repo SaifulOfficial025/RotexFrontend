@@ -9,6 +9,8 @@ import {
   IoChevronForward,
 } from "react-icons/io5";
 import ReviewCard from "../../components/reviewCard";
+import ProductReviewSection from "./ProductReviewSection";
+import AboutBrandSection from "./AboutBrandSection";
 import Logo from "@/public/images/Rotex-Logo-1.png"; // For "About Brand" fallback or dummy data
 
 const dummyReviews = [
@@ -21,7 +23,8 @@ const dummyReviews = [
     date: "August 14, 2023",
     message:
       "The Pro-X scale has fundamentally changed our workflow. The stabilization time is practically zero, and the precision is flawless. Highly recommended.",
-    photo: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=400&auto=format&fit=crop",
+    photo:
+      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=400&auto=format&fit=crop",
   },
   {
     id: 2,
@@ -32,7 +35,8 @@ const dummyReviews = [
     date: "September 02, 2023",
     message:
       "Built like an absolute tank. We use it daily in our student labs and it handles the heavy usage without a single calibration issue.",
-    photo: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400&auto=format&fit=crop",
+    photo:
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400&auto=format&fit=crop",
   },
   {
     id: 3,
@@ -78,7 +82,8 @@ export default function ProductDetails() {
 
     const interval = setInterval(() => {
       if (reviewScrollRef.current) {
-        const { scrollLeft, scrollWidth, clientWidth } = reviewScrollRef.current;
+        const { scrollLeft, scrollWidth, clientWidth } =
+          reviewScrollRef.current;
         if (scrollLeft + clientWidth >= scrollWidth - 10) {
           reviewScrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
         } else {
@@ -122,18 +127,19 @@ export default function ProductDetails() {
                 Product Description
               </h3>
               <p className="text-gray-600 leading-relaxed text-sm">
-                The Pro-X series brings cutting edge technology to your laboratory.
-                Designed for accuracy, reliability, and ease of use, it features an
-                advanced electromagnetic force restoration weighing cell that delivers
-                lightning-fast stabilization times and unparalleled precision. The
-                durable stainless steel weighing pan and chemical-resistant housing
-                ensure a long lifespan even in the harshest environments.
+                The Pro-X series brings cutting edge technology to your
+                laboratory. Designed for accuracy, reliability, and ease of use,
+                it features an advanced electromagnetic force restoration
+                weighing cell that delivers lightning-fast stabilization times
+                and unparalleled precision. The durable stainless steel weighing
+                pan and chemical-resistant housing ensure a long lifespan even
+                in the harshest environments.
               </p>
               <p className="text-gray-600 leading-relaxed text-sm mt-4">
-                With built-in GLP/GMP compliance features, you can easily trace every
-                measurement. Seamlessly integrate the scale into your workflow using
-                the integrated RS232 and USB interfaces to connect directly to
-                printers, PCs, or LIMS systems.
+                With built-in GLP/GMP compliance features, you can easily trace
+                every measurement. Seamlessly integrate the scale into your
+                workflow using the integrated RS232 and USB interfaces to
+                connect directly to printers, PCs, or LIMS systems.
               </p>
             </div>
 
@@ -165,89 +171,12 @@ export default function ProductDetails() {
 
         {/* Tab: Review */}
         {activeTab === "Review" && (
-          <div className="animate-in fade-in duration-300">
-            <div className="flex items-center justify-between mb-6 pr-2">
-              <h3 className="text-lg font-bold text-gray-900 uppercase tracking-widest relative">
-                Product Reviews
-              </h3>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => scrollReviews("left")}
-                  className="w-8 h-8 border border-gray-200 rounded-full flex items-center justify-center text-gray-500 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-sm"
-                  aria-label="Previous Review"
-                >
-                  <IoChevronBack size={14} />
-                </button>
-                <button
-                  onClick={() => scrollReviews("right")}
-                  className="w-8 h-8 border border-gray-200 rounded-full flex items-center justify-center text-gray-500 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-sm"
-                  aria-label="Next Review"
-                >
-                  <IoChevronForward size={14} />
-                </button>
-              </div>
-            </div>
-
-            {/* Reviews Slider */}
-            <div className="relative -mx-4 px-4 pb-4">
-              <div
-                ref={reviewScrollRef}
-                className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 pt-2"
-                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-              >
-                <style jsx>{`
-                  div::-webkit-scrollbar {
-                    display: none;
-                  }
-                `}</style>
-
-                {dummyReviews.map((review) => (
-                  <div
-                    key={review.id}
-                    className="w-[300px] sm:w-[350px] flex-shrink-0 snap-start"
-                  >
-                    <ReviewCard
-                      name={review.name}
-                      company={review.company}
-                      avatar={review.avatar}
-                      date={review.date}
-                      message={review.message}
-                      photo={review.photo}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <ProductReviewSection productName="Pro-X series" />
         )}
 
         {/* Tab: About Brand */}
         {activeTab === "About Brand" && (
-          <div className="animate-in fade-in duration-300 flex flex-col gap-6">
-            <h3 className="text-lg font-bold text-gray-900 uppercase tracking-widest">
-              About the Brand
-            </h3>
-            
-            <div className="flex flex-col sm:flex-row gap-6 items-start">
-              <div className="bg-gray-50 p-6 rounded-lg border border-gray-100 flex items-center justify-center min-w-[200px]">
-                {/* Dummy brand logo */}
-                <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" 
-                  alt="Brand Logo" 
-                  className="h-12 w-auto object-contain mix-blend-multiply" 
-                />
-              </div>
-              <div className="flex-1">
-                <h4 className="text-xl font-black text-gray-900 mb-3">Google Instruments</h4>
-                <p className="text-gray-600 leading-relaxed text-sm">
-                  Founded in 1998, Google Instruments has been at the forefront of laboratory precision technology for over two decades. Renowned for their commitment to accuracy and durable design, their equipment is trusted by leading research facilities, universities, and industrial laboratories worldwide. 
-                </p>
-                <p className="text-gray-600 leading-relaxed text-sm mt-4">
-                  Every product is rigorously tested to meet strict international standards, ensuring consistent and reliable results. Partnering with Rotex International, we bring these world-class solutions directly to you.
-                </p>
-              </div>
-            </div>
-          </div>
+          <AboutBrandSection />
         )}
 
         {/* Tab: Download */}
@@ -257,7 +186,8 @@ export default function ProductDetails() {
               Downloads
             </h3>
             <p className="text-gray-600 text-sm mb-2">
-              Get detailed product manuals, technical data sheets, and compliance certificates in PDF format.
+              Get detailed product manuals, technical data sheets, and
+              compliance certificates in PDF format.
             </p>
             <div className="mt-2">
               <Button
