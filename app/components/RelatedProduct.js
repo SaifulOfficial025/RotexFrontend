@@ -50,7 +50,7 @@ export default function RelatedProduct() {
           Related Products
           <span className="absolute -bottom-4 left-0 w-20 h-1 bg-primary"></span>
         </h2>
-        <div className="flex gap-2">
+        <div className="hidden md:flex gap-2">
           <button
             onClick={() => scroll("left")}
             disabled={offset === 0}
@@ -70,20 +70,22 @@ export default function RelatedProduct() {
         </div>
       </div>
 
-      {/* overflow-x:clip clips horizontally WITHOUT creating a scroll container,
-          so overflow-y stays truly visible — cards can scale up above the boundary */}
+      {/* overflow-x:clip on desktop. Native scroll on mobile. */}
+      <style dangerouslySetInnerHTML={{__html: `
+        .hide-scroll::-webkit-scrollbar { display: none; }
+      `}} />
       <div
-        style={{ overflowX: "clip", overflowY: "visible" }}
-        className="relative -mx-8 -mr-20"
+        style={{ overflowY: "visible" }}
+        className="relative -mx-4 md:-mx-8 md:-mr-20 overflow-x-auto md:overflow-x-clip hide-scroll snap-x md:snap-none"
       >
         <div
-          className="flex gap-6 transition-transform duration-500 ease-in-out pt-8 pb-28 px-8"
+          className="flex gap-4 md:gap-6 transition-transform duration-500 ease-in-out pt-8 pb-12 md:pb-28 px-4 md:px-8"
           style={{ transform: "translateX(-" + offset + "px)" }}
         >
           {dummyProducts.map((product) => (
             <div
               key={product.id}
-              className="w-[300px] flex-shrink-0 relative hover:z-[100]"
+              className="w-[38vw] md:w-[300px] flex-shrink-0 relative hover:z-[100] snap-start"
             >
               <ProductCard
                 title={product.name}

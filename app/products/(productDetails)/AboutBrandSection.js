@@ -35,7 +35,7 @@ export default function AboutBrandSection() {
         </div>
 
         {/* 3rd row: More products link */}
-        <div className="mt-2">
+        <div className="mt-2 hidden lg:block">
           <Link
             href="/brands/google-instruments"
             className="inline-flex items-center text-primary font-bold text-[13px] uppercase tracking-wider hover:text-gray-900 transition-colors group"
@@ -52,30 +52,58 @@ export default function AboutBrandSection() {
       {/* ─── Right Column (70%) ─── */}
       <div className="w-full lg:w-[70%]">
         <h3 className="text-lg font-bold text-gray-900 uppercase tracking-widest mb-6">
-          Other Products from Google Instruments
+          Products from Google Instruments
         </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          <ProductCard
-            title="Precision Analytical Balance"
-            category="Laboratory"
-            price="$850.00"
-            image="/images/default-product.png"
-            sale={false}
-          />
-          <ProductCard
-            title="Digital Moisture Analyzer"
-            category="Laboratory"
-            price="$1,200.00"
-            image="/images/default-product.png"
-            sale={true}
-          />
-          <ProductCard
-            title="High-Capacity Bench Scale"
-            category="Industrial"
-            price="$600.00"
-            image="/images/default-product.png"
-            sale={false}
-          />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+          .hide-scroll::-webkit-scrollbar { display: none; }
+        `,
+          }}
+        />
+        <div
+          className="flex overflow-x-auto sm:grid sm:grid-cols-2 md:grid-cols-3 gap-4 pb-4 hide-scroll snap-x"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          <div className="w-[38%] sm:w-auto shrink-0 snap-start">
+            <ProductCard
+              title="Precision Analytical Balance"
+              category="Laboratory"
+              price="$850.00"
+              image="/images/default-product.png"
+              sale={false}
+            />
+          </div>
+          <div className="w-[38%] sm:w-auto shrink-0 snap-start">
+            <ProductCard
+              title="Digital Moisture Analyzer"
+              category="Laboratory"
+              price="$1,200.00"
+              image="/images/default-product.png"
+              sale={true}
+            />
+          </div>
+          <div className="w-[38%] sm:w-auto shrink-0 snap-start">
+            <ProductCard
+              title="High-Capacity Bench Scale"
+              category="Industrial"
+              price="$600.00"
+              image="/images/default-product.png"
+              sale={false}
+            />
+          </div>
+        </div>
+        <div className="mt-6 flex justify-end lg:hidden">
+          <Link
+            href="/brands/google-instruments"
+            className="inline-flex items-center text-primary font-bold text-[13px] uppercase tracking-wider hover:text-gray-900 transition-colors group"
+          >
+            More products from this brand
+            <FaArrowRight
+              className="ml-2 transition-transform group-hover:translate-x-1"
+              size={14}
+            />
+          </Link>
         </div>
       </div>
     </div>

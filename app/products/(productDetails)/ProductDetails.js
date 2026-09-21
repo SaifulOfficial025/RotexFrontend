@@ -97,13 +97,17 @@ export default function ProductDetails() {
 
   return (
     <div className="mt-4">
+      
       {/* ─── Tabs Header ─── */}
-      <div className="flex flex-wrap justify-center border-b border-gray-200 mb-8 gap-2 sm:gap-8">
+      <style dangerouslySetInnerHTML={{__html: `
+        .hide-scroll::-webkit-scrollbar { display: none; }
+      `}} />
+      <div className="flex overflow-x-auto md:flex-wrap md:justify-center border-b border-gray-200 mb-6 md:mb-8 gap-6 sm:gap-8 hide-scroll" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
         {tabs.map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`relative pb-3 px-2 text-[14px] font-bold uppercase tracking-widest transition-colors ${
+            className={`relative pb-3 px-2 text-[14px] font-bold uppercase tracking-widest transition-colors whitespace-nowrap shrink-0 ${
               activeTab === tab
                 ? "text-primary"
                 : "text-gray-500 hover:text-gray-800"

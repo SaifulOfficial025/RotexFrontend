@@ -141,14 +141,14 @@ export default function ProductImage({ images = dummyImages }) {
 
       {/* ─── Main Image Viewer ─── */}
       <div
-        className="flex-1 relative bg-[#fafafa] flex items-center justify-center overflow-hidden min-h-[300px] cursor-crosshair group"
+        className="relative bg-[#fafafa] flex items-center justify-center overflow-hidden aspect-square w-full md:w-auto md:flex-1 md:h-full md:aspect-auto cursor-crosshair group"
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsZoomed(true)}
         onMouseLeave={() => setIsZoomed(false)}
       >
         {/* Base Image with scale and transform origin */}
         <div
-          className="relative w-full h-full p-4 sm:p-10 transition-transform duration-200 ease-out"
+          className="relative w-full h-full p-0 sm:p-10 transition-transform duration-200 ease-out"
           style={{
             transformOrigin: `${zoomPos.x}% ${zoomPos.y}%`,
             transform: isZoomed ? "scale(2.5)" : "scale(1)",

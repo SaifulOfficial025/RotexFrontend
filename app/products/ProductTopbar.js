@@ -63,7 +63,7 @@ export default function ProductTopbar({
         </div>
 
         {/* Center: Grid View Icons */}
-        <div className="flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-3">
           <button onClick={() => setViewMode("list")} aria-label="List View">
             <BsList
               size={26}
