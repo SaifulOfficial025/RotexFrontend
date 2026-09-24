@@ -9,7 +9,6 @@ export default function CEO() {
     <div className="w-full bg-[#F8F9FA] py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-          
           {/* Image Side */}
           <div className="w-full lg:w-5/12 relative">
             <div className="relative aspect-[4/5] w-full overflow-hidden shadow-2xl">
@@ -33,34 +32,49 @@ export default function CEO() {
                 Message from our CEO
               </h4>
             </div>
-            
+
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-8 leading-tight">
-              Committed to <span className="text-primary">Excellence</span> & Innovation
+              Committed to <span className="text-primary">Quality</span> &
+              Reliability
             </h2>
 
             <div className="relative bg-white p-8 md:p-10 shadow-sm border border-gray-100 mb-8 z-10 overflow-hidden">
               <FaQuoteLeft className="absolute -top-4 -right-4 text-gray-50 text-8xl pointer-events-none -z-10 rotate-12" />
               <p className="text-gray-600 text-[15px] md:text-[16px] leading-relaxed italic relative z-10 font-medium">
-                "Since our founding, Rotex has been driven by a singular vision: to empower the scientific community with tools of uncompromising precision and reliability. We believe that behind every great discovery is a measurement that can be trusted. Our dedication to quality isn't just a business strategy; it's our promise to you."
+                “Since our establishment in 2006, Rotex International has been
+                committed to providing quality scientific products and
+                dependable solutions to our customers. We believe that quality,
+                reliability, and service are the foundation of a lasting
+                business relationship.”
               </p>
             </div>
 
             <p className="text-gray-600 text-[15px] leading-relaxed mb-6">
-              As we look to the future, our focus remains firmly on continuous improvement and sustainable growth. We are investing heavily in new technologies and expanding our global reach to ensure that no matter where you are, you have access to the best laboratory equipment in the world. 
+              Our journey has been shaped by a commitment to customer
+              satisfaction, reasonable pricing, technical support, and
+              continuous improvement. From laboratory instruments and weighing
+              systems to textile testing equipment and industrial measurement
+              tools, we strive to provide solutions that meet the diverse
+              requirements of our customers.
             </p>
-            
+
             <p className="text-gray-600 text-[15px] leading-relaxed mb-10">
-              Thank you for your continued trust and partnership. Together, we are building a more accurate, reliable, and brighter future for everyone.
+              As we look ahead, our focus remains on delivering quality
+              products, timely service, technical support, and dependable
+              after-sales assistance. We value long-term relationships over
+              one-time transactions and aim to remain a trusted partner for
+              every customer we serve.
             </p>
 
             <div className="flex flex-col border-l-4 border-primary pl-4">
-              <h5 className="text-xl font-black text-gray-900">Dr. Jonathan Archer</h5>
+              <h5 className="text-xl font-black text-gray-900">
+                Md. Abdur Rahim
+              </h5>
               <p className="text-gray-500 font-bold text-[12px] tracking-widest uppercase mt-1">
-                Chief Executive Officer, Rotex
+                Founder & CEO, Rotex International
               </p>
             </div>
           </div>
-
         </div>
       </div>
     </div>

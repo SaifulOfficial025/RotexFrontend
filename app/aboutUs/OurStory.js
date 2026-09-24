@@ -32,7 +32,7 @@ export default function OurStory() {
           <div className="lg:w-1/2 flex flex-col gap-8">
             {/* Headline */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-[1.1]">
-              Driven by Purpose,{" "}
+              Driven by Quality,{" "}
               <span className="text-primary">Built on Trust</span>
             </h1>
 
@@ -41,17 +41,20 @@ export default function OurStory() {
 
             {/* Body */}
             <p className="text-gray-600 text-[16px] leading-relaxed max-w-lg">
-              Founded with a passion for excellence, our journey began with a
-              simple yet ambitious goal: to become the most trusted partner in
-              our industry. Over the years, we've grown from a small, dedicated
-              team into a recognized leader — driven by innovation, integrity,
-              and an unwavering commitment to our clients.
+              Established in 2006, Rotex International has grown as a scientific
+              products company serving the laboratory, industrial, textile,
+              medical, pharmaceutical, educational, and other sectors across
+              Bangladesh. <br />
+              We specialize in the import, distribution, supply, and support of
+              scientific instruments, weighing equipment, laboratory testing
+              products, textile testing equipment, consumables, and measurement
+              solutions.
             </p>
             <p className="text-gray-500 text-[15px] leading-relaxed max-w-lg">
-              Every milestone we've reached has been shaped by the relationships
-              we've built along the way. We believe every challenge is an
-              opportunity to learn, and every client is a partner in our shared
-              success.
+              Our approach is to provide quality products, reasonable pricing,
+              dependable service, and lasting customer support. We believe our
+              success is built not only on the products we supply, but also on
+              the trust and relationships we develop with our customers.
             </p>
 
             {/* CTAs */}
