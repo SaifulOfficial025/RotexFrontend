@@ -30,7 +30,7 @@ export default function Header() {
           {/* Left Top Bar */}
           <div className="hidden md:flex items-center justify-center md:justify-start w-full md:w-auto h-auto md:h-full pt-2 md:pt-0">
             <div className="px-4 flex items-center h-full uppercase text-center md:text-left">
-              Free shipping for all orders of $150
+              Free shipping for all orders of $1500
             </div>
           </div>
 

@@ -6,3 +6,8 @@
      as they are included by default, but we can do it if we want custom shades. 
      Tailwind already has 'black' and 'white'. */
 }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}

@@ -11,8 +11,12 @@ import MobileHeader from "../components/MobileHeader";
 const Review = dynamic(() => import("./Review"));
 const BusinessDeals = dynamic(() => import("../components/BusinessDeals"));
 const EnquireAndMap = dynamic(() => import("../components/EnquireAndMap"));
-const BrandWeRepresentSlider = dynamic(() => import("../components/BrandWeRepresentSlider"));
-const HonorableClientSlider = dynamic(() => import("../components/HonorableClientSlider"));
+const BrandWeRepresentSlider = dynamic(
+  () => import("../components/BrandWeRepresentSlider"),
+);
+const HonorableClientSlider = dynamic(
+  () => import("../components/HonorableClientSlider"),
+);
 const Footer = dynamic(() => import("../components/footer"));
 
 export default function HomePage() {
@@ -30,14 +34,17 @@ export default function HomePage() {
 
       {/* Main Content */}
       <main className="flex-grow">
-        <h1 className="sr-only">Rotex Lab - Premium Laboratory, Medical, and Scientific Equipment in Bangladesh</h1>
+        <h1 className="sr-only">
+          Rotex Lab - Premium Laboratory, Medical, and Scientific Equipment in
+          Bangladesh
+        </h1>
         <div className="flex flex-col">
           {/* <Categories /> */}
           <FeaturedProducts />
           <OurbusinessFields />
           <WhyUs />
           <Review />
-          <BusinessDeals />
+          {/* <BusinessDeals /> */}
           <EnquireAndMap />
           <HonorableClientSlider />
           <BrandWeRepresentSlider />

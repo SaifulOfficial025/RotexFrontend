@@ -10,7 +10,7 @@ import {
 
 export default function MissionVision() {
   return (
-    <div className="flex flex-col w-full">
+    <div id="mission-vision" className="flex flex-col w-full">
       {/* ─── MISSION SECTION ─── */}
       <section
         id="mission"

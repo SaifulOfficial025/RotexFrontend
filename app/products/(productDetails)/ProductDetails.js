@@ -97,12 +97,18 @@ export default function ProductDetails() {
 
   return (
     <div className="mt-4">
-      
       {/* ─── Tabs Header ─── */}
-      <style dangerouslySetInnerHTML={{__html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         .hide-scroll::-webkit-scrollbar { display: none; }
-      `}} />
-      <div className="flex overflow-x-auto md:flex-wrap md:justify-center border-b border-gray-200 mb-6 md:mb-8 gap-6 sm:gap-8 hide-scroll" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+      `,
+        }}
+      />
+      <div
+        className="hidden md:flex overflow-x-auto flex-wrap justify-center border-b border-gray-200 mb-6 md:mb-8 gap-8"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
         {tabs.map((tab) => (
           <button
             key={tab}
@@ -122,91 +128,107 @@ export default function ProductDetails() {
       </div>
 
       {/* ─── Tabs Content ─── */}
-      <div className="min-h-[400px]">
+      <div className="min-h-[400px] flex flex-col gap-12 md:gap-0">
         {/* Tab: Product description */}
-        {activeTab === "Product description" && (
-          <div className="flex flex-col gap-10 animate-in fade-in duration-300">
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 uppercase tracking-widest mb-3">
-                Product Description
-              </h3>
-              <p className="text-gray-600 leading-relaxed text-sm">
-                The Pro-X series brings cutting edge technology to your
-                laboratory. Designed for accuracy, reliability, and ease of use,
-                it features an advanced electromagnetic force restoration
-                weighing cell that delivers lightning-fast stabilization times
-                and unparalleled precision. The durable stainless steel weighing
-                pan and chemical-resistant housing ensure a long lifespan even
-                in the harshest environments.
-              </p>
-              <p className="text-gray-600 leading-relaxed text-sm mt-4">
-                With built-in GLP/GMP compliance features, you can easily trace
-                every measurement. Seamlessly integrate the scale into your
-                workflow using the integrated RS232 and USB interfaces to
-                connect directly to printers, PCs, or LIMS systems.
-              </p>
-            </div>
+        <div
+          className={`animate-in fade-in duration-300 flex-col gap-10 ${activeTab === "Product description" ? "flex" : "flex md:hidden"}`}
+        >
+          <h2 className="md:hidden text-2xl font-bold text-gray-900 border-b border-gray-200 pb-2">
+            Product Description
+          </h2>
+          <div>
+            <h3 className="text-lg font-bold text-gray-900 uppercase tracking-widest mb-3">
+              Product Description
+            </h3>
+            <p className="text-gray-600 leading-relaxed text-sm">
+              The Pro-X series brings cutting edge technology to your
+              laboratory. Designed for accuracy, reliability, and ease of use,
+              it features an advanced electromagnetic force restoration weighing
+              cell that delivers lightning-fast stabilization times and
+              unparalleled precision. The durable stainless steel weighing pan
+              and chemical-resistant housing ensure a long lifespan even in the
+              harshest environments.
+            </p>
+            <p className="text-gray-600 leading-relaxed text-sm mt-4">
+              With built-in GLP/GMP compliance features, you can easily trace
+              every measurement. Seamlessly integrate the scale into your
+              workflow using the integrated RS232 and USB interfaces to connect
+              directly to printers, PCs, or LIMS systems.
+            </p>
+          </div>
 
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 uppercase tracking-widest mb-3">
-                Technical Specifications
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600">
-                <div className="flex flex-col border-b border-gray-100 pb-2">
-                  <span className="font-bold text-gray-900">Capacity</span>
-                  <span>300g</span>
-                </div>
-                <div className="flex flex-col border-b border-gray-100 pb-2">
-                  <span className="font-bold text-gray-900">Readability</span>
-                  <span>0.01mg</span>
-                </div>
-                <div className="flex flex-col border-b border-gray-100 pb-2">
-                  <span className="font-bold text-gray-900">Pan Size</span>
-                  <span>90mm diameter</span>
-                </div>
-                <div className="flex flex-col border-b border-gray-100 pb-2">
-                  <span className="font-bold text-gray-900">Power Supply</span>
-                  <span>100-240V AC</span>
-                </div>
+          <div>
+            <h3 className="text-lg font-bold text-gray-900 uppercase tracking-widest mb-3">
+              Technical Specifications
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600">
+              <div className="flex flex-col border-b border-gray-100 pb-2">
+                <span className="font-bold text-gray-900">Capacity</span>
+                <span>300g</span>
+              </div>
+              <div className="flex flex-col border-b border-gray-100 pb-2">
+                <span className="font-bold text-gray-900">Readability</span>
+                <span>0.01mg</span>
+              </div>
+              <div className="flex flex-col border-b border-gray-100 pb-2">
+                <span className="font-bold text-gray-900">Pan Size</span>
+                <span>90mm diameter</span>
+              </div>
+              <div className="flex flex-col border-b border-gray-100 pb-2">
+                <span className="font-bold text-gray-900">Power Supply</span>
+                <span>100-240V AC</span>
               </div>
             </div>
           </div>
-        )}
+        </div>
 
         {/* Tab: Review */}
-        {activeTab === "Review" && (
+        <div
+          className={`animate-in fade-in duration-300 flex-col gap-4 ${activeTab === "Review" ? "flex" : "flex md:hidden"}`}
+        >
+          <h2 className="md:hidden text-2xl font-bold text-gray-900 border-b border-gray-200 pb-2">
+            Reviews
+          </h2>
           <ProductReviewSection productName="Pro-X series" />
-        )}
+        </div>
 
         {/* Tab: About Brand */}
-        {activeTab === "About Brand" && (
+        <div
+          className={`animate-in fade-in duration-300 flex-col gap-4 ${activeTab === "About Brand" ? "flex" : "flex md:hidden"}`}
+        >
+          <h2 className="md:hidden text-2xl font-bold text-gray-900 border-b border-gray-200 pb-2">
+            About Brand
+          </h2>
           <AboutBrandSection />
-        )}
+        </div>
 
         {/* Tab: Download */}
-        {activeTab === "Download" && (
-          <div className="animate-in fade-in duration-300 flex flex-col gap-4">
-            <h3 className="text-lg font-bold text-gray-900 uppercase tracking-widest mb-2">
-              Downloads
-            </h3>
-            <p className="text-gray-600 text-sm mb-2">
-              Get detailed product manuals, technical data sheets, and
-              compliance certificates in PDF format.
-            </p>
-            <div className="mt-2">
-              <Button
-                variant="outline"
-                showArrow={false}
-                className="w-auto !py-3 border-2 border-primary hover:bg-primary text-primary hover:text-white shadow-none hover:shadow-sm transition-all"
-              >
-                <span className="flex items-center gap-3 font-bold uppercase tracking-wider text-[13px]">
-                  <IoDocumentTextOutline size={20} />
-                  Download Product Catalog (PDF)
-                </span>
-              </Button>
-            </div>
+        <div
+          className={`animate-in fade-in duration-300 flex-col gap-4 ${activeTab === "Download" ? "flex" : "flex md:hidden"}`}
+        >
+          <h2 className="md:hidden text-2xl font-bold text-gray-900 border-b border-gray-200 pb-2">
+            Downloads
+          </h2>
+          <h3 className="text-lg font-bold text-gray-900 uppercase tracking-widest mb-2">
+            Downloads
+          </h3>
+          <p className="text-gray-600 text-sm mb-2">
+            Get detailed product manuals, technical data sheets, and compliance
+            certificates in PDF format.
+          </p>
+          <div className="mt-2">
+            <Button
+              variant="outline"
+              showArrow={false}
+              className="w-auto !py-3 border-2 border-primary hover:bg-primary text-primary hover:text-white shadow-none hover:shadow-sm transition-all"
+            >
+              <span className="flex items-center gap-3 font-bold uppercase tracking-wider text-[13px]">
+                <IoDocumentTextOutline size={20} />
+                Download Product Catalog (PDF)
+              </span>
+            </Button>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

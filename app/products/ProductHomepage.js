@@ -7,6 +7,7 @@ import Footer from "../components/footer";
 import ProductSidebar from "./ProductSidebar";
 import ProductTopbar from "./ProductTopbar";
 import ProductCard from "../components/productCard";
+import ProductCardListView from "../components/ProductCardListView";
 import Menubarforotherpages from "../components/MenubarforOtherPages";
 import Brandwerepresent from "../components/BrandWeRepresentSlider";
 import { IoClose, IoChevronBack, IoChevronForward } from "react-icons/io5";
@@ -56,6 +57,20 @@ export default function ProductHomepage() {
   // Topbar State
   const [showCount, setShowCount] = useState(12);
   const [viewMode, setViewMode] = useState("3x3");
+
+  // Load saved view mode from local storage
+  useEffect(() => {
+    const savedMode = localStorage.getItem("rotex-view-mode");
+    if (savedMode) {
+      setViewMode(savedMode);
+    }
+  }, []);
+
+  // Update state and local storage when view mode changes
+  const handleSetViewMode = (mode) => {
+    setViewMode(mode);
+    localStorage.setItem("rotex-view-mode", mode);
+  };
   const [sorting, setSorting] = useState("Default sorting");
 
   // Prevent scrolling when mobile sidebar is open
@@ -143,26 +158,46 @@ export default function ProductHomepage() {
               showCount={showCount}
               setShowCount={setShowCount}
               viewMode={viewMode}
-              setViewMode={setViewMode}
+              setViewMode={handleSetViewMode}
               sorting={sorting}
               setSorting={setSorting}
             />
 
             {/* Products Grid */}
             <div className={`grid gap-4 sm:gap-6 ${gridClass}`}>
-              {visibleProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  title={product.name}
-                  category={product.category}
-                  price={product.price}
-                  image={product.image}
-                  hoverImage={product.hoverImage}
-                  sale={product.sale}
-                  description={product.description}
-                  isList={viewMode === "list"}
-                />
-              ))}
+              {visibleProducts.map((product) => {
+                if (viewMode === "list") {
+                  return (
+                    <ProductCardListView 
+                      key={product.id}
+                      product={{
+                        id: product.id,
+                        name: product.name,
+                        categories: [product.category],
+                        price: product.price,
+                        image: product.image,
+                        hoverImage: product.hoverImage,
+                        description: product.description,
+                        colors: ["#eadcc3", "#000000"], 
+                        slug: product.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")
+                      }}
+                    />
+                  );
+                }
+                return (
+                  <ProductCard
+                    key={product.id}
+                    title={product.name}
+                    category={product.category}
+                    price={product.price}
+                    image={product.image}
+                    hoverImage={product.hoverImage}
+                    sale={product.sale}
+                    description={product.description}
+                    isList={false}
+                  />
+                );
+              })}
             </div>
 
             {/* Dynamic Pagination */}

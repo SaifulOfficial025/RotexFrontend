@@ -1,3 +1,5 @@
+"use client";
+
 import {
   MdDevices,
   MdCheckroom,
@@ -16,8 +18,18 @@ import {
 export const menus = [
   { href: "/", label: "Home", active: true },
   { href: "/products", label: "Products" },
-  { href: "/aboutUs", label: "About Us" },
-  { href: "/contactUs", label: "Contact Us" },
+  {
+    href: "/about-us",
+    label: "We",
+    subMenus: [
+      { href: "/about-us#our-story", label: "Our Story" },
+      { href: "/about-us#ceo", label: "Message from CEO" },
+      { href: "/about-us#mission-vision", label: "Mission & Vision" },
+      { href: "/about-us#our-team", label: "Our Team" },
+      { href: "/about-us#quality-control", label: "Quality Control" },
+    ],
+  },
+  { href: "/contact-us", label: "Contact Us" },
   { href: "#", label: "Our Clients" },
 ];
 
@@ -27,14 +39,7 @@ export const categories = [
     name: "Electronics",
     icon: <MdDevices size={20} />,
     subcategories: [
-      "Smartphones",
-      "Laptops",
-      "Tablets",
-      "Smart Watches",
-      "Cameras",
-      "Headphones",
-      "Smart TVs",
-      "Gaming Consoles",
+      "Smartphones", "Laptops", "Tablets", "Smart Watches", "Cameras", "Headphones", "Smart TVs", "Gaming Consoles",
     ],
   },
   {
@@ -42,14 +47,7 @@ export const categories = [
     name: "Fashion",
     icon: <MdCheckroom size={20} />,
     subcategories: [
-      "Men's Clothing",
-      "Women's Clothing",
-      "Kids' Fashion",
-      "Footwear",
-      "Bags & Wallets",
-      "Jewellery",
-      "Sunglasses",
-      "Watches",
+      "Men's Clothing", "Women's Clothing", "Kids' Fashion", "Footwear", "Bags & Wallets", "Jewellery", "Sunglasses", "Watches",
     ],
   },
   {
@@ -57,14 +55,7 @@ export const categories = [
     name: "Home & Garden",
     icon: <MdHome size={20} />,
     subcategories: [
-      "Furniture",
-      "Bedding",
-      "Kitchen",
-      "Lighting",
-      "Garden Tools",
-      "Storage",
-      "Curtains",
-      "Bath Accessories",
+      "Furniture", "Bedding", "Kitchen", "Lighting", "Garden Tools", "Storage", "Curtains", "Bath Accessories",
     ],
   },
   {
@@ -72,14 +63,7 @@ export const categories = [
     name: "Sports",
     icon: <MdSportsSoccer size={20} />,
     subcategories: [
-      "Gym Equipment",
-      "Outdoor Sports",
-      "Cycling",
-      "Swimming",
-      "Yoga & Fitness",
-      "Team Sports",
-      "Climbing",
-      "Running",
+      "Gym Equipment", "Outdoor Sports", "Cycling", "Swimming", "Yoga & Fitness", "Team Sports", "Climbing", "Running",
     ],
   },
   {
@@ -87,13 +71,7 @@ export const categories = [
     name: "Beauty",
     icon: <MdFaceRetouchingNatural size={20} />,
     subcategories: [
-      "Skincare",
-      "Haircare",
-      "Makeup",
-      "Fragrances",
-      "Nail Care",
-      "Men's Grooming",
-      "Organic Products",
+      "Skincare", "Haircare", "Makeup", "Fragrances", "Nail Care", "Men's Grooming", "Organic Products",
     ],
   },
   {
@@ -101,14 +79,7 @@ export const categories = [
     name: "Books",
     icon: <MdMenuBook size={20} />,
     subcategories: [
-      "Fiction",
-      "Non-Fiction",
-      "Children's Books",
-      "Textbooks",
-      "Comics",
-      "Self-Help",
-      "Science",
-      "Biographies",
+      "Fiction", "Non-Fiction", "Children's Books", "Textbooks", "Comics", "Self-Help", "Science", "Biographies",
     ],
   },
   {
@@ -116,13 +87,7 @@ export const categories = [
     name: "Toys & Games",
     icon: <MdToys size={20} />,
     subcategories: [
-      "Action Figures",
-      "Board Games",
-      "Puzzles",
-      "Educational Toys",
-      "Remote Control",
-      "Dollhouses",
-      "Art Supplies",
+      "Action Figures", "Board Games", "Puzzles", "Educational Toys", "Remote Control", "Dollhouses", "Art Supplies",
     ],
   },
   {
@@ -130,13 +95,7 @@ export const categories = [
     name: "Pets",
     icon: <MdPets size={20} />,
     subcategories: [
-      "Dog Supplies",
-      "Cat Supplies",
-      "Bird Supplies",
-      "Fish & Aquatics",
-      "Small Pets",
-      "Pet Food",
-      "Grooming",
+      "Dog Supplies", "Cat Supplies", "Bird Supplies", "Fish & Aquatics", "Small Pets", "Pet Food", "Grooming",
     ],
   },
   {
@@ -144,13 +103,7 @@ export const categories = [
     name: "Automotive",
     icon: <MdDirectionsCar size={20} />,
     subcategories: [
-      "Car Accessories",
-      "Motorcycle",
-      "Car Care",
-      "Tools",
-      "Tyres",
-      "GPS & Navigation",
-      "Seat Covers",
+      "Car Accessories", "Motorcycle", "Car Care", "Tools", "Tyres", "GPS & Navigation", "Seat Covers",
     ],
   },
   {
@@ -158,14 +111,7 @@ export const categories = [
     name: "Food & Grocery",
     icon: <MdRestaurant size={20} />,
     subcategories: [
-      "Fresh Produce",
-      "Dairy",
-      "Snacks",
-      "Beverages",
-      "Organic",
-      "Frozen Foods",
-      "Bakery",
-      "International",
+      "Fresh Produce", "Dairy", "Snacks", "Beverages", "Organic", "Frozen Foods", "Bakery", "International",
     ],
   },
   {
@@ -173,12 +119,7 @@ export const categories = [
     name: "Health",
     icon: <MdHealthAndSafety size={20} />,
     subcategories: [
-      "Vitamins",
-      "Medical Devices",
-      "Personal Care",
-      "Wellness",
-      "First Aid",
-      "Weight Management",
+      "Vitamins", "Medical Devices", "Personal Care", "Wellness", "First Aid", "Weight Management",
     ],
   },
   {
@@ -186,13 +127,7 @@ export const categories = [
     name: "Tools & DIY",
     icon: <MdBuild size={20} />,
     subcategories: [
-      "Power Tools",
-      "Hand Tools",
-      "Electrical",
-      "Plumbing",
-      "Painting",
-      "Safety",
-      "Measuring Tools",
+      "Power Tools", "Hand Tools", "Electrical", "Plumbing", "Painting", "Safety", "Measuring Tools",
     ],
   },
 ];

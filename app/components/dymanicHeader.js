@@ -9,6 +9,7 @@ import { menus } from "./CategoriesAndMenus";
 import Cart from "./Cart";
 import Logo from "@/public/images/Rotex-Logo-1.png";
 import { IoCartOutline } from "react-icons/io5";
+import { FaChevronDown } from "react-icons/fa";
 
 export default function DynamicHeader() {
   const pathname = usePathname();
@@ -100,9 +101,9 @@ export default function DynamicHeader() {
             <Image
               src={Logo}
               alt="Rotex Logo"
-              width={140}
-              height={36}
-              className="h-7 lg:h-8 w-auto object-contain"
+              width={240}
+              height={32}
+              className="h-12 w-auto object-contain"
               priority
             />
           </Link>
@@ -110,17 +111,38 @@ export default function DynamicHeader() {
           {/* Desktop Nav Links — centered */}
           <div className="hidden lg:flex flex-1 items-center justify-center space-x-2">
             {dynamicMenus.map((item, i) => (
-              <Link
-                key={i}
-                href={item.href}
-                className={`text-[13px] font-bold px-4 py-4 uppercase tracking-wide transition-colors ${
-                  item.active
-                    ? "text-primary hover:text-gray-800"
-                    : "text-gray-800 hover:text-primary"
-                }`}
-              >
-                {item.label}
-              </Link>
+              <div key={i} className="group relative h-full flex items-center">
+                <Link
+                  href={item.href}
+                  className={`text-[13px] font-bold px-4 py-4 uppercase tracking-wide transition-colors flex items-center gap-1.5 ${
+                    item.active
+                      ? "text-primary hover:text-gray-800"
+                      : "text-gray-800 hover:text-primary"
+                  }`}
+                >
+                  {item.label}
+                  {item.subMenus && (
+                    <FaChevronDown className="text-[10px] opacity-70 group-hover:rotate-180 transition-transform duration-300" />
+                  )}
+                </Link>
+
+                {/* Dropdown Menu */}
+                {item.subMenus && (
+                  <div className="absolute top-full left-0 mt-0 w-48 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-2 border-primary z-50">
+                    <div className="py-2">
+                      {item.subMenus.map((sub, j) => (
+                        <Link
+                          key={j}
+                          href={sub.href}
+                          className="block px-4 py-2.5 text-[11px] font-bold text-gray-600 hover:text-primary hover:bg-gray-50 transition-colors uppercase tracking-wider text-left"
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             ))}
           </div>
 

@@ -11,6 +11,15 @@ const dummyBrands = [
   { id: 5, name: "Merck", logo: "Merck Logo" },
 ];
 
+const dummyCategories = [
+  "Chemicals",
+  "Equipments",
+  "Glassware",
+  "Plasticware",
+  "Life Science",
+];
+
+
 export default function ProductSidebar({
   filters = { categories: [], brands: [], price: { min: "", max: "" } },
   setFilters,
@@ -33,10 +42,10 @@ export default function ProductSidebar({
     setFilters((prev) => {
       const currentList = prev[type] || [];
 
-      // Single selection for brands
-      if (type === "brands") {
+      // Single selection for brands and categories
+      if (type === "brands" || type === "categories") {
         const isSelected = currentList.includes(value);
-        return { ...prev, brands: isSelected ? [] : [value] };
+        return { ...prev, [type]: isSelected ? [] : [value] };
       }
 
       const isSelected = currentList.includes(value);
@@ -173,6 +182,70 @@ export default function ProductSidebar({
                     {brand.logo}
                   </span>
                 </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Category Filter Section (Desktop Only) */}
+      <div className="pb-2 hidden lg:block">
+        <button
+          onClick={() => toggleSection("categories")}
+          className="flex items-center justify-between w-full text-left group mb-4"
+        >
+          <h3 className="text-md font-medium uppercase text-gray-900 tracking-wider group-hover:text-primary transition-colors">
+            Categories
+          </h3>
+          <span className="text-gray-400 group-hover:text-primary transition-colors">
+            {openSections.has("categories") ? (
+              <IoChevronUp size={18} />
+            ) : (
+              <IoChevronDown size={18} />
+            )}
+          </span>
+        </button>
+
+        <div
+          className={`overflow-hidden transition-all duration-300 ease-in-out ${
+            openSections.has("categories")
+              ? "max-h-[500px] opacity-100"
+              : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="flex flex-col gap-3 px-2 pt-1">
+            {dummyCategories.map((cat) => {
+              const isChecked = filters.categories?.includes(cat);
+              return (
+                <label
+                  key={cat}
+                  className="flex items-center gap-3 cursor-pointer group"
+                >
+                  <div className="relative flex items-center justify-center">
+                    <input
+                      type="checkbox"
+                      className="peer appearance-none w-4 h-4 border border-gray-300 rounded-sm bg-white checked:bg-primary checked:border-primary transition-all cursor-pointer"
+                      checked={isChecked || false}
+                      onChange={() => toggleFilter("categories", cat)}
+                    />
+                    <svg
+                      className="absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 pointer-events-none"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={3}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <span className={`text-sm transition-colors ${isChecked ? 'text-primary font-medium' : 'text-gray-600 group-hover:text-primary'}`}>
+                    {cat}
+                  </span>
+                </label>
               );
             })}
           </div>

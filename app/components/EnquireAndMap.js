@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Button from "./button";
+import { FaEnvelope, FaWhatsapp, FaFacebookF, FaInstagram } from "react-icons/fa6";
 
 export default function EnquireAndMap() {
   const [formData, setFormData] = useState({
@@ -38,9 +39,25 @@ export default function EnquireAndMap() {
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 bg-white p-6 md:p-10 shadow-lg border border-gray-100 ">
           {/* Left: Form Section */}
           <div className="w-full lg:w-1/2 flex flex-col">
-            <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 tracking-tight">
-              Enquire about
-            </h2>
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-primary tracking-tight">
+                Let&apos;s Talk Business
+              </h2>
+              <div className="flex items-center gap-3">
+                <a href="mailto:info@rotexbd.com" aria-label="Email" title="Email" className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300">
+                  <FaEnvelope size={14} />
+                </a>
+                <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp" className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-[#25D366] hover:text-white hover:border-[#25D366] transition-all duration-300">
+                  <FaWhatsapp size={16} />
+                </a>
+                <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook" className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all duration-300">
+                  <FaFacebookF size={14} />
+                </a>
+                <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram" className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7] hover:text-white hover:border-transparent transition-all duration-300">
+                  <FaInstagram size={15} />
+                </a>
+              </div>
+            </div>
 
             <form onSubmit={handleSubmit} className="flex flex-col flex-grow">
               {/* Row 1: Name & Address */}

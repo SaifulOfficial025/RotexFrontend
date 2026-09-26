@@ -21,16 +21,28 @@ export default function MobileHeader() {
         {/* Top Social Bar */}
         <div className="bg-primary text-white text-[11px] font-semibold py-2">
           <div className="flex items-center justify-center gap-5">
-            <Link href="#" className="hover:text-gray-200 transition-colors hover:-translate-y-0.5 duration-200">
+            <Link
+              href="#"
+              className="hover:text-gray-200 transition-colors hover:-translate-y-0.5 duration-200"
+            >
               <FaFacebook size={18} />
             </Link>
-            <Link href="#" className="hover:text-gray-200 transition-colors hover:-translate-y-0.5 duration-200">
+            <Link
+              href="#"
+              className="hover:text-gray-200 transition-colors hover:-translate-y-0.5 duration-200"
+            >
               <FaSquareXTwitter size={18} />
             </Link>
-            <Link href="#" className="hover:text-gray-200 transition-colors hover:-translate-y-0.5 duration-200">
+            <Link
+              href="#"
+              className="hover:text-gray-200 transition-colors hover:-translate-y-0.5 duration-200"
+            >
               <FaInstagramSquare size={18} />
             </Link>
-            <Link href="#" className="hover:text-gray-200 transition-colors hover:-translate-y-0.5 duration-200">
+            <Link
+              href="#"
+              className="hover:text-gray-200 transition-colors hover:-translate-y-0.5 duration-200"
+            >
               <FaYoutube size={18} />
             </Link>
           </div>
@@ -45,8 +57,18 @@ export default function MobileHeader() {
               className="text-gray-800 hover:text-primary transition-colors"
               aria-label="Open menu"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
             </button>
 
@@ -55,9 +77,9 @@ export default function MobileHeader() {
               <Image
                 src={Logo}
                 alt="Rotex Logo"
-                width={120}
+                width={240}
                 height={32}
-                className="h-7 w-auto object-contain"
+                className="h-12 w-auto object-contain"
                 priority
               />
             </Link>
@@ -77,7 +99,10 @@ export default function MobileHeader() {
         </div>
       </div>
 
-      <MobileSidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+      <MobileSidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+      />
       <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </>
   );

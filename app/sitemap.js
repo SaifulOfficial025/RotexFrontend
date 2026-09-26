@@ -9,13 +9,13 @@ export default function sitemap() {
       priority: 1,
     },
     {
-      url: `${baseUrl}/aboutUs`,
+      url: `${baseUrl}/about-us`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/contactUs`,
+      url: `${baseUrl}/contact-us`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,

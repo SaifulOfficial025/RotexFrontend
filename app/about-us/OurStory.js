@@ -4,10 +4,12 @@ export default function OurStory() {
     { value: "500+", label: "Clients Served" },
     { value: "50+", label: "Global Brands" },
     { value: "99%", label: "Client Satisfaction" },
+    { value: "15+", label: "Industry Sectors" },
+    { value: "24/7", label: "Technical Support" },
   ];
 
   return (
-    <section className="relative w-full min-h-[700px] flex items-center overflow-hidden bg-white">
+    <section id="our-story" className="relative w-full min-h-[700px] flex items-center overflow-hidden bg-white">
       {/* Subtle background image on the right side only */}
       <div className="absolute inset-y-0 right-0 w-full lg:w-1/2 overflow-hidden">
         <img
@@ -60,7 +62,7 @@ export default function OurStory() {
             {/* CTAs */}
             <div className="flex flex-wrap gap-4 pt-2">
               <a
-                href="/contactUs"
+                href="/contact-us"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-bold text-[14px] tracking-wide transition-all duration-300 hover:brightness-110 hover:-translate-y-0.5 shadow-md hover:shadow-lg"
               >
                 Get In Touch

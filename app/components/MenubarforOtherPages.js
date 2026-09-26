@@ -143,13 +143,34 @@ export default function Menubarforotherpages() {
         {/* Desktop: Nav Links */}
         <div className="hidden lg:flex flex-1 items-center px-4 space-x-2">
           {dynamicMenus.map((item, i) => (
-            <Link
-              key={i}
-              href={item.href}
-              className={`text-[13px] font-bold px-4 py-4 whitespace-nowrap transition-colors uppercase tracking-wide hover:bg-primary hover:text-white ${item.active ? "text-primary" : "text-gray-800"}`}
-            >
-              {item.label}
-            </Link>
+            <div key={i} className="group relative h-full flex items-center">
+              <Link
+                href={item.href}
+                className={`text-[13px] font-bold px-4 py-4 whitespace-nowrap transition-colors uppercase tracking-wide hover:bg-primary hover:text-white flex items-center gap-1.5 ${item.active ? "text-primary" : "text-gray-800"}`}
+              >
+                {item.label}
+                {item.subMenus && (
+                  <FaChevronDown className="text-[10px] opacity-70 group-hover:rotate-180 transition-transform duration-300" />
+                )}
+              </Link>
+              
+              {/* Dropdown Menu */}
+              {item.subMenus && (
+                <div className="absolute top-full left-0 mt-0 w-48 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-2 border-primary z-50">
+                  <div className="py-2">
+                    {item.subMenus.map((sub, j) => (
+                      <Link
+                        key={j}
+                        href={sub.href}
+                        className="block px-4 py-2.5 text-[11px] font-bold text-gray-600 hover:text-primary hover:bg-gray-50 transition-colors uppercase tracking-wider"
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           ))}
         </div>
       </div>
@@ -220,28 +241,44 @@ export default function Menubarforotherpages() {
 
       {/* ─── Mobile: Menu Dropdown ─────────────────────────────────────────── */}
       {menuOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full z-50 bg-white shadow-2xl border-t-[3px] border-primary">
+        <div className="lg:hidden absolute top-full left-0 w-full z-50 bg-white shadow-2xl border-t-[3px] border-primary max-h-[70vh] overflow-y-auto">
           {dynamicMenus.map((item, i) => (
-            <Link
-              key={i}
-              href={item.href}
-              className={`flex items-center justify-between px-6 py-4 border-b border-gray-100 last:border-0 transition-all duration-200 group hover:bg-primary/5 ${
-                item.active ? "text-primary" : "text-gray-700"
-              }`}
-              onClick={() => setMenuOpen(false)}
-            >
-              <div className="flex items-center gap-3">
-                <div
-                  className={`w-1 h-4 rounded-full ${item.active ? "bg-primary" : "bg-gray-200 group-hover:bg-primary/40"} transition-colors`}
+            <div key={i} className="border-b border-gray-100 last:border-0">
+              <Link
+                href={item.href}
+                className={`flex items-center justify-between px-6 py-4 transition-all duration-200 group hover:bg-primary/5 ${
+                  item.active ? "text-primary" : "text-gray-700"
+                }`}
+                onClick={() => setMenuOpen(false)}
+              >
+                <div className="flex items-center gap-3">
+                  <div
+                    className={`w-1 h-4 rounded-full ${item.active ? "bg-primary" : "bg-gray-200 group-hover:bg-primary/40"} transition-colors`}
+                  />
+                  <span className="text-[12px] font-bold uppercase tracking-widest">
+                    {item.label}
+                  </span>
+                </div>
+                <FaChevronRight
+                  className={`text-[9px] transition-colors ${item.active ? "text-primary" : "text-gray-300 group-hover:text-primary/50"}`}
                 />
-                <span className="text-[12px] font-bold uppercase tracking-widest">
-                  {item.label}
-                </span>
-              </div>
-              <FaChevronRight
-                className={`text-[9px] transition-colors ${item.active ? "text-primary" : "text-gray-300 group-hover:text-primary/50"}`}
-              />
-            </Link>
+              </Link>
+              {item.subMenus && (
+                <div className="bg-gray-50 border-t border-gray-100/50">
+                  {item.subMenus.map((sub, j) => (
+                    <Link
+                      key={j}
+                      href={sub.href}
+                      className="flex items-center gap-2 px-10 py-3 text-[11px] font-bold text-gray-500 hover:text-primary hover:bg-white transition-colors uppercase tracking-wider border-b border-gray-100/50 last:border-0"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      <FaChevronRight className="text-[7px] text-primary/40" />
+                      {sub.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </div>
       )}

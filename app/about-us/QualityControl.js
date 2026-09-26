@@ -6,7 +6,7 @@ import {
 
 export default function QualityControl() {
   return (
-    <section className="py-16 md:py-24 bg-gray-900 text-white relative">
+    <section id="quality-control" className="py-16 md:py-24 bg-gray-900 text-white relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
         <div className="flex flex-col lg:flex-row gap-16 items-center">
           <div className="lg:w-1/2">

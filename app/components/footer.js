@@ -26,10 +26,10 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 
 const quickLinks = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/aboutUs" },
+  { label: "About Us", href: "/about-us" },
   { label: "Products", href: "#" },
   { label: "Our Clients", href: "#" },
-  { label: "Contact Us", href: "/contactUs" },
+  { label: "Contact Us", href: "/contact-us" },
   { label: "Privacy Policy", href: "#" },
 ];
 

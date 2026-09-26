@@ -78,6 +78,21 @@ export default function ProductDetailsRightSide() {
         </Link>
       </div>
 
+      {/* ─── Price Section ─── */}
+      <div className="flex flex-col gap-1">
+        <div className="flex items-center gap-2">
+          <span className="text-lg md:text-xl text-gray-400 font-bold line-through">
+            ৳50,000
+          </span>
+          <span className="bg-[#fff1f2] text-[#f43f5e] font-bold text-[11px] uppercase tracking-wider px-2 py-1 ">
+            Save 10%
+          </span>
+        </div>
+        <span className="text-3xl md:text-4xl font-black text-primary tracking-tight">
+          ৳45,000
+        </span>
+      </div>
+
       {/* ─── Short Description ─── */}
       <p className="text-sm md:text-[15px] text-gray-600 leading-relaxed font-medium">
         High-precision digital scale engineered for rigorous laboratory
@@ -106,6 +121,17 @@ export default function ProductDetailsRightSide() {
             </button>
           ))}
         </div>
+      </div>
+
+      {/* ─── Add to Cart Section ─── */}
+      <div className="flex flex-col gap-6 pt-4 pb-6 border-b border-gray-100">
+        <Button
+          variant="primary"
+          showArrow={false}
+          className="w-full sm:w-max shadow-lg shadow-primary/20 hover:shadow-primary/40 px-12 py-3"
+        >
+          ADD TO CART
+        </Button>
       </div>
 
       {/* ─── SKU, Categories, Share ─── */}
@@ -145,31 +171,6 @@ export default function ProductDetailsRightSide() {
             {/* <a href="#" aria-label="Telegram" className="hover:text-primary transition-colors"><FaTelegram size={16} /></a> */}
           </div>
         </div>
-      </div>
-
-      {/* ─── Price & Add to Cart Section ─── */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-y border-gray-100 py-6">
-        <div className="flex flex-col gap-1">
-          <div className="flex items-center gap-2">
-            <span className="text-lg md:text-xl text-gray-400 font-bold line-through">
-              ৳50,000
-            </span>
-            <span className="bg-[#fff1f2] text-[#f43f5e] font-bold text-[11px] uppercase tracking-wider px-2 py-1 ">
-              Save 10%
-            </span>
-          </div>
-          <span className="text-3xl md:text-4xl font-black text-primary tracking-tight">
-            ৳45,000
-          </span>
-        </div>
-
-        <Button
-          variant="primary"
-          showArrow={false}
-          className="w-full sm:w-auto shadow-lg shadow-primary/20 hover:shadow-primary/40 px-8"
-        >
-          ADD TO CART
-        </Button>
       </div>
     </div>
   );

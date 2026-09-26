@@ -1,3 +1,8 @@
+"use client";
+
+import React, { useState } from "react";
+import Button from "../components/button";
+
 const teamMembers = [
   {
     name: "John Doe",
@@ -50,8 +55,10 @@ const teamMembers = [
 ];
 
 export default function OurTeam() {
+  const [showGrid, setShowGrid] = useState(false);
+
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section id="our-team" className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-gray-100 pb-8">
@@ -66,8 +73,27 @@ export default function OurTeam() {
           </p>
         </div>
 
+        {/* Group Photo & Explore Button */}
+        <div className="flex flex-col items-center mb-12">
+          <div className="w-full relative overflow-hidden mb-8 group" style={{ aspectRatio: '21/9' }}>
+            <img 
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop" 
+              alt="Our Team" 
+              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" 
+            />
+            <div className="absolute inset-0 bg-primary/10"></div>
+          </div>
+          
+          <div className="mt-4">
+            <Button onClick={() => setShowGrid(!showGrid)}>
+              {showGrid ? "Hide Team" : "Explore Our Team"}
+            </Button>
+          </div>
+        </div>
+
         {/* Cards Grid — Portrait full-bleed image cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+        <div className={`transition-all duration-1000 ease-in-out overflow-hidden ${showGrid ? 'max-h-[5000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {teamMembers.map((member, index) => (
             <div
               key={index}
@@ -111,6 +137,7 @@ export default function OurTeam() {
               </div>
             </div>
           ))}
+          </div>
         </div>
       </div>
     </section>
