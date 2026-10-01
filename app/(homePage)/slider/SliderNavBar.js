@@ -211,7 +211,6 @@ export default function SliderNavBar() {
             <div key={i} className="border-b border-gray-100 last:border-0">
               <Link
                 href={item.href}
-                onClick={(e) => { if(item.href === "#") e.preventDefault(); }}
                 className={`flex items-center justify-between px-6 py-4 transition-all duration-200 group hover:bg-primary/5 ${
                   item.active ? "text-primary" : "text-gray-700"
                 }`}
