@@ -109,6 +109,7 @@ export default function SliderNavBar() {
             <div key={i} className="group relative h-full flex items-center">
               <Link
                 href={item.href}
+                onClick={(e) => { if(item.href === "#") e.preventDefault(); }}
                 className={`text-[13px] font-bold px-4 py-4 whitespace-nowrap transition-colors uppercase tracking-wide hover:bg-primary hover:text-white flex items-center gap-1.5 ${item.active ? "text-primary" : "text-gray-800"}`}
               >
                 {item.label}
@@ -210,10 +211,11 @@ export default function SliderNavBar() {
             <div key={i} className="border-b border-gray-100 last:border-0">
               <Link
                 href={item.href}
+                onClick={(e) => { if(item.href === "#") e.preventDefault(); }}
                 className={`flex items-center justify-between px-6 py-4 transition-all duration-200 group hover:bg-primary/5 ${
                   item.active ? "text-primary" : "text-gray-700"
                 }`}
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => { if(item.href === "#") e.preventDefault(); else setMenuOpen(false); }}
               >
                 <div className="flex items-center gap-3">
                   <div
@@ -234,7 +236,7 @@ export default function SliderNavBar() {
                       key={j}
                       href={sub.href}
                       className="flex items-center gap-2 px-10 py-3 text-[11px] font-bold text-gray-500 hover:text-primary hover:bg-white transition-colors uppercase tracking-wider border-b border-gray-100/50 last:border-0"
-                      onClick={() => setMenuOpen(false)}
+                      onClick={(e) => { if(item.href === "#") e.preventDefault(); else setMenuOpen(false); }}
                     >
                       <FaChevronRight className="text-[7px] text-primary/40" />
                       {sub.label}

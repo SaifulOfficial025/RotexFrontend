@@ -1,4 +1,5 @@
 "use client";
+import { brandsData } from "./Brands";
 
 import {
   MdDevices,
@@ -19,6 +20,14 @@ export const menus = [
   { href: "/", label: "Home", active: true },
   { href: "/products", label: "Products" },
   {
+    href: "#",
+    label: "Brands",
+    subMenus: brandsData.map((brand) => ({
+      href: `/products?brand=${encodeURIComponent(brand.name)}`,
+      label: brand.name,
+    })),
+  },
+  {
     href: "/about-us",
     label: "We",
     subMenus: [
@@ -29,8 +38,9 @@ export const menus = [
       { href: "/about-us#quality-control", label: "Quality Control" },
     ],
   },
+    { href: "/blogs", label: "Blogs" },
   { href: "/contact-us", label: "Contact Us" },
-  { href: "#", label: "Our Clients" },
+  { href: "/our-client", label: "Our Clients" },
 ];
 
 export const categories = [

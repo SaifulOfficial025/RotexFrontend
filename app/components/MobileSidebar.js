@@ -7,6 +7,7 @@ import { IoSearchOutline, IoChevronForward, IoClose } from "react-icons/io5";
 
 export default function MobileSidebar({ isOpen, onClose }) {
   const [activeTab, setActiveTab] = useState("MENU");
+  const [expandedMenuIndex, setExpandedMenuIndex] = useState(null);
 
   // Prevent scrolling when sidebar is open
   useEffect(() => {
@@ -46,16 +47,16 @@ export default function MobileSidebar({ isOpen, onClose }) {
         }`}
       >
         {/* Search Bar */}
-        {/* <div className="flex items-center border-b border-gray-100 p-4 pt-5 pb-5">
+        <div className="flex items-center border-b border-gray-100 p-4 pt-5 pb-5">
           <input
             type="text"
-            placeholder="Search for products"
+            placeholder="Search for products..."
             className="flex-1 outline-none text-[14px] text-gray-500 placeholder-gray-500 bg-transparent font-medium"
           />
           <button className="text-gray-400 hover:text-primary transition-colors">
             <IoSearchOutline size={22} />
           </button>
-        </div> */}
+        </div>
 
         {/* Tabs */}
         <div className="flex items-center border-b border-gray-200">
@@ -86,17 +87,47 @@ export default function MobileSidebar({ isOpen, onClose }) {
           {activeTab === "MENU" && (
             <ul className="flex flex-col">
               {menus.map((item, index) => (
-                <li key={index} className="border-b border-gray-100">
-                  <Link
-                    href={item.href}
-                    onClick={onClose}
-                    className="flex items-center justify-between p-4 text-[13px] font-bold text-[#444] hover:text-[#8cc63f] transition-colors"
-                  >
-                    {item.label}
-                    {item.hasSubmenu && (
-                      <IoChevronForward className="text-gray-400" size={16} />
+                <li key={index} className="border-b border-gray-100 flex flex-col">
+                  <div className="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors">
+                    <Link
+                      href={item.href}
+                      onClick={() => {
+                        if (!item.subMenus) onClose();
+                      }}
+                      className="text-[13px] font-bold text-[#444] hover:text-primary flex-1"
+                    >
+                      {item.label}
+                    </Link>
+                    {item.subMenus && item.subMenus.length > 0 && (
+                      <button
+                        onClick={() =>
+                          setExpandedMenuIndex(expandedMenuIndex === index ? null : index)
+                        }
+                        className="p-1 text-gray-400 hover:text-primary transition-transform"
+                        style={{
+                          transform: expandedMenuIndex === index ? "rotate(90deg)" : "rotate(0deg)",
+                        }}
+                      >
+                        <IoChevronForward size={16} />
+                      </button>
                     )}
-                  </Link>
+                  </div>
+                  {/* Submenu Dropdown */}
+                  {item.subMenus && expandedMenuIndex === index && (
+                    <ul className="bg-gray-50/50 border-t border-gray-100 px-4 py-2">
+                      {item.subMenus.map((sub, subIdx) => (
+                        <li key={subIdx}>
+                          <Link
+                            href={sub.href}
+                            onClick={onClose}
+                            className="block py-2.5 text-[12px] font-medium text-gray-600 hover:text-primary transition-colors pl-2"
+                          >
+                            - {sub.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </li>
               ))}
             </ul>

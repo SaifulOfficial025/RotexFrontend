@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Header from "../components/header";
 import DynamicHeader from "../components/dymanicHeader";
 import Footer from "../components/footer";
@@ -44,15 +45,26 @@ const allDummyProducts = Array.from({ length: 24 }).map((_, i) => ({
     "High quality professional equipment designed for accurate and reliable results.",
 }));
 
-export default function ProductHomepage() {
+function ProductHomepageContent() {
+  const searchParams = useSearchParams();
+  const initialBrand = searchParams.get("brand");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 5;
   const [filters, setFilters] = useState({
     categories: [],
-    brands: [],
+    brands: initialBrand ? [initialBrand] : [],
     price: { min: "", max: "" },
   });
+  
+  // Listen for URL changes
+  useEffect(() => {
+    const brandFromUrl = searchParams.get("brand");
+    if (brandFromUrl && !filters.brands.includes(brandFromUrl)) {
+      setFilters(prev => ({ ...prev, brands: [brandFromUrl] }));
+    }
+  }, [searchParams]);
+
 
   // Topbar State
   const [showCount, setShowCount] = useState(12);
@@ -243,5 +255,13 @@ export default function ProductHomepage() {
       <Brandwerepresent />
       <Footer />
     </div>
+  );
+}
+
+export default function ProductHomepage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <ProductHomepageContent />
+    </Suspense>
   );
 }

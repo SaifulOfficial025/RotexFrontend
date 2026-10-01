@@ -114,6 +114,7 @@ export default function DynamicHeader() {
               <div key={i} className="group relative h-full flex items-center">
                 <Link
                   href={item.href}
+                  onClick={(e) => { if(item.href === "#") e.preventDefault(); }}
                   className={`text-[13px] font-bold px-4 py-4 uppercase tracking-wide transition-colors flex items-center gap-1.5 ${
                     item.active
                       ? "text-primary hover:text-gray-800"

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
 import Image from "next/image";
+import FullScreenImageViewer from "../../components/FullScreenImageViewer";
 import Logo from "@/public/images/Rotex-Logo-1.png";
 import {
   IoChevronUp,
@@ -174,88 +174,12 @@ export default function ProductImage({ images = dummyImages }) {
       </div>
 
       {/* ─── Fullscreen Modal ─── */}
-      {isFullscreen &&
-        mounted &&
-        createPortal(
-          <div className="fixed inset-0 bg-white z-[999999] flex items-center justify-center animate-in fade-in duration-200">
-            {/* Logo at top left */}
-            <div className="absolute top-6 left-6 z-50">
-              <Image src={Logo} alt="Rotex Logo" className="h-10 w-auto" />
-            </div>
-
-            <button
-              onClick={() => setIsFullscreen(false)}
-              className="absolute top-6 right-6 w-12 h-12 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center text-gray-600 transition-colors z-50 shadow-sm"
-              aria-label="Close Fullscreen"
-            >
-              <IoClose size={24} />
-            </button>
-
-            <div className="relative w-full h-full max-w-6xl max-h-[85vh] pb-[100px] p-4 md:p-12">
-              <Image
-                src={images[currentIndex]}
-                alt="Fullscreen Product Image"
-                fill
-                className="object-contain"
-              />
-            </div>
-
-            {/* Fullscreen Navigation Left/Right */}
-            <button
-              onClick={() =>
-                setCurrentIndex((prev) =>
-                  prev > 0 ? prev - 1 : images.length - 1,
-                )
-              }
-              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-white shadow-lg border border-gray-100 hover:bg-gray-50 rounded-full flex items-center justify-center text-gray-700 transition-colors z-50"
-              aria-label="Previous Image"
-            >
-              <IoChevronBack size={24} />
-            </button>
-            <button
-              onClick={() =>
-                setCurrentIndex((prev) =>
-                  prev < images.length - 1 ? prev + 1 : 0,
-                )
-              }
-              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-white shadow-lg border border-gray-100 hover:bg-gray-50 rounded-full flex items-center justify-center text-gray-700 transition-colors z-50"
-              aria-label="Next Image"
-            >
-              <IoChevronForward size={24} />
-            </button>
-
-            {/* Fullscreen Bottom Thumbnails */}
-            <div
-              className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 md:gap-4 overflow-x-auto max-w-[90vw] md:max-w-3xl px-4 py-2 z-50 rounded-xl"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              <style jsx>{`
-                div::-webkit-scrollbar {
-                  display: none;
-                }
-              `}</style>
-              {images.map((img, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentIndex(idx)}
-                  className={`relative w-[60px] h-[60px] md:w-[70px] md:h-[70px] flex-shrink-0 bg-white transition-all duration-300 rounded-lg overflow-hidden ${
-                    currentIndex === idx
-                      ? "border-[3px] border-primary opacity-100 shadow-lg scale-110"
-                      : "border-transparent opacity-50 hover:opacity-100 hover:scale-105"
-                  }`}
-                >
-                  <Image
-                    src={img}
-                    alt={`Thumbnail ${idx + 1}`}
-                    fill
-                    className="object-cover p-1"
-                  />
-                </button>
-              ))}
-            </div>
-          </div>,
-          document.body,
-        )}
+      <FullScreenImageViewer 
+        images={images}
+        initialIndex={currentIndex}
+        isOpen={isFullscreen}
+        onClose={() => setIsFullscreen(false)}
+      />
     </div>
   );
 }

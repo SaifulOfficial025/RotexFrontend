@@ -1,15 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { brandsData } from "../components/Brands";
 import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 
-const dummyBrands = [
-  { id: 1, name: "Fisher Scientific", logo: "Fisher Logo" },
-  { id: 2, name: "Eppendorf", logo: "Eppendorf Logo" },
-  { id: 3, name: "Thermo Fisher", logo: "Thermo Logo" },
-  { id: 4, name: "Shimadzu", logo: "Shimadzu Logo" },
-  { id: 5, name: "Merck", logo: "Merck Logo" },
-];
+
 
 const dummyCategories = [
   "Chemicals",
@@ -161,11 +156,11 @@ export default function ProductSidebar({
         >
           {/* Two-column grid for logos */}
           <div className="grid grid-cols-2 gap-3 px-2 pt-1">
-            {dummyBrands.map((brand) => {
+            {brandsData.map((brand, idx) => {
               const isChecked = filters.brands.includes(brand.name);
               return (
                 <button
-                  key={brand.id}
+                  key={idx}
                   onClick={() => toggleFilter("brands", brand.name)}
                   className={`flex flex-col items-center justify-center p-3 h-[60px]  transition-all duration-200 ${
                     isChecked
@@ -174,13 +169,13 @@ export default function ProductSidebar({
                   }`}
                   aria-label={`Filter by ${brand.name}`}
                 >
-                  <span
-                    className={`text-[10px] font-black uppercase text-center leading-tight ${
-                      isChecked ? "text-primary" : "text-gray-400"
-                    }`}
-                  >
-                    {brand.logo}
-                  </span>
+                  {brand.logo.endsWith('.svg') || brand.logo.endsWith('.png') ? (
+                    <img src={brand.logo} alt={brand.name} className="h-6 object-contain pointer-events-none" />
+                  ) : (
+                    <span className={`text-[10px] font-black uppercase text-center leading-tight ${isChecked ? "text-primary" : "text-gray-400"}`}>
+                      {brand.name}
+                    </span>
+                  )}
                 </button>
               );
             })}

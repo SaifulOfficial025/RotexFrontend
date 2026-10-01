@@ -4,6 +4,7 @@ import React, { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import { brandsData } from "./Brands";
 
 // Dummy brand data - using clean SVG logos
 const dummyBrands = [
@@ -137,7 +138,7 @@ export default function BrandWeRepresentSlider() {
           ref={emblaRef}
         >
           <div className="flex -ml-2 md:-ml-4 py-2">
-            {dummyBrands.map((brand, index) => (
+            {brandsData.map((brand, index) => (
               <div
                 key={index}
                 className="flex-[0_0_25%] sm:flex-[0_0_20%] md:flex-[0_0_12.5%] lg:flex-[0_0_10%] xl:flex-[0_0_8.333%] min-w-0 pl-2 md:pl-3"
