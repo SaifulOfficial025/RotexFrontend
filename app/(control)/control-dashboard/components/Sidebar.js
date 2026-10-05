@@ -12,14 +12,56 @@ const menus = [
    { label: "Add Product", href: "/control-dashboard/product/add" }
   ]
  },
- { label: "Brand", href: "/control-dashboard/brand" },
- { label: "Category", href: "/control-dashboard/category" },
- { label: "Featured Product", href: "/control-dashboard/featured-product" },
+ { 
+  label: "Brand", 
+  subMenus: [
+   { label: "See Brands", href: "/control-dashboard/brand" },
+   { label: "Add Brand", href: "/control-dashboard/brand/add" }
+  ]
+ },
+ { 
+  label: "Category", 
+  subMenus: [
+   { label: "See Categories", href: "/control-dashboard/category" },
+   { label: "Add Category", href: "/control-dashboard/category/add" }
+  ]
+ },
+ { 
+  label: "Featured Product", 
+  subMenus: [
+   { label: "See Featured Product", href: "/control-dashboard/featured-product" },
+   { label: "Add Featured Product", href: "/control-dashboard/featured-product/add" }
+  ]
+ },
  { label: "Enquire", href: "/control-dashboard/enquire" },
- { label: "Homepage Review", href: "/control-dashboard/homepage-review" },
- { label: "Our Team", href: "/control-dashboard/our-team" },
- { label: "Blog", href: "/control-dashboard/blog" },
- { label: "Client", href: "/control-dashboard/client" },
+ { 
+  label: "Homepage Review", 
+  subMenus: [
+   { label: "See Homepage Review", href: "/control-dashboard/homepage-review" },
+   { label: "Add Homepage Review", href: "/control-dashboard/homepage-review/add" }
+  ]
+ },
+ { 
+  label: "Our Team", 
+  subMenus: [
+   { label: "See Team Members", href: "/control-dashboard/our-team" },
+   { label: "Add Team Member", href: "/control-dashboard/our-team/add" }
+  ]
+ },
+ { 
+  label: "Blog", 
+  subMenus: [
+   { label: "See Blog", href: "/control-dashboard/blog" },
+   { label: "Add Blog", href: "/control-dashboard/blog/add" }
+  ]
+ },
+ { 
+  label: "Client", 
+  subMenus: [
+   { label: "See Clients", href: "/control-dashboard/client" },
+   { label: "Add Client", href: "/control-dashboard/client/add" }
+  ]
+ },
  { label: "Newsletter", href: "/control-dashboard/newsletter" },
 ];
 

@@ -26,9 +26,7 @@ const ImageUploader = ({
         return;
       }
       const reader = new FileReader();
-      reader.addEventListener("load", () =>
-        setSelectedFile(reader.result)
-      );
+      reader.addEventListener("load", () => setSelectedFile(reader.result));
       reader.readAsDataURL(file);
     }
   };
@@ -53,21 +51,26 @@ const ImageUploader = ({
     }
   };
 
-  const values = multiple ? (value || []) : (value ? [value] : []);
+  const values = multiple ? value || [] : value ? [value] : [];
 
   return (
     <div className="space-y-2">
-      <label className="block text-sm font-bold text-gray-700">
-        {label}
-      </label>
+      <label className="block text-sm font-bold text-gray-700">{label}</label>
       <div className="text-xs text-gray-500 mb-2">
         Product image should be square size image. (Max: {MAX_SIZE_MB}MB)
       </div>
 
       <div className="flex flex-wrap gap-4">
         {values.map((imgUrl, index) => (
-          <div key={index} className="relative w-32 h-32 border border-gray-200 overflow-hidden group bg-gray-50 flex-shrink-0">
-            <img src={imgUrl} alt="Uploaded preview" className="w-full h-full object-cover" />
+          <div
+            key={index}
+            className="relative w-32 h-32 border border-gray-200 overflow-hidden group bg-gray-50 flex-shrink-0"
+          >
+            <img
+              src={imgUrl}
+              alt="Uploaded preview"
+              className="w-full h-full object-cover"
+            />
             {!disabled && (
               <button
                 type="button"
@@ -81,12 +84,14 @@ const ImageUploader = ({
         ))}
 
         {!disabled && (!value || multiple) && (
-          <div 
+          <div
             onClick={() => fileInputRef.current?.click()}
             className="w-32 h-32 border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 hover:border-primary cursor-pointer transition-all flex flex-col items-center justify-center text-gray-400 hover:text-primary flex-shrink-0"
           >
             <FiUploadCloud size={24} className="mb-2" />
-            <span className="text-xs font-bold text-center px-2">Upload Photo</span>
+            <span className="text-xs font-bold text-center px-2">
+              Upload Photo
+            </span>
           </div>
         )}
       </div>
