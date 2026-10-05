@@ -1,21 +1,14 @@
 import React from "react";
-import Sidebar from "./components/Sidebar";
-import Header from "./components/Header";
+import DashboardWrapper from "./components/DashboardWrapper";
 
 export const metadata = {
  title: "Control Panel | Rotex",
+ robots: {
+  index: false,
+  follow: false,
+ },
 };
 
 export default function DashboardLayout({ children }) {
- return (
-  <div className="flex h-screen bg-gray-50 overflow-hidden">
-   <Sidebar />
-   <div className="flex-1 flex flex-col overflow-hidden">
-    <Header />
-    <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 p-6">
-     {children}
-    </main>
-   </div>
-  </div>
- );
+ return <DashboardWrapper>{children}</DashboardWrapper>;
 }

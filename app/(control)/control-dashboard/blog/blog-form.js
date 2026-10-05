@@ -8,7 +8,7 @@ import ImageUploader from "../../../components/ImageUploader";
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 import "react-quill-new/dist/quill.snow.css";
 
-export default function BlogForm({ mode = "add", initialData = null, onBack = null, onEdit = null }) {
+export default function BlogForm({ mode = "add", initialData = null, onBack = null, onEdit = null, onDelete = null }) {
   const isView = mode === "view";
 
   const [formData, setFormData] = useState({
@@ -79,7 +79,7 @@ export default function BlogForm({ mode = "add", initialData = null, onBack = nu
                 type="text"
                 required
                 disabled={isView}
-                value={formData.title}
+                value={formData.title || ""}
                 onChange={(e) =>
                   setFormData({ ...formData, title: e.target.value })
                 }
@@ -96,7 +96,7 @@ export default function BlogForm({ mode = "add", initialData = null, onBack = nu
                 type="date"
                 required
                 disabled={isView}
-                value={formData.date}
+                value={formData.date || ""}
                 onChange={(e) =>
                   setFormData({ ...formData, date: e.target.value })
                 }
@@ -113,7 +113,7 @@ export default function BlogForm({ mode = "add", initialData = null, onBack = nu
               >
                 <ReactQuill
                   theme="snow"
-                  value={formData.description}
+                  value={formData.description || ""}
                   onChange={(val) =>
                     setFormData({ ...formData, description: val })
                   }
@@ -133,7 +133,7 @@ export default function BlogForm({ mode = "add", initialData = null, onBack = nu
             
             <ImageUploader 
               label="Cover Photo (16:9) *"
-              value={formData.coverPhoto}
+              value={formData.coverPhoto || ""}
               onChange={(v) => setFormData({ ...formData, coverPhoto: v })}
               disabled={isView}
               aspect={16 / 9}
@@ -142,7 +142,7 @@ export default function BlogForm({ mode = "add", initialData = null, onBack = nu
             <div className="border-t border-gray-200 pt-6 mt-6">
               <ImageUploader 
                 label="Additional Photo (4:3)"
-                value={formData.additionalPhotos}
+                value={formData.additionalPhotos || ""}
                 onChange={(v) => setFormData({ ...formData, additionalPhotos: v })}
                 disabled={isView}
                 multiple={true}
@@ -153,7 +153,19 @@ export default function BlogForm({ mode = "add", initialData = null, onBack = nu
         </div>
       </div>
 
-      <div className="mt-10 pt-6 border-t border-gray-100 flex justify-end gap-4">
+      <div className="mt-10 pt-6 border-t border-gray-100 flex justify-between items-center">
+        <div>
+          {isView && onDelete && (
+            <button
+              type="button"
+              onClick={onDelete}
+              className="px-6 py-3 bg-red-600 text-white font-bold hover:bg-red-700 transition-colors shadow-sm"
+            >
+              Delete
+            </button>
+          )}
+        </div>
+        <div className="flex gap-4">
         {onBack && (
           <button
             type="button"
@@ -170,6 +182,7 @@ export default function BlogForm({ mode = "add", initialData = null, onBack = nu
             onClick={handleSubmit}
           />
         )}
+        </div>
       </div>
     </form>
   );

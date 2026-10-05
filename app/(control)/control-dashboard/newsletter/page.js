@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { FiTrash2, FiDownload, FiMail, FiChevronDown } from "react-icons/fi";
+import { FiDownload, FiMail, FiChevronDown } from "react-icons/fi";
 import DataTable from "../components/DataTable";
 import EmailModal from "../components/EmailModal";
 
@@ -31,7 +31,6 @@ export default function NewsletterPage() {
     { header: "Subscribed Date", className: "w-40", cellClassName: "text-gray-500", accessor: "date" },
     { header: "Actions", className: "w-32 text-center", render: (item) => (
         <div className="flex items-center justify-center gap-3 opacity-80 group-hover:opacity-100 transition-opacity">
-          <button onClick={() => handleDelete(item)} className="w-8 h-8 flex items-center justify-center bg-gray-100 text-gray-600 hover:bg-red-500 hover:text-white transition-colors" title="Delete"><FiTrash2 size={16} /></button>
         </div>
       )
     }

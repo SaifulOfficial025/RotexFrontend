@@ -101,7 +101,7 @@ const SearchableSelect = ({
   );
 };
 
-export default function FeaturedProductForm({ mode = "add", initialData = null, onBack = null, onEdit = null }) {
+export default function FeaturedProductForm({ mode = "add", initialData = null, onBack = null, onEdit = null, onDelete = null }) {
   const isView = mode === "view";
 
   const [formData, setFormData] = useState({
@@ -167,7 +167,7 @@ export default function FeaturedProductForm({ mode = "add", initialData = null, 
           label="Select Product"
           disabled={isView}
           options={MOCK_PRODUCTS}
-          value={formData.product}
+          value={formData.product || ""}
           onChange={(v) => setFormData({ ...formData, product: v })}
           placeholder="Search and select product"
         />
@@ -180,7 +180,7 @@ export default function FeaturedProductForm({ mode = "add", initialData = null, 
             <select
               required
               disabled={isView}
-              value={formData.featureCategory}
+              value={formData.featureCategory || ""}
               onChange={(e) =>
                 setFormData({ ...formData, featureCategory: e.target.value })
               }
@@ -197,7 +197,19 @@ export default function FeaturedProductForm({ mode = "add", initialData = null, 
         </div>
       </div>
 
-      <div className="mt-10 pt-6 border-t border-gray-100 flex justify-end gap-4">
+      <div className="mt-10 pt-6 border-t border-gray-100 flex justify-between items-center">
+        <div>
+          {isView && onDelete && (
+            <button
+              type="button"
+              onClick={onDelete}
+              className="px-6 py-3 bg-red-600 text-white font-bold hover:bg-red-700 transition-colors shadow-sm"
+            >
+              Delete
+            </button>
+          )}
+        </div>
+        <div className="flex gap-4">
         {onBack && (
           <button
             type="button"
@@ -214,6 +226,7 @@ export default function FeaturedProductForm({ mode = "add", initialData = null, 
             onClick={handleSubmit}
           />
         )}
+        </div>
       </div>
     </form>
   );

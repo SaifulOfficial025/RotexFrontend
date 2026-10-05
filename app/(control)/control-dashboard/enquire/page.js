@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { FiEye, FiTrash2, FiArrowLeft, FiCheck, FiFilter } from "react-icons/fi";
+import { FiEye, FiArrowLeft, FiCheck, FiFilter } from "react-icons/fi";
 import DataTable from "../components/DataTable";
 
 const INITIAL_MOCK_ENQUIRES = [
@@ -118,7 +118,22 @@ export default function EnquirePage() {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-gray-100 pt-6 flex justify-end">
+        <div className="mt-8 border-t border-gray-100 pt-6 flex justify-between items-center">
+          <div>
+            <button
+              type="button"
+              onClick={() => {
+                if (confirm("Are you sure you want to delete this enquiry?")) {
+                  handleDelete(selectedItem);
+                  setCurrentView("list");
+                }
+              }}
+              className="px-6 py-3 bg-red-600 text-white font-bold hover:bg-red-700 transition-colors shadow-sm"
+            >
+              Delete
+            </button>
+          </div>
+          <div className="flex justify-end">
           {!selectedItem.isResponded && !isMarking && (
             <button 
               onClick={() => setIsMarking(true)}
@@ -153,6 +168,7 @@ export default function EnquirePage() {
           )}
         </div>
       </div>
+      </div>
     );
   }
 
@@ -172,7 +188,6 @@ export default function EnquirePage() {
     { header: "Actions", className: "w-32 text-center", render: (item) => (
         <div className="flex items-center justify-center gap-3 opacity-80 group-hover:opacity-100 transition-opacity">
           <button onClick={() => handleView(item)} className="w-8 h-8 flex items-center justify-center bg-gray-100 text-gray-600 hover:bg-primary hover:text-white transition-colors" title="View"><FiEye size={16} /></button>
-          <button onClick={() => handleDelete(item)} className="w-8 h-8 flex items-center justify-center bg-gray-100 text-gray-600 hover:bg-red-500 hover:text-white transition-colors" title="Delete"><FiTrash2 size={16} /></button>
         </div>
       )
     }

@@ -113,6 +113,12 @@ export default function Page() {
         initialData={selectedProduct} 
         onBack={handleBack} 
         onEdit={() => setCurrentView("edit")}
+        onDelete={() => {
+          if(confirm("Are you sure you want to delete this item?")) {
+            alert("Item deleted successfully!");
+            handleBack();
+          }
+        }}
       />
     );
   }

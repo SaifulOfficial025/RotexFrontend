@@ -4,7 +4,7 @@ import { FiArrowLeft } from "react-icons/fi";
 import Button from "../../../components/button";
 import ImageUploader from "../../../components/ImageUploader";
 
-export default function HomepageReviewForm({ mode = "add", initialData = null, onBack = null, onEdit = null }) {
+export default function HomepageReviewForm({ mode = "add", initialData = null, onBack = null, onEdit = null, onDelete = null }) {
   const isView = mode === "view";
 
   const [formData, setFormData] = useState({
@@ -33,7 +33,7 @@ export default function HomepageReviewForm({ mode = "add", initialData = null, o
     }
   };
 
-  const reviewWordsCount = formData.review
+  const reviewWordsCount = (formData.review || "")
     .trim()
     .split(/\s+/)
     .filter((w) => w.length > 0).length;
@@ -93,7 +93,7 @@ export default function HomepageReviewForm({ mode = "add", initialData = null, o
                   type="text"
                   required
                   disabled={isView}
-                  value={formData.name}
+                  value={formData.name || ""}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
@@ -110,7 +110,7 @@ export default function HomepageReviewForm({ mode = "add", initialData = null, o
                   type="text"
                   required
                   disabled={isView}
-                  value={formData.companyName}
+                  value={formData.companyName || ""}
                   onChange={(e) =>
                     setFormData({ ...formData, companyName: e.target.value })
                   }
@@ -128,7 +128,7 @@ export default function HomepageReviewForm({ mode = "add", initialData = null, o
                 type="date"
                 required
                 disabled={isView}
-                value={formData.date}
+                value={formData.date || ""}
                 onChange={(e) =>
                   setFormData({ ...formData, date: e.target.value })
                 }
@@ -150,7 +150,7 @@ export default function HomepageReviewForm({ mode = "add", initialData = null, o
               <textarea
                 required
                 disabled={isView}
-                value={formData.review}
+                value={formData.review || ""}
                 onChange={handleReviewChange}
                 rows={3}
                 className={`w-full px-4 py-3 border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none ${isView ? "bg-gray-50 cursor-not-allowed text-gray-600" : ""}`}
@@ -168,7 +168,7 @@ export default function HomepageReviewForm({ mode = "add", initialData = null, o
             
             <ImageUploader 
               label="Image (16:9)"
-              value={formData.image}
+              value={formData.image || ""}
               onChange={(v) => setFormData({ ...formData, image: v })}
               disabled={isView}
               aspect={16 / 9}
@@ -177,7 +177,19 @@ export default function HomepageReviewForm({ mode = "add", initialData = null, o
         </div>
       </div>
 
-      <div className="mt-10 pt-6 border-t border-gray-100 flex justify-end gap-4">
+      <div className="mt-10 pt-6 border-t border-gray-100 flex justify-between items-center">
+        <div>
+          {isView && onDelete && (
+            <button
+              type="button"
+              onClick={onDelete}
+              className="px-6 py-3 bg-red-600 text-white font-bold hover:bg-red-700 transition-colors shadow-sm"
+            >
+              Delete
+            </button>
+          )}
+        </div>
+        <div className="flex gap-4">
         {onBack && (
           <button
             type="button"
@@ -194,6 +206,7 @@ export default function HomepageReviewForm({ mode = "add", initialData = null, o
             onClick={handleSubmit}
           />
         )}
+        </div>
       </div>
     </form>
   );

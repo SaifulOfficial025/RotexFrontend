@@ -23,6 +23,15 @@ const MOCK_CATEGORIES = [
   "Medical",
   "Automotive",
 ];
+const MOCK_SUBCATEGORIES = [
+  "Air Conditioners",
+  "Washing Machines",
+  "Industrial Pumps",
+  "Smartphones",
+  "Laptops",
+  "Televisions",
+  "Audio"
+];
 const MOCK_PRODUCTS = [
   "Rotex Industrial Fan",
   "Samsung Smart TV",
@@ -61,8 +70,8 @@ const SearchableSelect = ({
   const handleSelect = (opt) => {
     if (disabled) return;
     if (multiple) {
-      if (!value.includes(opt)) {
-        onChange([...value, opt]);
+      if (!(value || []).includes(opt)) {
+        onChange([...(value || []), opt]);
       }
     } else {
       onChange(opt);
@@ -74,7 +83,7 @@ const SearchableSelect = ({
   const handleRemove = (opt, e) => {
     e.stopPropagation();
     if (disabled) return;
-    onChange(value.filter((v) => v !== opt));
+    onChange((value || []).filter((v) => v !== opt));
   };
 
   return (
@@ -88,7 +97,7 @@ const SearchableSelect = ({
       >
         {multiple ? (
           <>
-            {value.map((v) => (
+            {(value || []).map((v) => (
               <span
                 key={v}
                 className="bg-primary/10 text-primary px-2 py-1 text-sm flex items-center gap-1 font-bold border border-primary/20"
@@ -102,7 +111,7 @@ const SearchableSelect = ({
                 )}
               </span>
             ))}
-            {value.length === 0 && (
+            {(value || []).length === 0 && (
               <span className="text-gray-400">{placeholder}</span>
             )}
           </>
@@ -137,7 +146,7 @@ const SearchableSelect = ({
             filteredOptions.map((opt) => (
               <div
                 key={opt}
-                className={`px-4 py-3 hover:bg-primary/5 hover:text-primary cursor-pointer transition-colors text-sm ${multiple && value.includes(opt) ? "bg-primary/10 text-primary font-bold" : "text-gray-700"}`}
+                className={`px-4 py-3 hover:bg-primary/5 hover:text-primary cursor-pointer transition-colors text-sm ${multiple && (value || []).includes(opt) ? "bg-primary/10 text-primary font-bold" : "text-gray-700"}`}
                 onClick={() => handleSelect(opt)}
               >
                 {opt}
@@ -158,7 +167,7 @@ export default function ProductForm({
   mode = "add",
   initialData = null,
   onBack = null,
-  onEdit = null,
+  onEdit = null, onDelete = null,
 }) {
   const isView = mode === "view";
 
@@ -166,6 +175,7 @@ export default function ProductForm({
     name: "",
     brand: "",
     category: "",
+    subcategory: "",
     shortDescription: "",
     sku: "",
     description: "",
@@ -195,7 +205,7 @@ export default function ProductForm({
     }
   };
 
-  const shortDescWordsCount = formData.shortDescription
+  const shortDescWordsCount = (formData.shortDescription || "")
     .trim()
     .split(/\s+/)
     .filter((w) => w.length > 0).length;
@@ -308,7 +318,7 @@ export default function ProductForm({
                 type="text"
                 required
                 disabled={isView}
-                value={formData.name}
+                value={formData.name || ""}
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
@@ -331,7 +341,7 @@ export default function ProductForm({
               <textarea
                 required
                 disabled={isView}
-                value={formData.shortDescription}
+                value={formData.shortDescription || ""}
                 onChange={handleShortDescChange}
                 rows={3}
                 className={`w-full px-4 py-3 border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none ${isView ? "bg-gray-50 cursor-not-allowed text-gray-600" : ""}`}
@@ -348,7 +358,7 @@ export default function ProductForm({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <ImageUploader
                 label="Primary Thumbnail *"
-                value={formData.primaryThumbnail}
+                value={formData.primaryThumbnail || ""}
                 onChange={(v) =>
                   setFormData({ ...formData, primaryThumbnail: v })
                 }
@@ -357,7 +367,7 @@ export default function ProductForm({
               />
               <ImageUploader
                 label="Hover Thumbnail"
-                value={formData.hoverThumbnail}
+                value={formData.hoverThumbnail || ""}
                 onChange={(v) =>
                   setFormData({ ...formData, hoverThumbnail: v })
                 }
@@ -369,7 +379,7 @@ export default function ProductForm({
             <div className="border-t border-gray-200 pt-6 mt-6">
               <ImageUploader
                 label="Additional Photos"
-                value={formData.additionalPhotos}
+                value={formData.additionalPhotos || ""}
                 onChange={(v) =>
                   setFormData({ ...formData, additionalPhotos: v })
                 }
@@ -390,7 +400,7 @@ export default function ProductForm({
             >
               <ReactQuill
                 theme="snow"
-                value={formData.description}
+                value={formData.description || ""}
                 onChange={(val) =>
                   !isView && setFormData({ ...formData, description: val })
                 }
@@ -533,7 +543,7 @@ export default function ProductForm({
               label="Brand *"
               disabled={isView}
               options={MOCK_BRANDS}
-              value={formData.brand}
+              value={formData.brand || ""}
               onChange={(v) => setFormData({ ...formData, brand: v })}
               placeholder="Select Brand"
             />
@@ -542,9 +552,18 @@ export default function ProductForm({
               label="Category *"
               disabled={isView}
               options={MOCK_CATEGORIES}
-              value={formData.category}
+              value={formData.category || ""}
               onChange={(v) => setFormData({ ...formData, category: v })}
               placeholder="Select Category"
+            />
+
+            <SearchableSelect
+              label="Subcategory"
+              disabled={isView}
+              options={MOCK_SUBCATEGORIES}
+              value={formData.subcategory || ""}
+              onChange={(v) => setFormData({ ...formData, subcategory: v })}
+              placeholder="Select Subcategory"
             />
 
             <div>
@@ -555,7 +574,7 @@ export default function ProductForm({
                 type="text"
                 required
                 disabled={isView}
-                value={formData.sku}
+                value={formData.sku || ""}
                 onChange={(e) =>
                   setFormData({ ...formData, sku: e.target.value })
                 }
@@ -568,7 +587,7 @@ export default function ProductForm({
               label="Related Products"
               disabled={isView}
               options={MOCK_PRODUCTS}
-              value={formData.relatedProducts}
+              value={formData.relatedProducts || ""}
               onChange={(v) => setFormData({ ...formData, relatedProducts: v })}
               placeholder="Select products"
               multiple={true}
@@ -581,7 +600,7 @@ export default function ProductForm({
               <input
                 type="url"
                 disabled={isView}
-                value={formData.catalogUrl}
+                value={formData.catalogUrl || ""}
                 onChange={(e) =>
                   setFormData({ ...formData, catalogUrl: e.target.value })
                 }
@@ -593,7 +612,19 @@ export default function ProductForm({
         </div>
       </div>
 
-      <div className="mt-10 pt-6 border-t border-gray-100 flex justify-end gap-4">
+      <div className="mt-10 pt-6 border-t border-gray-100 flex justify-between items-center">
+        <div>
+          {isView && onDelete && (
+            <button
+              type="button"
+              onClick={onDelete}
+              className="px-6 py-3 bg-red-600 text-white font-bold hover:bg-red-700 transition-colors shadow-sm"
+            >
+              Delete
+            </button>
+          )}
+        </div>
+        <div className="flex gap-4">
         {onBack && (
           <button
             type="button"
@@ -610,6 +641,7 @@ export default function ProductForm({
             onClick={handleSubmit}
           />
         )}
+        </div>
       </div>
     </form>
   );

@@ -4,7 +4,7 @@ import { FiArrowLeft } from "react-icons/fi";
 import Button from "../../../components/button";
 import ImageUploader from "../../../components/ImageUploader";
 
-export default function ClientForm({ mode = "add", initialData = null, onBack = null, onEdit = null }) {
+export default function ClientForm({ mode = "add", initialData = null, onBack = null, onEdit = null, onDelete = null }) {
   const isView = mode === "view";
 
   const [formData, setFormData] = useState({
@@ -72,7 +72,7 @@ export default function ClientForm({ mode = "add", initialData = null, onBack = 
                 type="text"
                 required
                 disabled={isView}
-                value={formData.name}
+                value={formData.name || ""}
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
@@ -91,7 +91,7 @@ export default function ClientForm({ mode = "add", initialData = null, onBack = 
             
             <ImageUploader 
               label="Logo (Square 1:1) *"
-              value={formData.logo}
+              value={formData.logo || ""}
               onChange={(v) => setFormData({ ...formData, logo: v })}
               disabled={isView}
               aspect={1}
@@ -100,7 +100,19 @@ export default function ClientForm({ mode = "add", initialData = null, onBack = 
         </div>
       </div>
 
-      <div className="mt-10 pt-6 border-t border-gray-100 flex justify-end gap-4">
+      <div className="mt-10 pt-6 border-t border-gray-100 flex justify-between items-center">
+        <div>
+          {isView && onDelete && (
+            <button
+              type="button"
+              onClick={onDelete}
+              className="px-6 py-3 bg-red-600 text-white font-bold hover:bg-red-700 transition-colors shadow-sm"
+            >
+              Delete
+            </button>
+          )}
+        </div>
+        <div className="flex gap-4">
         {onBack && (
           <button
             type="button"
@@ -117,6 +129,7 @@ export default function ClientForm({ mode = "add", initialData = null, onBack = 
             onClick={handleSubmit}
           />
         )}
+        </div>
       </div>
     </form>
   );

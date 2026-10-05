@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const menus = [
- { label: "Dashboard", href: "/control-dashboard" },
+ { label: "Summary", href: "/control-dashboard" },
  { 
   label: "Product", 
   subMenus: [
@@ -65,7 +65,7 @@ const menus = [
  { label: "Newsletter", href: "/control-dashboard/newsletter" },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ onClose }) {
  const pathname = usePathname();
 
  return (
@@ -75,7 +75,10 @@ export default function Sidebar() {
      CONTROL PANEL
     </h1>
    </div>
-   <div className="flex-1 overflow-y-auto py-4">
+   <div className="flex-1 overflow-y-auto py-4" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+   <style>{`
+    .flex-1.overflow-y-auto::-webkit-scrollbar { display: none; }
+   `}</style>
     <nav className="space-y-1 px-3 pb-6">
      {menus.map((menu, idx) => {
       if (menu.subMenus) {
@@ -89,6 +92,7 @@ export default function Sidebar() {
            <Link
             key={subIdx}
             href={subMenu.href}
+            onClick={() => onClose && onClose()}
             className={`flex items-center px-4 py-2.5 ml-2 text-sm font-medium transition-colors ${
              pathname === subMenu.href
               ? "bg-primary text-white"
@@ -108,6 +112,7 @@ export default function Sidebar() {
        <Link
         key={idx}
         href={menu.href}
+        onClick={() => onClose && onClose()}
         className={`flex items-center px-4 py-3 text-sm font-medium transition-colors ${
          pathname === menu.href
           ? "bg-primary text-white"

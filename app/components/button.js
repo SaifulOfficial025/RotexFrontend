@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa6";
 
 export default function Button({
+  text,
   children,
   onClick,
   href,
@@ -30,7 +31,7 @@ export default function Button({
   if (href) {
     return (
       <Link href={href} className={combinedClassName} {...props}>
-        {children}
+        {text || children}
         {showArrow && <FaArrowRight className="ml-2 transition-transform group-hover:translate-x-1" size={16} />}
       </Link>
     );
@@ -44,7 +45,7 @@ export default function Button({
       className={`group ${combinedClassName}`}
       {...props}
     >
-      {children}
+      {text || children}
       {showArrow && <FaArrowRight className="ml-2 transition-transform group-hover:translate-x-1" size={16} />}
     </button>
   );

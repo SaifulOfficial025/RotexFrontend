@@ -42,8 +42,8 @@ const SearchableSelect = ({
   const handleSelect = (opt) => {
     if (disabled) return;
     if (multiple) {
-      if (!value.includes(opt)) {
-        onChange([...value, opt]);
+      if (!(value || []).includes(opt)) {
+        onChange([...(value || []), opt]);
       }
     } else {
       onChange(opt);
@@ -55,7 +55,7 @@ const SearchableSelect = ({
   const handleRemove = (opt, e) => {
     e.stopPropagation();
     if (disabled) return;
-    onChange(value.filter((v) => v !== opt));
+    onChange((value || []).filter((v) => v !== opt));
   };
 
   return (
@@ -69,7 +69,7 @@ const SearchableSelect = ({
       >
         {multiple ? (
           <>
-            {value.map((v) => (
+            {(value || []).map((v) => (
               <span
                 key={v}
                 className="bg-primary/10 text-primary px-2 py-1 text-sm flex items-center gap-1 font-bold border border-primary/20"
@@ -83,7 +83,7 @@ const SearchableSelect = ({
                 )}
               </span>
             ))}
-            {value.length === 0 && (
+            {(value || []).length === 0 && (
               <span className="text-gray-400">{placeholder}</span>
             )}
           </>
@@ -118,7 +118,7 @@ const SearchableSelect = ({
             filteredOptions.map((opt) => (
               <div
                 key={opt}
-                className={`px-4 py-3 hover:bg-primary/5 hover:text-primary cursor-pointer transition-colors text-sm ${multiple && value.includes(opt) ? "bg-primary/10 text-primary font-bold" : "text-gray-700"}`}
+                className={`px-4 py-3 hover:bg-primary/5 hover:text-primary cursor-pointer transition-colors text-sm ${multiple && (value || []).includes(opt) ? "bg-primary/10 text-primary font-bold" : "text-gray-700"}`}
                 onClick={() => handleSelect(opt)}
               >
                 {opt}
@@ -135,7 +135,7 @@ const SearchableSelect = ({
   );
 };
 
-export default function BrandForm({ mode = "add", initialData = null, onBack = null, onEdit = null }) {
+export default function BrandForm({ mode = "add", initialData = null, onBack = null, onEdit = null, onDelete = null }) {
   const isView = mode === "view";
 
   const [formData, setFormData] = useState({
@@ -163,7 +163,7 @@ export default function BrandForm({ mode = "add", initialData = null, onBack = n
     }
   };
 
-  const descWordsCount = formData.description
+  const descWordsCount = (formData.description || "")
     .trim()
     .split(/\s+/)
     .filter((w) => w.length > 0).length;
@@ -222,7 +222,7 @@ export default function BrandForm({ mode = "add", initialData = null, onBack = n
                 type="text"
                 required
                 disabled={isView}
-                value={formData.title}
+                value={formData.title || ""}
                 onChange={(e) =>
                   setFormData({ ...formData, title: e.target.value })
                 }
@@ -245,7 +245,7 @@ export default function BrandForm({ mode = "add", initialData = null, onBack = n
               <textarea
                 required
                 disabled={isView}
-                value={formData.description}
+                value={formData.description || ""}
                 onChange={handleDescChange}
                 rows={4}
                 className={`w-full px-4 py-3 border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none ${isView ? "bg-gray-50 cursor-not-allowed text-gray-600" : ""}`}
@@ -257,7 +257,7 @@ export default function BrandForm({ mode = "add", initialData = null, onBack = n
               label="Featured Product of this Brand"
               disabled={isView}
               options={MOCK_PRODUCTS}
-              value={formData.featuredProducts}
+              value={formData.featuredProducts || ""}
               onChange={(v) => setFormData({ ...formData, featuredProducts: v })}
               placeholder="Search and select products"
               multiple={true}
@@ -273,7 +273,7 @@ export default function BrandForm({ mode = "add", initialData = null, onBack = n
             
             <ImageUploader 
               label="Brand Logo"
-              value={formData.logo}
+              value={formData.logo || ""}
               onChange={(v) => setFormData({ ...formData, logo: v })}
               disabled={isView}
               aspect={1}
@@ -282,7 +282,19 @@ export default function BrandForm({ mode = "add", initialData = null, onBack = n
         </div>
       </div>
 
-      <div className="mt-10 pt-6 border-t border-gray-100 flex justify-end gap-4">
+      <div className="mt-10 pt-6 border-t border-gray-100 flex justify-between items-center">
+        <div>
+          {isView && onDelete && (
+            <button
+              type="button"
+              onClick={onDelete}
+              className="px-6 py-3 bg-red-600 text-white font-bold hover:bg-red-700 transition-colors shadow-sm"
+            >
+              Delete
+            </button>
+          )}
+        </div>
+        <div className="flex gap-4">
         {onBack && (
           <button
             type="button"
@@ -299,6 +311,7 @@ export default function BrandForm({ mode = "add", initialData = null, onBack = n
             onClick={handleSubmit}
           />
         )}
+        </div>
       </div>
     </form>
   );
